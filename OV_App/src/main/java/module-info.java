@@ -3,6 +3,6 @@ module com.example.ov_app {
     requires javafx.fxml;
 
 
-    opens com.example.ov_app to javafx.fxml;
-    exports com.example.ov_app;
+    opens com.ovapp to javafx.fxml;
+    exports com.ovapp;
 }
