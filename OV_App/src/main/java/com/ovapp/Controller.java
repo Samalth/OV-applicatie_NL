@@ -6,7 +6,7 @@ import javafx.scene.control.Label;
 
 public class Controller {
     @FXML
-    private Label welcomeText;
+    private Label departure;
 
     @FXML
     protected void onHelloButtonClick() {
@@ -14,7 +14,7 @@ public class Controller {
     }
 
     @FXML
-    protected <T> void populateChoicebox() {
-        choiceboxDepart.ObservableList<T> items = FXCollections.observableArrayList();
+    protected void populateChoicebox() {
+        departure.ObservableList<T> items = FXCollections.observableArrayList();
     }
 }

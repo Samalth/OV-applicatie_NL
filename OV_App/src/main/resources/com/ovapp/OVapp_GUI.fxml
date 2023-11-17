@@ -16,7 +16,7 @@
             <font>
                <Font size="18.0" />
             </font></Button>
-      
+
         <Label id="Departure" layoutX="14.0" layoutY="14.0" prefHeight="42.0" prefWidth="145.0" text="Vertrek">
             <font>
                <Font size="18.0" />
@@ -25,7 +25,7 @@
             <font>
                <Font size="18.0" />
             </font></Label>
-         <ChoiceBox layoutX="185.0" layoutY="69.0" prefHeight="42.0" prefWidth="323.0" />
+         <ChoiceBox fx:id="departure" layoutX="185.0" layoutY="69.0" prefHeight="42.0" prefWidth="323.0" />
          <ChoiceBox layoutX="184.0" layoutY="14.0" prefHeight="42.0" prefWidth="323.0" />
          <Label id="DepartureTime" layoutX="15.0" layoutY="151.0" prefHeight="42.0" prefWidth="145.0" text="Vertrek tijd">
             <font>
