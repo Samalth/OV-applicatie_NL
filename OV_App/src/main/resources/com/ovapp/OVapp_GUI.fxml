@@ -6,62 +6,65 @@
 <?import javafx.scene.text.*?>
 
 <VBox alignment="CENTER" prefHeight="540.0" prefWidth="960.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ovapp.Controller">
-  <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-  </padding>
-   <Pane prefHeight="545.0" prefWidth="993.0">
-      <children>
-         <TextArea id="routeInfoArea" layoutX="14.0" layoutY="238.0" prefHeight="231.0" prefWidth="495.0" />
-        <Button layoutX="374.0" layoutY="152.0" onAction="#onHelloButtonClick" prefHeight="52.0" prefWidth="134.0" text="Plan route">
-            <font>
-               <Font size="18.0" />
-            </font></Button>
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+    <Pane prefHeight="545.0" prefWidth="993.0">
+        <children>
+            <TextArea id="routeInfoArea" layoutX="14.0" layoutY="238.0" prefHeight="231.0" prefWidth="495.0" />
+            <Button layoutX="374.0" layoutY="152.0" onAction="#onHelloButtonClick" prefHeight="52.0" prefWidth="134.0" text="Plan route">
+                <font>
+                    <Font size="18.0" />
+                </font>
+            </Button>
 
-        <Label id="Departure" layoutX="14.0" layoutY="14.0" prefHeight="42.0" prefWidth="145.0" text="Vertrek">
-            <font>
-               <Font size="18.0" />
-            </font></Label>
-         <Label id="Arrival" layoutX="16.0" layoutY="69.0" prefHeight="42.0" prefWidth="145.0" text="Bestemming">
-            <font>
-               <Font size="18.0" />
-            </font></Label>
-         <ChoiceBox fx:id="departure" layoutX="185.0" layoutY="69.0" prefHeight="42.0" prefWidth="323.0" />
-         <ChoiceBox layoutX="184.0" layoutY="14.0" prefHeight="42.0" prefWidth="323.0" />
-         <Label id="DepartureTime" layoutX="15.0" layoutY="151.0" prefHeight="42.0" prefWidth="145.0" text="Vertrek tijd">
-            <font>
-               <Font size="18.0" />
-            </font>
-         </Label>
-         <TextField id="DepartureHours" alignment="CENTER" layoutX="185.0" layoutY="152.0" prefHeight="42.0" prefWidth="47.0" text="12">
-            <font>
-               <Font size="18.0" />
-            </font>
-         </TextField>
-         <TextField id="DepartureMinutes" alignment="CENTER" layoutX="262.0" layoutY="152.0" prefHeight="42.0" prefWidth="47.0" text="00">
-            <font>
-               <Font size="18.0" />
-            </font>
-         </TextField>
-         <Label id="Points" alignment="CENTER" layoutX="232.0" layoutY="152.0" prefHeight="42.0" prefWidth="30.0" text=":">
-            <font>
-               <Font size="24.0" />
-            </font>
-         </Label>
-         <TextField id="currentTime" alignment="CENTER" layoutX="789.0" layoutY="15.0" prefHeight="42.0" prefWidth="47.0" text="12">
-            <font>
-               <Font size="18.0" />
-            </font>
-         </TextField>
-         <TextField id="currentTime" alignment="CENTER" layoutX="866.0" layoutY="15.0" prefHeight="42.0" prefWidth="47.0" text="00">
-            <font>
-               <Font size="18.0" />
-            </font>
-         </TextField>
-         <Label id="currentTimePoints" alignment="CENTER" layoutX="836.0" layoutY="14.0" prefHeight="42.0" prefWidth="30.0" text=":">
-            <font>
-               <Font size="24.0" />
-            </font>
-         </Label>
-      </children>
-   </Pane>
+            <Label id="departureLabel" layoutX="14.0" layoutY="14.0" prefHeight="42.0" prefWidth="145.0" text="Vertrek">
+                <font>
+                    <Font size="18.0" />
+                </font>
+            </Label>
+            <Label id="Arrival" layoutX="16.0" layoutY="69.0" prefHeight="42.0" prefWidth="145.0" text="Bestemming">
+                <font>
+                    <Font size="18.0" />
+                </font>
+            </Label>
+            <ChoiceBox fx:id="departure" layoutX="185.0" layoutY="14.0" prefHeight="42.0" prefWidth="323.0" />
+            <ChoiceBox layoutX="185.0" layoutY="69.0" prefHeight="42.0" prefWidth="323.0" />
+            <Label id="DepartureTime" layoutX="15.0" layoutY="151.0" prefHeight="42.0" prefWidth="145.0" text="Vertrek tijd">
+                <font>
+                    <Font size="18.0" />
+                </font>
+            </Label>
+            <TextField id="DepartureHours" alignment="CENTER" layoutX="185.0" layoutY="152.0" prefHeight="42.0" prefWidth="47.0" text="12">
+                <font>
+                    <Font size="18.0" />
+                </font>
+            </TextField>
+            <TextField id="DepartureMinutes" alignment="CENTER" layoutX="262.0" layoutY="152.0" prefHeight="42.0" prefWidth="47.0" text="00">
+                <font>
+                    <Font size="18.0" />
+                </font>
+            </TextField>
+            <Label id="Points" alignment="CENTER" layoutX="232.0" layoutY="152.0" prefHeight="42.0" prefWidth="30.0" text=":">
+                <font>
+                    <Font size="24.0" />
+                </font>
+            </Label>
+            <TextField id="currentTime" alignment="CENTER" layoutX="789.0" layoutY="15.0" prefHeight="42.0" prefWidth="47.0" text="12">
+                <font>
+                    <Font size="18.0" />
+                </font>
+            </TextField>
+            <TextField id="currentTime" alignment="CENTER" layoutX="866.0" layoutY="15.0" prefHeight="42.0" prefWidth="47.0" text="00">
+                <font>
+                    <Font size="18.0" />
+                </font>
+            </TextField>
+            <Label id="currentTimePoints" alignment="CENTER" layoutX="836.0" layoutY="14.0" prefHeight="42.0" prefWidth="30.0" text=":">
+                <font>
+                    <Font size="24.0" />
+                </font>
+            </Label>
+        </children>
+    </Pane>
 </VBox>
