@@ -15,9 +15,6 @@ public class Controller {
     }
 
     @FXML
-    private Button GO; {onGOClick();}
-
-    @FXML
     private ComboBox<String> vertrekComboBox;
 
     @FXML
