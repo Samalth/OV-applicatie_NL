@@ -11,8 +11,8 @@
   </padding>
    <Pane prefHeight="545.0" prefWidth="993.0">
       <children>
-         <TextArea id="routeInfoArea" layoutX="14.0" layoutY="238.0" prefHeight="231.0" prefWidth="495.0" />
-        <Button disable="true" layoutX="374.0" layoutY="152.0" onAction="#onHelloButtonClick" prefHeight="42.0" prefWidth="134.0" style="-fx-border-color: #ff6600;" text="Plan route">
+         <TextArea id="routeInfoArea" editable="false" layoutX="14.0" layoutY="238.0" prefHeight="231.0" prefWidth="495.0" />
+        <Button fx:id="planButton" layoutX="374.0" layoutY="152.0" onAction="#onPlanButtonClick" prefHeight="42.0" prefWidth="134.0" style="-fx-border-color: #ff6600;" text="Plan route">
             <font>
                <Font size="18.0" />
             </font></Button>
@@ -39,22 +39,20 @@
                <Font size="24.0" />
             </font>
          </Label>
-         <TextField id="currentTime" alignment="CENTER" layoutX="789.0" layoutY="70.0" prefHeight="42.0" prefWidth="47.0" text="12">
+         <TextField id="currentTime" alignment="CENTER" editable="false" layoutX="611.0" layoutY="90.0" prefHeight="42.0" prefWidth="78.0">
             <font>
                <Font size="18.0" />
             </font>
          </TextField>
-         <TextField id="currentTime" alignment="CENTER" layoutX="866.0" layoutY="70.0" prefHeight="42.0" prefWidth="47.0" text="00">
+         <TextField id="currentTime" alignment="CENTER" editable="false" layoutX="733.0" layoutY="90.0" prefHeight="42.0" prefWidth="78.0">
             <font>
                <Font size="18.0" />
             </font>
          </TextField>
-         <Label id="currentTimePoints" alignment="CENTER" layoutX="836.0" layoutY="69.0" prefHeight="42.0" prefWidth="30.0" text=":">
-            <font>
-               <Font size="24.0" />
-            </font>
-         </Label>
-         <Button layoutX="828.0" layoutY="14.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="78.0" text="Log uit" />
+         <Button disable="true" layoutX="828.0" layoutY="14.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="78.0" style="-fx-border-color: #ff6600;" text="Log uit" />
+         <Label fx:id="klokLabel" layoutX="623.0" layoutY="102.0" text="Label Klok" />
+         <Label fx:id="datumLabel" layoutX="739.0" layoutY="103.0" text="Label Datum" />
+         <Label fx:id="routeLabel" layoutX="26.0" layoutY="250.0" prefHeight="210.0" prefWidth="474.0" text="Route Label" />
       </children>
    </Pane>
 </VBox>
