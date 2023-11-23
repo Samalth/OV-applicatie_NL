@@ -1,41 +1,40 @@
 package com.ovapp;
 import java.util.*;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+public class Controller  {
 
-public class Controller {
     @FXML
-    private Label welcomeText;
+    private Label departurelabel;
+
+    @FXML
+    private ComboBox<String> departureComboBox;
+    @FXML
+    private String Departure;
+
+    @FXML
+    private String Arrival;
+
+    @FXML
+    private ComboBox<String> departureCityComboBox;
+
+    @FXML
+    private ComboBox<String> arrivalCityComboBox;
 
     @FXML
     protected void onGOClick() {
-        welcomeText.setText("Just kidding, I like girls!");
+        Departure = departureCityComboBox.getValue();
+        Arrival = arrivalCityComboBox.getValue();
+        departurelabel.setText(String.format("Vertrek station: %s naar %s", Departure, Arrival));
     }
 
-    @FXML
-    private ComboBox<String> vertrekComboBox;
-
-    @FXML
-    private ComboBox<String> aankomstComboBox;
-
-    @FXML
-    private ComboBox<String> vertrekStadComboBox;
-
-    @FXML
-    private ComboBox<String> aankomstStadComboBox;
-
-
     public void initialize() {
-        // Vul de ChoiceBox met tijden
         List<String> tijden = getTijden();
-        vertrekComboBox.getItems().addAll(tijden);
-        aankomstComboBox.getItems().addAll(tijden);
+        departureComboBox.getItems().addAll(tijden);
 
         List<String> steden = getSteden();
-        vertrekStadComboBox.getItems().addAll(steden);
-        aankomstStadComboBox.getItems().addAll(steden);
+        departureCityComboBox.getItems().addAll(steden);
+        arrivalCityComboBox.getItems().addAll(steden);
     }
 
     private List<String> getTijden() {
@@ -50,5 +49,5 @@ public class Controller {
 
     private List<String> getSteden() {
         return Arrays.asList("Amersfoort", "Nieuwegein", "Amsterdam", "Den Haag", "Den Bosch", "Arnhem", "Utrecht", "IJsselstein");
-    }
-}
+     }
+ }
