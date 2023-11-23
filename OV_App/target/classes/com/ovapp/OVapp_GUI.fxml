@@ -39,21 +39,22 @@
                <Font size="24.0" />
             </font>
          </Label>
-         <TextField id="currentTime" alignment="CENTER" layoutX="789.0" layoutY="15.0" prefHeight="42.0" prefWidth="47.0" text="12">
+         <TextField id="currentTime" alignment="CENTER" layoutX="789.0" layoutY="70.0" prefHeight="42.0" prefWidth="47.0" text="12">
             <font>
                <Font size="18.0" />
             </font>
          </TextField>
-         <TextField id="currentTime" alignment="CENTER" layoutX="866.0" layoutY="15.0" prefHeight="42.0" prefWidth="47.0" text="00">
+         <TextField id="currentTime" alignment="CENTER" layoutX="866.0" layoutY="70.0" prefHeight="42.0" prefWidth="47.0" text="00">
             <font>
                <Font size="18.0" />
             </font>
          </TextField>
-         <Label id="currentTimePoints" alignment="CENTER" layoutX="836.0" layoutY="14.0" prefHeight="42.0" prefWidth="30.0" text=":">
+         <Label id="currentTimePoints" alignment="CENTER" layoutX="836.0" layoutY="69.0" prefHeight="42.0" prefWidth="30.0" text=":">
             <font>
                <Font size="24.0" />
             </font>
          </Label>
+         <Button layoutX="828.0" layoutY="14.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="78.0" text="Log uit" />
       </children>
    </Pane>
 </VBox>
