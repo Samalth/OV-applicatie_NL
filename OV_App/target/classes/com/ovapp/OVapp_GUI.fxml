@@ -32,27 +32,27 @@
                <Font size="18.0" />
             </font>
          </Label>
-         <Spinner editable="true" initialValue="0" layoutX="185.0" layoutY="151.0" max="23" prefHeight="42.0" prefWidth="58.0" style="-fx-border-color: #ff6600;" />
-         <Spinner editable="true" initialValue="0" layoutX="273.0" layoutY="152.0" max="59" prefHeight="42.0" prefWidth="58.0" style="-fx-border-color: #ff6600;" />
+         <Spinner fx:id="vertrekTijdUur" editable="true" initialValue="0" layoutX="185.0" layoutY="151.0" max="23" prefHeight="42.0" prefWidth="58.0" style="-fx-border-color: #ff6600;" />
+         <Spinner fx:id="vertrekTijdMinuten" editable="true" initialValue="0" layoutX="273.0" layoutY="152.0" max="59" prefHeight="42.0" prefWidth="58.0" style="-fx-border-color: #ff6600;" />
          <Label id="Points" alignment="CENTER" layoutX="243.0" layoutY="152.0" prefHeight="42.0" prefWidth="30.0" text=":">
             <font>
                <Font size="24.0" />
             </font>
          </Label>
-         <TextField id="currentTime" alignment="CENTER" editable="false" layoutX="611.0" layoutY="90.0" prefHeight="42.0" prefWidth="78.0">
+         <TextField id="currentTime" alignment="CENTER" editable="false" layoutX="561.0" layoutY="14.0" prefHeight="42.0" prefWidth="78.0" style="-fx-border-color: #ff6600;">
             <font>
                <Font size="18.0" />
             </font>
          </TextField>
-         <TextField id="currentTime" alignment="CENTER" editable="false" layoutX="733.0" layoutY="90.0" prefHeight="42.0" prefWidth="78.0">
+         <TextField id="currentTime" alignment="CENTER" editable="false" layoutX="683.0" layoutY="14.0" prefHeight="42.0" prefWidth="78.0">
             <font>
                <Font size="18.0" />
             </font>
          </TextField>
          <Button disable="true" layoutX="828.0" layoutY="14.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="78.0" style="-fx-border-color: #ff6600;" text="Log uit" />
-         <Label fx:id="klokLabel" layoutX="623.0" layoutY="102.0" text="Label Klok" />
-         <Label fx:id="datumLabel" layoutX="739.0" layoutY="103.0" text="Label Datum" />
-         <Label fx:id="routeLabel" layoutX="26.0" layoutY="250.0" prefHeight="210.0" prefWidth="474.0" text="Route Label" />
+         <Label fx:id="klokLabel" layoutX="573.0" layoutY="26.0" text="Label Klok" />
+         <Label fx:id="datumLabel" layoutX="689.0" layoutY="27.0" text="Label Datum" />
+         <Label fx:id="routeLabel" layoutX="26.0" layoutY="250.0" prefHeight="210.0" prefWidth="474.0" />
       </children>
    </Pane>
 </VBox>
