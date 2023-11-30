@@ -1,8 +1,16 @@
 package com.ovapp;
 import java.util.*;
 import javafx.fxml.FXML;
+import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
+import java.text.*;
 public class Controller  {
+
+    @FXML
+    private Button logoutButton;
 
     @FXML
     private Label departurelabel;
@@ -20,13 +28,11 @@ public class Controller  {
 
     @FXML
     private ComboBox<String> arrivalCityComboBox;
-
     @FXML
-    protected void onGOClick() {
-        Departure = departureCityComboBox.getValue();
-        Arrival = arrivalCityComboBox.getValue();
-        departurelabel.setText(String.format("Vertrek station: %s naar %s", Departure, Arrival));
-    }
+    private Label datumLabel;
+    @FXML
+    private Label klokLabel;
+
 
     public void initialize() {
         List<String> tijden = getTijden();
@@ -35,6 +41,59 @@ public class Controller  {
         List<String> steden = getSteden();
         departureCityComboBox.getItems().addAll(steden);
         arrivalCityComboBox.getItems().addAll(steden);
+
+        Timer timer = new Timer(true);
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                updateKlok();
+                updateDatum();
+            }
+        }, 0, 1000);
+    }
+
+    public void onLogoutButtonClick() {
+        openOVappinlog();
+    }
+
+    private void openOVappinlog() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("OVapp_inlog.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(fxmlLoader.load()));
+            stage.setTitle("Inlogscherm");
+            stage.show();
+
+            Stage currentStage = (Stage) logoutButton.getScene().getWindow();
+            currentStage.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    protected void onGOClick() {
+        Departure = departureCityComboBox.getValue();
+        Arrival = arrivalCityComboBox.getValue();
+        departurelabel.setText(String.format("Vertrek station: %s naar %s", Departure, Arrival));
+    }
+
+    private void updateKlok() {
+            SimpleDateFormat dateFormat = new SimpleDateFormat(" HH:mm:ss");
+            String formattedTime = dateFormat.format(new Date());
+
+            Platform.runLater(() -> {
+                klokLabel.setText(formattedTime);
+            });
+    }
+
+    private void updateDatum() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String formattedDate = dateFormat.format(new Date());
+
+        Platform.runLater(() -> {
+           datumLabel.setText(formattedDate);
+        });
     }
 
     private List<String> getTijden() {

@@ -16,7 +16,6 @@ public class InlogController {
 
     @FXML
     protected void onLoginClick() {
-
         openOVappGUI();
     }
 
