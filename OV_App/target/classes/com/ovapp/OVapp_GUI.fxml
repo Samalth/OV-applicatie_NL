@@ -25,15 +25,15 @@
             <font>
                <Font size="18.0" />
             </font></Label>
-         <ComboBox fx:id="vertrekComboBox" layoutX="185.0" layoutY="15.0" prefHeight="42.0" prefWidth="323.0" promptText="Selecteer vertrek locatie" style="-fx-border-color: #ff6600;" />
-         <ComboBox fx:id="bestemmingComboBox" layoutX="185.0" layoutY="69.0" prefHeight="42.0" prefWidth="323.0" promptText="Selecteer bestemming" style="-fx-border-color: #ff6600;" />
+         <ComboBox fx:id="departureComboBox" layoutX="185.0" layoutY="15.0" prefHeight="42.0" prefWidth="323.0" promptText="Selecteer vertrek locatie" style="-fx-border-color: #ff6600;" />
+         <ComboBox fx:id="arrivalComboBox" layoutX="185.0" layoutY="69.0" prefHeight="42.0" prefWidth="323.0" promptText="Selecteer bestemming" style="-fx-border-color: #ff6600;" />
          <Label id="DepartureTime" layoutX="15.0" layoutY="151.0" prefHeight="42.0" prefWidth="145.0" text="Vertrek tijd">
             <font>
                <Font size="18.0" />
             </font>
          </Label>
-         <Spinner fx:id="vertrekTijdUur" editable="true" initialValue="0" layoutX="185.0" layoutY="151.0" max="23" prefHeight="42.0" prefWidth="58.0" style="-fx-border-color: #ff6600;" />
-         <Spinner fx:id="vertrekTijdMinuten" editable="true" initialValue="0" layoutX="273.0" layoutY="152.0" max="59" prefHeight="42.0" prefWidth="58.0" style="-fx-border-color: #ff6600;" />
+         <Spinner fx:id="departureTimeHours" editable="true" initialValue="0" layoutX="185.0" layoutY="151.0" max="23" prefHeight="42.0" prefWidth="58.0" style="-fx-border-color: #ff6600;" />
+         <Spinner fx:id="departureTimeMinutes" editable="true" initialValue="0" layoutX="273.0" layoutY="152.0" max="59" prefHeight="42.0" prefWidth="58.0" style="-fx-border-color: #ff6600;" />
          <Label id="Points" alignment="CENTER" layoutX="243.0" layoutY="152.0" prefHeight="42.0" prefWidth="30.0" text=":">
             <font>
                <Font size="24.0" />
@@ -44,15 +44,23 @@
                <Font size="18.0" />
             </font>
          </TextField>
-         <TextField id="currentTime" alignment="CENTER" editable="false" layoutX="683.0" layoutY="14.0" prefHeight="42.0" prefWidth="78.0">
+         <TextField id="currentTime" alignment="CENTER" editable="false" layoutX="683.0" layoutY="14.0" prefHeight="42.0" prefWidth="78.0" style="-fx-border-color: #ff6600;">
             <font>
                <Font size="18.0" />
             </font>
          </TextField>
          <Button disable="true" layoutX="828.0" layoutY="14.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="78.0" style="-fx-border-color: #ff6600;" text="Log uit" />
-         <Label fx:id="klokLabel" layoutX="573.0" layoutY="26.0" text="Label Klok" />
-         <Label fx:id="datumLabel" layoutX="689.0" layoutY="27.0" text="Label Datum" />
+         <Label fx:id="clockLabel" layoutX="573.0" layoutY="26.0" text="Label Klok" />
+         <Label fx:id="dateLabel" layoutX="689.0" layoutY="27.0" text="Label Datum" />
          <Label fx:id="routeLabel" layoutX="26.0" layoutY="250.0" prefHeight="210.0" prefWidth="474.0" />
+         <ComboBox fx:id="transportComboBox" layoutX="569.0" layoutY="163.0" prefHeight="42.0" prefWidth="323.0" promptText="Selecteer vervoermiddel" style="-fx-border-color: #ff6600;" >
+                 <tooltip>
+                     <Tooltip fx:id="transportTooltip" text="Klik hier om uw vervoermiddel te selecteren"/>
+                </tooltip></ComboBox>
+         <Label layoutX="586.0" layoutY="111.0" prefHeight="42.0" prefWidth="145.0" text="Vervoer">
+            <font>
+               <Font size="36.0" />
+            </font></Label>
       </children>
    </Pane>
 </VBox>
