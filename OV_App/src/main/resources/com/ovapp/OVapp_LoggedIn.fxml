@@ -21,7 +21,7 @@
          <Label fx:id="departureLabel" layoutX="17.0" layoutY="298.0" prefHeight="291.0" prefWidth="517.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #FF6600;" text=" " textFill="#E62F2B" wrapText="true" />
          <Label fx:id="dateLabel" layoutX="588.0" layoutY="12.0" prefHeight="41.0" prefWidth="82.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #ff6600;" text="datumLabel" textAlignment="CENTER" />
          <Label fx:id="clockLabel" layoutX="493.0" layoutY="12.0" prefHeight="41.0" prefWidth="82.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #ff6600;" text="klokLabel" />
-         <Label fx:id="travelHistoryLabel" layoutX="802.0" layoutY="107.0" prefHeight="486.0" prefWidth="415.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #FF6600;" text="ReisHistory" textFill="#fffdfd" wrapText="true" />
+         <Label fx:id="travelHistoryLabel" layoutX="802.0" layoutY="107.0" prefHeight="486.0" prefWidth="415.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #FF6600;" textFill="#f50000" wrapText="true" />
          <ComboBox fx:id="departureComboBox" layoutX="198.0" layoutY="178.0" prefHeight="41.0" prefWidth="167.0" style="-fx-border-color: #ff6600;" />
          <Text layoutX="17.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vertrek datum" textAlignment="JUSTIFY">
             <font>

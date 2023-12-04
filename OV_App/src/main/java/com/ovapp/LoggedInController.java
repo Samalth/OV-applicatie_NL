@@ -1,9 +1,8 @@
 package com.ovapp;
 import java.time.LocalDate;
 import java.util.*;
-import javafx.fxml.FXML;
 import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
+import javafx.fxml.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -47,6 +46,9 @@ public class LoggedInController  {
     private String DepartureTime;
     @FXML
     private LocalDate DepartureDate;
+
+    private List<String> travelHistory = new ArrayList<>();
+
 
     public void initialize() {
         List<String> tijden = getTime();
@@ -108,9 +110,27 @@ public class LoggedInController  {
         if (DepartureCity == null || ArrivalCity == null || DepartureTime == null) {
             departureLabel.setText("Vul eerst de vertrek- en bestemmingsstations, en selecteer een vertrektijd.");
         } else {
-            String formattedDate = (DepartureDate != null) ? DepartureDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) : LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-            departureLabel.setText(String.format("Vertrek station: %s naar %s om %s op %s", DepartureCity, ArrivalCity, DepartureTime, formattedDate));
+            LocalDate currentDate = LocalDate.now();
+            String formattedCurrentDate = currentDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            String formattedCurrentTime = new SimpleDateFormat("HH:mm:ss").format(new Date());
+
+            String formattedDate = (DepartureDate != null) ? DepartureDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) : currentDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            String departureLabelInfo = String.format("Van %s naar %s om %s op %s", DepartureCity, ArrivalCity, DepartureTime, formattedDate);
+            departureLabel.setText(departureLabelInfo);
+
+            String travelHistoryInfo = String.format("Op %s om%s%nVan %s naar %s om %s op %s", formattedCurrentDate, formattedCurrentTime, DepartureCity, ArrivalCity, DepartureTime, formattedDate);
+            updateTravelHistory(travelHistoryInfo);
         }
+    }
+
+    private void updateTravelHistory(String travelInfo) {
+        travelHistory.add(travelInfo);
+
+        StringBuilder historyText = new StringBuilder();
+        for (String entry : travelHistory) {
+            historyText.append(entry).append("\n\n");
+        }
+        travelHistoryLabel.setText(historyText.toString());
     }
 
     private void updateClock() {
