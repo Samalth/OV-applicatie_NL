@@ -31,6 +31,9 @@ public class Controller {
     private Spinner<Integer> departureTimeHours;
     @FXML
     private Spinner<Integer> departureTimeMinutes;
+    private final Bus bus = new Bus("Bus", Arrays.asList(25, 55, 85));
+    private final Train train = new Train("Trein", Arrays.asList(0, 15, 30, 45, 60));
+
     @FXML
     protected void onPlanButtonClick() {
         String departure = departureComboBox.getValue();
@@ -38,7 +41,15 @@ public class Controller {
         String transport = transportComboBox.getValue();
         int departureHours = departureTimeHours.getValue();
         int departureMinutes = departureTimeMinutes.getValue();
-        ArrayList<String> departureTime = determineDepartureTime(transport, departureHours, departureMinutes);
+        ArrayList<String> departureTime = new ArrayList<>();
+        try {
+            if (transport.equals("Trein")) {
+                departureTime = train.getDepartureTime(train.getTransportSchedule(), departureHours, departureMinutes);
+            } else if (transport.equals("Bus")) {
+                departureTime = bus.getDepartureTime(bus.getTransportSchedule(), departureHours, departureMinutes);
+            }
+        }catch (NullPointerException e){
+        }
         if(departure == null || arrival == null || transport == null) {
             routeLabel.setText("Selecteer alstublieft een vertrekplaats, aankomstplaats en vervoermiddel.");
         } else if (departure.equals(arrival)){
@@ -91,39 +102,11 @@ public class Controller {
         }
         return departureTimes;
     }
-
-    private ArrayList<String> determineDepartureTime(String transport, int departureHours, int departureMinutes){
-        List<Integer> numbersTrain = Arrays.asList(0, 15, 30, 45, 60);
-        int trainListSpot = 0;
-        if (transport.equals("Trein")){
-            if (departureMinutes >= 45){
-                departureHours += 1;
-            }
-            int trainDistance = 100;
-            for(int i=0; i < numbersTrain.size(); i++){
-                int closestTrainDistance = Math.abs(numbersTrain.get(i) - departureMinutes);
-                if (closestTrainDistance < trainDistance){
-                    if (numbersTrain.get(i) > departureMinutes) {
-                        trainListSpot = i;
-                        trainDistance = closestTrainDistance;
-                    }
-                }
-            }
-        }
-        int definitiveDepartureMinutes = numbersTrain.get(trainListSpot);
-        if(definitiveDepartureMinutes == 60){
-            definitiveDepartureMinutes = 0;
-        }
-        ArrayList<String> departureTimes = new ArrayList<>();
-        departureTimes.add(String.format("%02d:%02d", departureHours, definitiveDepartureMinutes));
-        return departureTimes;
-    }
-
     private List<String> getCities() {
         return Arrays.asList("Amersfoort", "Nieuwegein", "Amsterdam", "Den Haag", "Den Bosch", "Arnhem", "Utrecht", "IJsselstein");
     }
 
     private ObservableList<String> getTransport(){
-        return FXCollections.observableArrayList("Trein", "Bus");
+        return FXCollections.observableArrayList(train.getTransportName(), bus.getTransportName());
     }
 }
