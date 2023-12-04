@@ -1,30 +1,23 @@
 package com.ovapp;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import javafx.fxml.FXML;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.*;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import java.text.*;
-public class Controller  {
+import java.time.format.DateTimeFormatter;
+public class LoggedInController  {
 
     @FXML
-    private Button logInButton;
+    private Button logOutButton;
     @FXML
     private Button GOButton;
-
     @FXML
-    private Label departureLabel;
-    @FXML
-    private Label dateLabel;
-    @FXML
-    private Label clockLabel;
-
-    @FXML
-    private DatePicker departureDatePicker;
+    private Button showTravelHistoryButton;
 
     @FXML
     private ComboBox<String> departureComboBox;
@@ -32,6 +25,19 @@ public class Controller  {
     private ComboBox<String> departureCityComboBox;
     @FXML
     private ComboBox<String> arrivalCityComboBox;
+
+    @FXML
+    private DatePicker departureDatePicker;
+
+    @FXML
+    private Label dateLabel;
+    @FXML
+    private Label clockLabel;
+    @FXML
+    private Label departureLabel;
+    @FXML
+    private Label travelHistoryLabel;
+    private boolean isHistoryVisible = false;
 
     @FXML
     private String DepartureCity;
@@ -58,26 +64,40 @@ public class Controller  {
                 updateDate();
             }
         }, 0, 1000);
+
+        travelHistoryLabel.setVisible(false);
     }
 
-    public void onLogInButtonClick() {
-        openOvappLoggedIn();
+    public void onLogOutButtonClick() {
+        openOvappLogOut();
     }
 
-    private void openOvappLoggedIn() {
+    private void openOvappLogOut() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("OVapp_LoggedIn.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("OVapp_GUI.fxml"));
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
 
-            Stage currentStage = (Stage) logInButton.getScene().getWindow();
+            Stage currentStage = (Stage) logOutButton.getScene().getWindow();
             currentStage.setScene(scene);
-            currentStage.setTitle("Ingelogd scherm");
+            currentStage.setTitle("Uitgelogd scherm");
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
 
+    }
+    @FXML
+    protected void onShowTravelHistoryButtonClick() {
+        isHistoryVisible = !isHistoryVisible;
+
+        travelHistoryLabel.setVisible(isHistoryVisible);
+
+        if (isHistoryVisible) {
+            System.out.println("Reisgeschiedenis zichtbaar");
+        } else {
+            System.out.println("Reisgeschiedenis verborgen");
+        }
+    }
     @FXML
     protected void onGOClick() {
         DepartureCity = departureCityComboBox.getValue();
@@ -94,12 +114,12 @@ public class Controller  {
     }
 
     private void updateClock() {
-            SimpleDateFormat dateFormat = new SimpleDateFormat(" HH:mm:ss");
-            String formattedTime = dateFormat.format(new Date());
+        SimpleDateFormat dateFormat = new SimpleDateFormat(" HH:mm:ss");
+        String formattedTime = dateFormat.format(new Date());
 
-            Platform.runLater(() -> {
-                clockLabel.setText(formattedTime);
-            });
+        Platform.runLater(() -> {
+            clockLabel.setText(formattedTime);
+        });
     }
 
     private void updateDate() {
@@ -107,7 +127,7 @@ public class Controller  {
         String formattedDate = dateFormat.format(new Date());
 
         Platform.runLater(() -> {
-           dateLabel.setText(formattedDate);
+            dateLabel.setText(formattedDate);
         });
     }
 
@@ -121,8 +141,7 @@ public class Controller  {
         return tijden;
     }
 
-
     private List<String> getCity() {
         return Arrays.asList("Amersfoort", "Nieuwegein", "Amsterdam", "Den Haag", "Den Bosch", "Arnhem", "Utrecht", "IJsselstein");
-     }
- }
+    }
+}
