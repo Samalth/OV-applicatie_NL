@@ -12,7 +12,7 @@
 
    <Pane prefHeight="623.0" prefWidth="1238.0">
       <children>
-         <Button fx:id="logOutButton" layoutX="764.0" layoutY="13.0" mnemonicParsing="false" onAction="#onLogOutButtonClick" prefHeight="52.0" prefWidth="115.0" style="-fx-border-color: #ff6600;" text="Uitloggen" />
+         <Button fx:id="logOutButton" layoutX="801.0" layoutY="13.0" mnemonicParsing="false" onAction="#onLogOutButtonClick" prefHeight="52.0" prefWidth="115.0" style="-fx-border-color: #ff6600;" text="Uitloggen" />
          <Text layoutX="14.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vertrek">
             <font>
                <Font name="Bell MT" size="22.0" />

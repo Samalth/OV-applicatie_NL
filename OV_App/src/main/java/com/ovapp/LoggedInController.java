@@ -100,6 +100,7 @@ public class LoggedInController  {
             System.out.println("Reisgeschiedenis verborgen");
         }
     }
+
     @FXML
     protected void onGOClick() {
         DepartureCity = departureCityComboBox.getValue();
@@ -114,11 +115,16 @@ public class LoggedInController  {
             String formattedCurrentDate = currentDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
             String formattedCurrentTime = new SimpleDateFormat("HH:mm:ss").format(new Date());
 
-            String formattedDate = (DepartureDate != null) ? DepartureDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) : currentDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-            String departureLabelInfo = String.format("Van %s naar %s om %s op %s", DepartureCity, ArrivalCity, DepartureTime, formattedDate);
+            String formattedDate = (DepartureDate != null)
+                    ? DepartureDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))
+                    : currentDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            String departureLabelInfo = String.format(
+                    "Van %s naar %s om %s op %s", DepartureCity, ArrivalCity, DepartureTime, formattedDate);
             departureLabel.setText(departureLabelInfo);
 
-            String travelHistoryInfo = String.format("Op %s om%s%nVan %s naar %s om %s op %s", formattedCurrentDate, formattedCurrentTime, DepartureCity, ArrivalCity, DepartureTime, formattedDate);
+            String travelHistoryInfo = String.format("Op %s om %s%nVan %s naar %s om %s op %s"
+                    , formattedCurrentDate, formattedCurrentTime, DepartureCity
+                    , ArrivalCity, DepartureTime, formattedDate);
             updateTravelHistory(travelHistoryInfo);
         }
     }
@@ -162,6 +168,7 @@ public class LoggedInController  {
     }
 
     private List<String> getCity() {
-        return Arrays.asList("Amersfoort", "Nieuwegein", "Amsterdam", "Den Haag", "Den Bosch", "Arnhem", "Utrecht", "IJsselstein");
+        return Arrays.asList(
+                "Amersfoort", "Nieuwegein", "Amsterdam", "Den Haag", "Den Bosch", "Arnhem", "Utrecht", "IJsselstein");
     }
 }

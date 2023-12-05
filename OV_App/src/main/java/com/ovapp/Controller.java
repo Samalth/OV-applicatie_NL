@@ -88,8 +88,11 @@ public class Controller  {
         if (DepartureCity == null || ArrivalCity == null || DepartureTime == null) {
             departureLabel.setText("Vul eerst de vertrek- en bestemmingsstations, en selecteer een vertrektijd.");
         } else {
-            String formattedDate = (DepartureDate != null) ? DepartureDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) : LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-            departureLabel.setText(String.format("Vertrek station: %s naar %s om %s op %s", DepartureCity, ArrivalCity, DepartureTime, formattedDate));
+            String formattedDate = (DepartureDate != null)
+                    ? DepartureDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))
+                    : LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            departureLabel.setText(String.format(
+                    "Vertrek station: %s naar %s om %s op %s", DepartureCity, ArrivalCity, DepartureTime, formattedDate));
         }
     }
 
@@ -123,6 +126,7 @@ public class Controller  {
 
 
     private List<String> getCity() {
-        return Arrays.asList("Amersfoort", "Nieuwegein", "Amsterdam", "Den Haag", "Den Bosch", "Arnhem", "Utrecht", "IJsselstein");
+        return Arrays.asList(
+                "Amersfoort", "Nieuwegein", "Amsterdam", "Den Haag", "Den Bosch", "Arnhem", "Utrecht", "IJsselstein");
      }
  }
