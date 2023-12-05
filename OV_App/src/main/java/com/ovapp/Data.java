@@ -1,10 +1,17 @@
 package com.ovapp;
 
-import javafx.collections.ObservableList;
+import org.json.JSONObject;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class Data {
-	public static ObservableList<String> departureData() {
-		return FXCollections.observableArrayList(
-				"Option 1", "Option 2", "Option 3");
+	public void getCities() throws IOException {
+
+		BufferedWriter writer = Files.newBufferedWriter(Paths.get("Routes.json"));
+		JSONObject Route = new JSONObject();
+		Route.put("DepartureCity", "Amsterdam");
 	}
 }
+
