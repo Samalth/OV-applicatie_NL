@@ -19,15 +19,15 @@ import java.text.*;
 public class Controller  {
 
     @FXML
-    private Text VertrekText;
+    private Text DepartureText;
     @FXML
-    private Text BestemmingText;
+    private Text ArrivalText;
     @FXML
-    private Text VervoermiddelText;
+    private Text MeansOfTransportText;
     @FXML
-    private Text VertrekDatumText;
+    private Text DepartureDateText;
     @FXML
-    private Text VertrekTijdText;
+    private Text DepartureTimeText;
 
 
     @FXML
@@ -74,6 +74,7 @@ public class Controller  {
 
     private Train train = new Train("Trein", Arrays.asList(0, 15, 30, 45, 60));
     private Bus bus = new Bus("Bus", Arrays.asList(25, 55, 85));
+    private ResourceBundle bundle;
 
     public void initialize() {
         ObservableList<String> transport = getTransport();
@@ -89,6 +90,8 @@ public class Controller  {
                 updateDate();
             }
         }, 0, 1000);
+
+        switchLanguage("Nederlands");
     }
 
     public void onLogInButtonClick() {
@@ -124,8 +127,7 @@ public class Controller  {
             } else if (transport.equals("Bus")) {
                 departureTime = bus.getDepartureTime(bus.getTransportSchedule(), departureHours, departureMinutes);
             }
-        }catch (NullPointerException e){
-        }
+        }catch (NullPointerException e){ }
         if(DepartureCity == null || ArrivalCity == null || transport == null) {
             departureLabel.setText("Selecteer alstublieft een vertrekplaats, aankomstplaats en vervoermiddel.");
         } else if (DepartureCity.equals(ArrivalCity)){
@@ -142,45 +144,47 @@ public class Controller  {
     }
 
     private void updateClock() {
-            SimpleDateFormat dateFormat = new SimpleDateFormat(" HH:mm:ss");
-            String formattedTime = dateFormat.format(new Date());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("      HH:mm");
+        String formattedTime = dateFormat.format(new Date());
 
-            Platform.runLater(() -> {
-                clockLabel.setText(formattedTime);
-            });
+        Platform.runLater(() -> clockLabel.setText(formattedTime));
     }
 
     private List<String> getLanguages() {
         return Arrays.asList("Nederlands", "English", "Deutsch");
     }
 
-    public void onDuLanguageButtonClick(){}
-    public void onNlLanguageButtonClick(){}
-    public void onEnLanguageButtonClick(){}
-
-    public void switchLanguage(String newLanguage) {
-//        Locale locale = new Locale(newLanguage); // For example: "en", "de", "nl"
-//        ResourceBundle bundle = ResourceBundle.getBundle("Messages", locale);
-//
-//        // Change all the JavaFx elements which have text.
-//        this.Vertrek = bundle.getString("department");
-//        this.Bestemming = bundle.getString("destination");
-//
-//        this.Arrival.setText(this.Bestemming);
-//        this.Departure.setText(this.Vertrek);
-//
-//        this.vertrekComboBox.setPromptText(bundle.getString("vertrekComboBoxPromt"));
-//        this.bestemmingComboBox.setPromptText(bundle.getString("bestemmingComboBoxPromt"));
-//        this.DepartureTime.setText(bundle.getString("DepartureTimetxt"));
+    public void onDuLanguageButtonClick(){
+        switchLanguage("Deutsch");
+    }
+    public void onNlLanguageButtonClick(){
+        switchLanguage("Nederlands");
+    }
+    public void onEnLanguageButtonClick(){
+        switchLanguage("English");
     }
 
-    public void switchLanguage(ActionEvent actionEvent) throws IOException {
-//        String language = languageChoiceBox.getValue();
-//        switchLanguage(language);
+    public void switchLanguage(String newLanguage) {
+        Locale locale = new Locale(newLanguage);
+        bundle = ResourceBundle.getBundle("Messages", locale);
+
+        DepartureText.setText(bundle.getString("Departuretxt"));
+        ArrivalText.setText(bundle.getString("Destinationtxt"));
+        DepartureTimeText.setText(bundle.getString("DepartureTimetxt"));
+        DepartureDateText.setText(bundle.getString("DepartureDatetxt"));
+        MeansOfTransportText.setText(bundle.getString("MeansOfTransporttxt"));
+
+        logInButton.setText(bundle.getString("LogInButtontxt"));
+        GOButton.setText(bundle.getString("RouteButtontxt"));
+
+        arrivalCityComboBox.setPromptText(bundle.getString("ArrivalComboBoxPromt"));
+        departureCityComboBox.setPromptText(bundle.getString("DepartureComboBoxPromt"));
+        departureDatePicker.setPromptText(bundle.getString("DepartureDatePickerPrompt"));
+        transportComboBox.setPromptText(bundle.getString("MeansOfTransportComboBoxPromt"));
     }
 
     private void updateDate() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat(" dd-MM-yyyy");
         String formattedDate = dateFormat.format(new Date());
 
         Platform.runLater(() -> {
