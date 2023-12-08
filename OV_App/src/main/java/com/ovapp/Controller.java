@@ -1,25 +1,47 @@
 package com.ovapp;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-
 import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.control.*;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.text.*;
 public class Controller  {
 
     @FXML
+    private Text VertrekText;
+    @FXML
+    private Text BestemmingText;
+    @FXML
+    private Text VervoermiddelText;
+    @FXML
+    private Text VertrekDatumText;
+    @FXML
+    private Text VertrekTijdText;
+
+
+    @FXML
     private Button logInButton;
     @FXML
     private Button GOButton;
+
+    @FXML
+    private Button enLanguageButton;
+    @FXML
+    private Button nlLanguageButton;
+    @FXML
+    private Button duLanguageButton;
+
 
     @FXML
     private Label departureLabel;
@@ -128,6 +150,35 @@ public class Controller  {
             });
     }
 
+    private List<String> getLanguages() {
+        return Arrays.asList("Nederlands", "English", "Deutsch");
+    }
+
+    public void onDuLanguageButtonClick(){}
+    public void onNlLanguageButtonClick(){}
+    public void onEnLanguageButtonClick(){}
+
+    public void switchLanguage(String newLanguage) {
+//        Locale locale = new Locale(newLanguage); // For example: "en", "de", "nl"
+//        ResourceBundle bundle = ResourceBundle.getBundle("Messages", locale);
+//
+//        // Change all the JavaFx elements which have text.
+//        this.Vertrek = bundle.getString("department");
+//        this.Bestemming = bundle.getString("destination");
+//
+//        this.Arrival.setText(this.Bestemming);
+//        this.Departure.setText(this.Vertrek);
+//
+//        this.vertrekComboBox.setPromptText(bundle.getString("vertrekComboBoxPromt"));
+//        this.bestemmingComboBox.setPromptText(bundle.getString("bestemmingComboBoxPromt"));
+//        this.DepartureTime.setText(bundle.getString("DepartureTimetxt"));
+    }
+
+    public void switchLanguage(ActionEvent actionEvent) throws IOException {
+//        String language = languageChoiceBox.getValue();
+//        switchLanguage(language);
+    }
+
     private void updateDate() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         String formattedDate = dateFormat.format(new Date());
@@ -137,23 +188,12 @@ public class Controller  {
         });
     }
 
-    private List<String> getTime() {
-        List<String> tijden = new ArrayList<>();
-        for (int uur = 0; uur <= 23; uur++) {
-            for (int minuut = 0; minuut <= 59; minuut += 15) {
-                tijden.add(String.format("%02d:%02d", uur, minuut));
-            }
-        }
-        return tijden;
-    }
-
-
     private List<String> getCity() {
         return Arrays.asList(
-                "Amersfoort", "Nieuwegein", "Amsterdam", "Den Haag", "Den Bosch", "Arnhem", "Utrecht", "IJsselstein");
+                "Amersfoort Centraal Station", "Nieuwegein", "Amsterdam", "Den Haag", "Den Bosch", "Arnhem", "Utrecht", "IJsselstein");
      }
 
      private ObservableList<String> getTransport() {
          return FXCollections.observableArrayList(train.getTransportName(), bus.getTransportName());
-     }
+    }
  }
