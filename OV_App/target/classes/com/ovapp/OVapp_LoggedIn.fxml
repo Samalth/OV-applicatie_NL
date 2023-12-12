@@ -66,6 +66,14 @@
             <tooltip>
                <Tooltip text="Klik hier om uw bestemmingslocatie te selecteren (waar wilt u heen?)." />
             </tooltip></ComboBox>
+         <Button fx:id="switchButton" layoutX="427.0" layoutY="65.0" mnemonicParsing="false" onAction="#onSwitchButtonClick" prefHeight="41.0" prefWidth="46.0" style="-fx-border-color: #ff6600;" text="↑↓">
+            <font>
+               <Font name="Calibri" size="14.0" />
+            </font>
+            <tooltip>
+               <Tooltip text="Wissel tussen vertrek en bestemming locatie." />
+            </tooltip>
+         </Button>
          <DatePicker fx:id="departureDatePicker" layoutX="195.0" layoutY="277.0" prefHeight="41.0" prefWidth="174.0" style="-fx-border-color: #ff6600;">
             <tooltip>
                <Tooltip text="Klik hier om de vertrekdatum te kiezen." />

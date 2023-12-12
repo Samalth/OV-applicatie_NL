@@ -41,7 +41,8 @@ public class Controller  {
     private Button nlLanguageButton;
     @FXML
     private Button duLanguageButton;
-
+    @FXML
+    private Button switchButton;
 
     @FXML
     private Label departureLabel;
@@ -111,9 +112,21 @@ public class Controller  {
             e.printStackTrace();
         }
     }
+    @FXML
+    public void onSwitchButtonClick(ActionEvent actionEvent) {
+        String temp = departureCityComboBox.getValue();
+        departureCityComboBox.setValue(arrivalCityComboBox.getValue());
+        arrivalCityComboBox.setValue(temp);
+    }
 
     @FXML
-    protected void onGOClick() {
+    protected void onGOClick()
+    { if (switchButton.isPressed()) {
+        // Switch departure and arrival locations
+        String temp = DepartureCity;
+        DepartureCity = ArrivalCity;
+        ArrivalCity = temp;
+    }
         DepartureCity = departureCityComboBox.getValue();
         ArrivalCity = arrivalCityComboBox.getValue();
         DepartureDate = departureDatePicker.getValue();
@@ -200,4 +213,5 @@ public class Controller  {
      private ObservableList<String> getTransport() {
          return FXCollections.observableArrayList(train.getTransportName(), bus.getTransportName());
     }
- }
+
+}

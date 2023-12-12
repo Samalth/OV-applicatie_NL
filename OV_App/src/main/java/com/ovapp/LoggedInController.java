@@ -4,6 +4,7 @@ import java.util.*;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -31,6 +32,8 @@ public class LoggedInController  {
     private Button GOButton;
     @FXML
     private Button showTravelHistoryButton;
+    @FXML
+    private Button switchButton;
     @FXML
     private ComboBox<String> departureCityComboBox;
     @FXML
@@ -117,6 +120,12 @@ public class LoggedInController  {
         } else {
             System.out.println("Reisgeschiedenis verborgen");
         }
+    }
+    @FXML
+    public void onSwitchButtonClick(ActionEvent actionEvent) {
+        String temp = departureCityComboBox.getValue();
+        departureCityComboBox.setValue(arrivalCityComboBox.getValue());
+        arrivalCityComboBox.setValue(temp);
     }
 
     @FXML
