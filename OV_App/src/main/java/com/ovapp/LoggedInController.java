@@ -26,6 +26,33 @@ public class LoggedInController  {
     private Text DepartureTimeText;
 
     @FXML
+    private Tooltip clockLabelToolTip;
+    @FXML
+    private Tooltip departureLabelToolTip;
+    @FXML
+    private Tooltip logOutButtonToolTip;
+    @FXML
+    private Tooltip GOButtonToolTip;
+    @FXML
+    private Tooltip departureCityComboBoxToolTip;
+    @FXML
+    private Tooltip arrivalCityComboBoxToolTip;
+    @FXML
+    private Tooltip departureDatePickerTooltip;
+    @FXML
+    private Tooltip departureTimeHoursToolTip;
+    @FXML
+    private Tooltip departureTimeMinutesToolTip;
+    @FXML
+    private Tooltip transportComboBoxToolTip;
+    @FXML
+    private Tooltip travelHistoryLabelToolTip;
+    @FXML
+    private Tooltip dateLabelToolTip;
+    @FXML
+    private Tooltip showTravelHistoryButtonToolTip;
+
+    @FXML
     private Button logOutButton;
     @FXML
     private Button GOButton;
@@ -149,7 +176,8 @@ public class LoggedInController  {
                     ? DepartureDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))
                     : currentDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
             String departureLabelInfo = String.format(
-                    "Van %s naar %s om %s met de %s op %s", DepartureCity, ArrivalCity, departureTime.get(0), transport.toLowerCase(), formattedDate);
+                    "Van %s naar %s om %s met de %s op %s", DepartureCity, ArrivalCity
+                    , departureTime.get(0), transport.toLowerCase(), formattedDate);
             departureLabel.setText(departureLabelInfo);
 
             String travelHistoryInfo = String.format("Op %s om %s%nVan %s naar %s om %s met de %s op %s"
@@ -167,20 +195,34 @@ public class LoggedInController  {
         Locale locale = new Locale(newLanguage);
         bundle = ResourceBundle.getBundle("Messages", locale);
 
-        DepartureText.setText(bundle.getString("Departuretxt"));
         ArrivalText.setText(bundle.getString("Destinationtxt"));
-        DepartureTimeText.setText(bundle.getString("DepartureTimetxt"));
+        DepartureText.setText(bundle.getString("Departuretxt"));
         DepartureDateText.setText(bundle.getString("DepartureDatetxt"));
+        DepartureTimeText.setText(bundle.getString("DepartureTimetxt"));
         MeansOfTransportText.setText(bundle.getString("MeansOfTransporttxt"));
-        showTravelHistoryButton.setText(bundle.getString("showTravelHistoryButtontxt"));
 
-        logOutButton.setText(bundle.getString("LogOutButtontxt"));
         GOButton.setText(bundle.getString("RouteButtontxt"));
+        logOutButton.setText(bundle.getString("LogOutButtontxt"));
+        showTravelHistoryButton.setText(bundle.getString("ShowTravelHistoryButtontxt"));
 
         arrivalCityComboBox.setPromptText(bundle.getString("ArrivalComboBoxPromt"));
         departureCityComboBox.setPromptText(bundle.getString("DepartureComboBoxPromt"));
         departureDatePicker.setPromptText(bundle.getString("DepartureDatePickerPrompt"));
         transportComboBox.setPromptText(bundle.getString("MeansOfTransportComboBoxPromt"));
+
+        arrivalCityComboBoxToolTip.setText(bundle.getString("ArrivalCityComboBoxToolTiptxt"));
+        clockLabelToolTip.setText(bundle.getString("ClockLabelToolTiptxt"));
+        departureLabelToolTip.setText(bundle.getString("DepartureLabelToolTiptxt"));
+        logOutButtonToolTip.setText(bundle.getString("LogOutButtonToolTiptxt"));
+        GOButtonToolTip.setText(bundle.getString("GOButtonToolTiptxt"));
+        departureCityComboBoxToolTip.setText(bundle.getString("DepartureCityComboBoxToolTiptxt"));
+        departureDatePickerTooltip.setText(bundle.getString("DepartureDatePickerTooltiptxt"));
+        departureTimeHoursToolTip.setText(bundle.getString("DepartureTimeHoursToolTiptxt"));
+        departureTimeMinutesToolTip.setText(bundle.getString("DepartureTimeMinutesToolTiptxt"));
+        transportComboBoxToolTip.setText(bundle.getString("TransportComboBoxToolTiptxt"));
+        travelHistoryLabelToolTip.setText(bundle.getString("TravelHistoryLabelToolTiptxt"));
+        showTravelHistoryButtonToolTip.setText(bundle.getString("ShowTravelHistoryButtonToolTiptxt"));
+        dateLabelToolTip.setText(bundle.getString("DateLabelToolTiptxt"));
     }
 
     public void onDuLanguageButtonClick(){
