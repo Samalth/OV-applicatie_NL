@@ -1,16 +1,19 @@
 .dark-mode {
     -fx-base: #333333;
-    -fx-text-fill: blue;
+    -fx-text-fill: #FFFFFF;
+}
+.dark-mode .text {
+    -fx-fill: #FFFFFF;
 }
 
 .dark-mode .combo-box {
     -fx-background-color: #444444;
     -fx-border-color: #444444;
-    -fx-text-fill: blue;
+    -fx-text-fill: #FFFFFF;
 }
 
 .dark-mode .spinner {
     -fx-background-color: #444444;
     -fx-border-color: #444444;
-    -fx-text-fill: blue;
+    -fx-text-fill: #FFFFFF;
 }

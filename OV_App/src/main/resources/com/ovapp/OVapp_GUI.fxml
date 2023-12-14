@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" prefHeight="720.0" prefWidth="1280.0" spacing="20.0" style="-fx-background-color: #ccffff; -fx-border-color: #E62F2B;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ovapp.Controller">
+<VBox fx:id="parent" alignment="CENTER" prefHeight="720.0" prefWidth="1280.0" spacing="20.0" style="-fx-border-color: #E62F2B;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ovapp.Controller">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -37,8 +38,8 @@
             <ComboBox fx:id="departureCityComboBox" layoutX="198.0" layoutY="32.0" prefHeight="41.0" prefWidth="219.0" style="-fx-border-color: #ff6600;" />
             <ComboBox fx:id="arrivalCityComboBox" layoutX="198.0" layoutY="86.0" prefHeight="41.0" prefWidth="219.0" style="-fx-border-color: #ff6600;" />
             <DatePicker fx:id="departureDatePicker" layoutX="195.0" layoutY="277.0" prefHeight="41.0" prefWidth="174.0" style="-fx-border-color: #ff6600;" />
-            <Spinner fx:id="departureTimeHours" layoutX="198.0" layoutY="223.0" max="23" min="00" prefHeight="24.0" prefWidth="68.0" />
-            <Spinner fx:id="departureTimeMinutes" layoutX="285.0" layoutY="223.0" max="59" min="00" prefHeight="24.0" prefWidth="68.0" />
+            <Spinner fx:id="departureTimeHours" layoutX="198.0" layoutY="223.0" max="23" min="00" prefHeight="24.0" prefWidth="68.0" style="-fx-border-color: #ff6600;" />
+            <Spinner fx:id="departureTimeMinutes" layoutX="285.0" layoutY="223.0" max="59" min="00" prefHeight="24.0" prefWidth="68.0" style="-fx-border-color: #ff6600;" />
             <ComboBox fx:id="transportComboBox" layoutX="198.0" layoutY="144.0" prefHeight="41.0" prefWidth="219.0" style="-fx-border-color: #ff6600;" />
             <Label layoutX="29.0" layoutY="165.0" />
             <Text fx:id="DepartureText" layoutX="20.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vertrek">
@@ -66,14 +67,9 @@
                <Font name="Calibri" size="22.0" />
             </font>
          </Text>
-         <Label layoutX="1009.0" layoutY="10.0" text="Light mode">
-            <font>
-               <Font size="30.0" />
-            </font>
-         </Label>
-         <Button alignment="CENTER" layoutX="1187.0" layoutY="20.0" mnemonicParsing="false" onAction="#changeMode" prefHeight="50.0" prefWidth="50.0" styleClass="dark-mode" stylesheets="@../../lightmode.css">
+         <Button alignment="CENTER" layoutX="1187.0" layoutY="20.0" mnemonicParsing="false" onAction="#changeMode" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #444444;" styleClass="dark-mode" stylesheets="@../../lightmode.css">
             <graphic>
-               <ImageView fitHeight="52.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fx:id="imgMode" fitHeight="52.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                      <Image url="@../../moon.png" />
                   </image>
@@ -83,4 +79,8 @@
                <Insets />
             </opaqueInsets></Button>
         </children></Pane>
+   <styleClass>
+      <String fx:value="dark-mode" />
+      <String fx:value="light-mode" />
+   </styleClass>
 </VBox>

@@ -1,16 +1,20 @@
 .dark-mode {
-    -fx-base: #333333;
-    -fx-text-fill: white;
+    -fx-base: #FFFFFF;
+    -fx-text-fill: #000000;
+    -fx-background-color: #ccffff;
+}
+.light-mode .text {
+    -fx-fill: #000000;
 }
 
 .dark-mode .combo-box {
-    -fx-background-color: #444444;
-    -fx-border-color: #444444;
-    -fx-text-fill: white;
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #FFFFFF;
+    -fx-text-fill: #000000;
 }
 
 .dark-mode .spinner {
-    -fx-background-color: #444444;
-    -fx-border-color: #444444;
-    -fx-text-fill: white;
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #FFFFFF;
+    -fx-text-fill: #000000;
 }

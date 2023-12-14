@@ -14,6 +14,8 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.text.*;
@@ -74,11 +76,8 @@ public class Controller  {
     private String transport;
 
     @FXML
-    private BorderPane parent;
-    @FXML
-    private Label lableMode;
-    @FXML
-    private Button btnMode;
+    private VBox parent;
+
     @FXML
     private ImageView imgMode;
 
@@ -103,6 +102,7 @@ public class Controller  {
         }, 0, 1000);
 
         switchLanguage("Nederlands");
+        setLightMode();
     }
 
     public void onLogInButtonClick() {
@@ -200,6 +200,9 @@ public class Controller  {
     public void changeMode(ActionEvent event){
         isLightMode = !isLightMode;
 
+        parent.getStylesheets().remove("darkmode.css");
+        parent.getStylesheets().remove("lightmode.css");
+
         if (isLightMode){
             setLightMode();
         }
@@ -207,17 +210,17 @@ public class Controller  {
             setDarkMode();
         }
     }
-    private void setLightMode (){
+    private void setLightMode () {
         parent.getStylesheets().remove ("darkmode.css");
-        parent.getStylesheets().remove ("lightmode.css");
-        Image image = new Image("img/moon.png");
+        parent.getStylesheets().add ("lightmode.css");
+        Image image = new Image("moon.png");
         imgMode.setImage(image);
     }
 
     private void setDarkMode (){
         parent.getStylesheets().remove ("lightmode.css");
-        parent.getStylesheets().remove ("darkmode.css");
-        Image image = new Image ("img/sun.png");
+        parent.getStylesheets().add ("darkmode.css");
+        Image image = new Image ("sun.png");
         imgMode.setImage(image);
     }
 
