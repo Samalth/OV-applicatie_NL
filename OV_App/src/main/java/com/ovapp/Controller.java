@@ -113,7 +113,7 @@ public class Controller  {
     }
 
     public void initialize() {
-        ArrayList<City> cities = new ArrayList<>();
+        ArrayList<City> cities = getCities();
         ObservableList<String> cityNames = getCityNames(cities);
         ObservableList<String> transport = getTransport();
         departureCityComboBox.getItems().addAll(cityNames);
@@ -242,10 +242,13 @@ public class Controller  {
     }
 
     public ObservableList<String> getCityNames(ArrayList<City> cities) {
-        ArrayList<String> cityNames = new ArrayList<>();
-        for (City currentCity: cities){
-            cityNames.add(City.getName());
+        ObservableList<String> cityNames = FXCollections.observableArrayList();
+        int i = 0;
+        for (i =0; i < cities.size(); i++ ){
+            currentCity = cities.get(i);
+            cityNames.add(currentCity.getName());
         }
+        return cityNames;
      }
 
      private ObservableList<String> getTransport() {
