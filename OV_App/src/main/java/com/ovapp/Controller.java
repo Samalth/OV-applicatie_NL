@@ -75,12 +75,27 @@ public class Controller  {
     private Train train = new Train("Trein", Arrays.asList(0, 15, 30, 45, 60));
     private Bus bus = new Bus("Bus", Arrays.asList(25, 55, 85));
     private ResourceBundle bundle;
+    private City currentCity;
+
+    public ArrayList<City> getCities(){
+        ArrayList<City> cities = new ArrayList<>();
+        cities.add(new City("Amersfoort", Arrays.asList("lift", "geleidenstrook")));
+        cities.add(new City("Amsterdam", Arrays.asList("lift", "geleidenstrook", "trapmarkeringen")));
+        cities.add(new City("Arnhem", Arrays.asList("geleidenstrook", "trapmarkeringen")));
+        cities.add(new City("Den Bosch", Arrays.asList("lift", "trapmarkeringen")));
+        cities.add(new City("Den Haag", Arrays.asList("geleidenstrook", "gehele station is gelijkvloers")));
+        cities.add(new City("IJsselstein", Arrays.asList("geleidenstrook", "gehele station is gelijkvloers")));
+        cities.add(new City("Nieuwegein", Arrays.asList("lift", "geleidenstrook")));
+        cities.add(new City("Utrecht", Arrays.asList("lift", "geleidenstrook", "trapmarkeringen")));
+        return cities;
+    }
 
     public void initialize() {
+        ArrayList<City> cities = new ArrayList<>();
+        ObservableList<String> cityNames = getCityNames(cities);
         ObservableList<String> transport = getTransport();
-        List<String> steden = getCity();
-        departureCityComboBox.getItems().addAll(steden);
-        arrivalCityComboBox.getItems().addAll(steden);
+        departureCityComboBox.getItems().addAll(cityNames);
+        arrivalCityComboBox.getItems().addAll(cityNames);
         transportComboBox.getItems().addAll(transport);
         Timer timer = new Timer(true);
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -192,9 +207,11 @@ public class Controller  {
         });
     }
 
-    private List<String> getCity() {
-        return Arrays.asList(
-                "Amersfoort Centraal Station", "Nieuwegein", "Amsterdam", "Den Haag", "Den Bosch", "Arnhem", "Utrecht", "IJsselstein");
+    public ObservableList<String> getCityNames(ArrayList<City> cities) {
+        ArrayList<String> cityNames = new ArrayList<>();
+        for (City currentCity: cities){
+            cityNames.add(City.getName());
+        }
      }
 
      private ObservableList<String> getTransport() {
