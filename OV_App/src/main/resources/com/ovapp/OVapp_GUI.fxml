@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
@@ -10,13 +11,14 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
 
-    <Pane prefHeight="623.0" prefWidth="1238.0">
+    <Pane prefHeight="623.0" prefWidth="1238.0" VBox.vgrow="ALWAYS">
         <children>
             <Button fx:id="enLanguageButton" layoutX="630.0" layoutY="533.0" mnemonicParsing="false" onAction="#onEnLanguageButtonClick" prefHeight="41.0" prefWidth="76.0" style="-fx-background-image: url('uk_flag.png'); -fx-background-size: cover;" />
             <Button fx:id="nlLanguageButton" layoutX="552.0" layoutY="533.0" mnemonicParsing="false" onAction="#onNlLanguageButtonClick" prefHeight="41.0" prefWidth="76.0" style="-fx-background-image: url('nl_flag.png');-fx-background-size: cover;" />
             <Button fx:id="duLanguageButton" layoutX="708.0" layoutY="533.0" mnemonicParsing="false" onAction="#onDuLanguageButtonClick" prefHeight="41.0" prefWidth="76.0" style="-fx-background-image: url('de_flag.png'); -fx-background-size: cover;" />
             <Button fx:id="logInButton" layoutX="801.0" layoutY="13.0" mnemonicParsing="false" onAction="#onLogInButtonClick" prefHeight="52.0" prefWidth="202.0" style="-fx-border-color: #FF6600;" text="Inloggen">
-            <font>
+
+                <font>
                <Font name="Calibri" size="22.0" />
             </font></Button>
             <Label fx:id="departureLabel" layoutX="17.0" layoutY="337.0" prefHeight="252.0" prefWidth="517.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #FF6600;" textFill="#E62F2B" wrapText="true" />
@@ -64,5 +66,21 @@
                <Font name="Calibri" size="22.0" />
             </font>
          </Text>
+         <Label layoutX="1009.0" layoutY="10.0" text="Light mode">
+            <font>
+               <Font size="30.0" />
+            </font>
+         </Label>
+         <Button alignment="CENTER" layoutX="1187.0" layoutY="20.0" mnemonicParsing="false" onAction="#changeMode" prefHeight="50.0" prefWidth="50.0" styleClass="dark-mode" stylesheets="@../../lightmode.css">
+            <graphic>
+               <ImageView fitHeight="52.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../moon.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets></Button>
         </children></Pane>
 </VBox>

@@ -1,11 +1,9 @@
 package com.ovapp;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import javafx.beans.InvalidationListener;
+
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,6 +11,9 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.text.*;
@@ -71,6 +72,16 @@ public class Controller  {
     @FXML
     private LocalDate DepartureDate;
     private String transport;
+
+    @FXML
+    private BorderPane parent;
+    @FXML
+    private Label lableMode;
+    @FXML
+    private Button btnMode;
+    @FXML
+    private ImageView imgMode;
+
 
     private Train train = new Train("Trein", Arrays.asList(0, 15, 30, 45, 60));
     private Bus bus = new Bus("Bus", Arrays.asList(25, 55, 85));
@@ -181,6 +192,33 @@ public class Controller  {
         departureCityComboBox.setPromptText(bundle.getString("DepartureComboBoxPromt"));
         departureDatePicker.setPromptText(bundle.getString("DepartureDatePickerPrompt"));
         transportComboBox.setPromptText(bundle.getString("MeansOfTransportComboBoxPromt"));
+    }
+
+    private boolean isLightMode=true ;
+
+
+    public void changeMode(ActionEvent event){
+        isLightMode = !isLightMode;
+
+        if (isLightMode){
+            setLightMode();
+        }
+        else {
+            setDarkMode();
+        }
+    }
+    private void setLightMode (){
+        parent.getStylesheets().remove ("darkmode.css");
+        parent.getStylesheets().remove ("lightmode.css");
+        Image image = new Image("img/moon.png");
+        imgMode.setImage(image);
+    }
+
+    private void setDarkMode (){
+        parent.getStylesheets().remove ("lightmode.css");
+        parent.getStylesheets().remove ("darkmode.css");
+        Image image = new Image ("img/sun.png");
+        imgMode.setImage(image);
     }
 
     private void updateDate() {
