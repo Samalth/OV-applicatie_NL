@@ -29,6 +29,28 @@ public class Controller  {
     @FXML
     private Text DepartureTimeText;
 
+    @FXML
+    private Tooltip clockLabelToolTip;
+    @FXML
+    private Tooltip departureLabelToolTip;
+    @FXML
+    private Tooltip logInButtonToolTip;
+    @FXML
+    private Tooltip GOButtonToolTip;
+    @FXML
+    private Tooltip departureCityComboBoxToolTip;
+    @FXML
+    private Tooltip arrivalCityComboBoxToolTip;
+    @FXML
+    private Tooltip departureDatePickerTooltip;
+    @FXML
+    private Tooltip departureTimeHoursToolTip;
+    @FXML
+    private Tooltip departureTimeMinutesToolTip;
+    @FXML
+    private Tooltip transportComboBoxToolTip;
+    @FXML
+    private Tooltip dateLabelToolTip;
 
     @FXML
     private Button logInButton;
@@ -40,7 +62,7 @@ public class Controller  {
     @FXML
     private Button nlLanguageButton;
     @FXML
-    private Button duLanguageButton;
+    private Button deLanguageButton;
 
 
     @FXML
@@ -168,10 +190,10 @@ public class Controller  {
         Locale locale = new Locale(newLanguage);
         bundle = ResourceBundle.getBundle("Messages", locale);
 
-        DepartureText.setText(bundle.getString("Departuretxt"));
         ArrivalText.setText(bundle.getString("Destinationtxt"));
-        DepartureTimeText.setText(bundle.getString("DepartureTimetxt"));
         DepartureDateText.setText(bundle.getString("DepartureDatetxt"));
+        DepartureText.setText(bundle.getString("Departuretxt"));
+        DepartureTimeText.setText(bundle.getString("DepartureTimetxt"));
         MeansOfTransportText.setText(bundle.getString("MeansOfTransporttxt"));
 
         logInButton.setText(bundle.getString("LogInButtontxt"));
@@ -181,6 +203,18 @@ public class Controller  {
         departureCityComboBox.setPromptText(bundle.getString("DepartureComboBoxPromt"));
         departureDatePicker.setPromptText(bundle.getString("DepartureDatePickerPrompt"));
         transportComboBox.setPromptText(bundle.getString("MeansOfTransportComboBoxPromt"));
+
+        arrivalCityComboBoxToolTip.setText(bundle.getString("ArrivalCityComboBoxToolTiptxt"));
+        clockLabelToolTip.setText(bundle.getString("ClockLabelToolTiptxt"));
+        departureLabelToolTip.setText(bundle.getString("DepartureLabelToolTiptxt"));
+        logInButtonToolTip.setText(bundle.getString("LogInButtonToolTiptxt"));
+        GOButtonToolTip.setText(bundle.getString("GOButtonToolTiptxt"));
+        departureCityComboBoxToolTip.setText(bundle.getString("DepartureCityComboBoxToolTiptxt"));
+        departureDatePickerTooltip.setText(bundle.getString("DepartureDatePickerTooltiptxt"));
+        departureTimeHoursToolTip.setText(bundle.getString("DepartureTimeHoursToolTiptxt"));
+        departureTimeMinutesToolTip.setText(bundle.getString("DepartureTimeMinutesToolTiptxt"));
+        transportComboBoxToolTip.setText(bundle.getString("TransportComboBoxToolTiptxt"));
+        dateLabelToolTip.setText(bundle.getString("DateLabelToolTiptxt"));
     }
 
     private void updateDate() {
