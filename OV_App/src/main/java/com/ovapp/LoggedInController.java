@@ -8,10 +8,22 @@ import javafx.fxml.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.text.*;
 import java.time.format.DateTimeFormatter;
 public class LoggedInController  {
+
+    @FXML
+    private Text DepartureText;
+    @FXML
+    private Text ArrivalText;
+    @FXML
+    private Text MeansOfTransportText;
+    @FXML
+    private Text DepartureDateText;
+    @FXML
+    private Text DepartureTimeText;
 
     @FXML
     private Button logOutButton;
@@ -54,6 +66,7 @@ public class LoggedInController  {
     private List<String> travelHistory = new ArrayList<>();
     private Train train = new Train("Trein", Arrays.asList(0, 15, 30, 45, 60));
     private Bus bus = new Bus("Bus", Arrays.asList(25, 55, 85));
+    private ResourceBundle bundle;
 
 
     public void initialize() {
@@ -72,6 +85,7 @@ public class LoggedInController  {
         }, 0, 1000);
 
         travelHistoryLabel.setVisible(false);
+        switchLanguage("Nederlands");
     }
 
     public void onLogOutButtonClick() {
@@ -145,6 +159,40 @@ public class LoggedInController  {
         }
     }
 
+    private List<String> getLanguages() {
+        return Arrays.asList("Nederlands", "English", "Deutsch");
+    }
+
+    public void switchLanguage(String newLanguage) {
+        Locale locale = new Locale(newLanguage);
+        bundle = ResourceBundle.getBundle("Messages", locale);
+
+        DepartureText.setText(bundle.getString("Departuretxt"));
+        ArrivalText.setText(bundle.getString("Destinationtxt"));
+        DepartureTimeText.setText(bundle.getString("DepartureTimetxt"));
+        DepartureDateText.setText(bundle.getString("DepartureDatetxt"));
+        MeansOfTransportText.setText(bundle.getString("MeansOfTransporttxt"));
+        showTravelHistoryButton.setText(bundle.getString("showTravelHistoryButtontxt"));
+
+        logOutButton.setText(bundle.getString("LogOutButtontxt"));
+        GOButton.setText(bundle.getString("RouteButtontxt"));
+
+        arrivalCityComboBox.setPromptText(bundle.getString("ArrivalComboBoxPromt"));
+        departureCityComboBox.setPromptText(bundle.getString("DepartureComboBoxPromt"));
+        departureDatePicker.setPromptText(bundle.getString("DepartureDatePickerPrompt"));
+        transportComboBox.setPromptText(bundle.getString("MeansOfTransportComboBoxPromt"));
+    }
+
+    public void onDuLanguageButtonClick(){
+        switchLanguage("Deutsch");
+    }
+    public void onNlLanguageButtonClick(){
+        switchLanguage("Nederlands");
+    }
+    public void onEnLanguageButtonClick(){
+        switchLanguage("English");
+    }
+
     private void updateTravelHistory(String travelInfo) {
         travelHistory.add(travelInfo);
 
@@ -156,7 +204,7 @@ public class LoggedInController  {
     }
 
     private void updateClock() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(" HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("      HH:mm");
         String formattedTime = dateFormat.format(new Date());
 
         Platform.runLater(() -> {
@@ -165,7 +213,7 @@ public class LoggedInController  {
     }
 
     private void updateDate() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat(" dd-MM-yyyy");
         String formattedDate = dateFormat.format(new Date());
 
         Platform.runLater(() -> {
