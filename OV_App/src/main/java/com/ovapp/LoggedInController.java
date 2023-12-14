@@ -2,14 +2,28 @@ package com.ovapp;
 import java.time.LocalDate;
 import java.util.*;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.text.*;
 import java.time.format.DateTimeFormatter;
 public class LoggedInController  {
+
+    @FXML
+    private Text DepartureText;
+    @FXML
+    private Text ArrivalText;
+    @FXML
+    private Text MeansOfTransportText;
+    @FXML
+    private Text DepartureDateText;
+    @FXML
+    private Text DepartureTimeText;
 
     @FXML
     private Button logOutButton;
@@ -17,16 +31,19 @@ public class LoggedInController  {
     private Button GOButton;
     @FXML
     private Button showTravelHistoryButton;
-
-    @FXML
-    private ComboBox<String> departureComboBox;
     @FXML
     private ComboBox<String> departureCityComboBox;
     @FXML
     private ComboBox<String> arrivalCityComboBox;
+    @FXML
+    private ComboBox<String> transportComboBox;
 
     @FXML
     private DatePicker departureDatePicker;
+    @FXML
+    private Spinner<Integer> departureTimeHours;
+    @FXML
+    private Spinner<Integer> departureTimeMinutes;
 
     @FXML
     private Label dateLabel;
@@ -43,21 +60,21 @@ public class LoggedInController  {
     @FXML
     private String ArrivalCity;
     @FXML
-    private String DepartureTime;
-    @FXML
     private LocalDate DepartureDate;
+    private String transport;
 
     private List<String> travelHistory = new ArrayList<>();
+    private Train train = new Train("Trein", Arrays.asList(0, 15, 30, 45, 60));
+    private Bus bus = new Bus("Bus", Arrays.asList(25, 55, 85));
+    private ResourceBundle bundle;
 
 
     public void initialize() {
-        List<String> tijden = getTime();
-        departureComboBox.getItems().addAll(tijden);
-
+        ObservableList<String> transport = getTransport();
         List<String> steden = getCity();
         departureCityComboBox.getItems().addAll(steden);
         arrivalCityComboBox.getItems().addAll(steden);
-
+        transportComboBox.getItems().addAll(transport);
         Timer timer = new Timer(true);
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -68,6 +85,7 @@ public class LoggedInController  {
         }, 0, 1000);
 
         travelHistoryLabel.setVisible(false);
+        switchLanguage("Nederlands");
     }
 
     public void onLogOutButtonClick() {
@@ -100,27 +118,79 @@ public class LoggedInController  {
             System.out.println("Reisgeschiedenis verborgen");
         }
     }
+
     @FXML
     protected void onGOClick() {
         DepartureCity = departureCityComboBox.getValue();
         ArrivalCity = arrivalCityComboBox.getValue();
-        DepartureTime = departureComboBox.getValue();
         DepartureDate = departureDatePicker.getValue();
-
-        if (DepartureCity == null || ArrivalCity == null || DepartureTime == null) {
-            departureLabel.setText("Vul eerst de vertrek- en bestemmingsstations, en selecteer een vertrektijd.");
+        transport = transportComboBox.getValue();
+        int departureHours = departureTimeHours.getValue();
+        int departureMinutes = departureTimeMinutes.getValue();
+        ArrayList<String> departureTime = new ArrayList<>();
+        try {
+            if (transport.equals("Trein")) {
+                departureTime = train.getDepartureTime(train.getTransportSchedule(), departureHours, departureMinutes);
+            } else if (transport.equals("Bus")) {
+                departureTime = bus.getDepartureTime(bus.getTransportSchedule(), departureHours, departureMinutes);
+            }
+        }catch (NullPointerException e){
+        }
+        if(DepartureCity == null || ArrivalCity == null || transport == null) {
+            departureLabel.setText("Selecteer alstublieft een vertrekplaats, aankomstplaats en vervoermiddel.");
+        } else if (DepartureCity.equals(ArrivalCity)){
+            departureLabel.setText("De vertrekplaats en aankomstplaats kunnen niet hetzelfde zijn.");
         } else {
             LocalDate currentDate = LocalDate.now();
             String formattedCurrentDate = currentDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
             String formattedCurrentTime = new SimpleDateFormat("HH:mm:ss").format(new Date());
 
-            String formattedDate = (DepartureDate != null) ? DepartureDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) : currentDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-            String departureLabelInfo = String.format("Van %s naar %s om %s op %s", DepartureCity, ArrivalCity, DepartureTime, formattedDate);
+            String formattedDate = (DepartureDate != null)
+                    ? DepartureDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))
+                    : currentDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            String departureLabelInfo = String.format(
+                    "Van %s naar %s om %s met de %s op %s", DepartureCity, ArrivalCity, departureTime.get(0), transport.toLowerCase(), formattedDate);
             departureLabel.setText(departureLabelInfo);
 
-            String travelHistoryInfo = String.format("Op %s om%s%nVan %s naar %s om %s op %s", formattedCurrentDate, formattedCurrentTime, DepartureCity, ArrivalCity, DepartureTime, formattedDate);
+            String travelHistoryInfo = String.format("Op %s om %s%nVan %s naar %s om %s met de %s op %s"
+                    , formattedCurrentDate, formattedCurrentTime, DepartureCity
+                    , ArrivalCity, departureTime.get(0), transport.toLowerCase(), formattedDate);
             updateTravelHistory(travelHistoryInfo);
         }
+    }
+
+    private List<String> getLanguages() {
+        return Arrays.asList("Nederlands", "English", "Deutsch");
+    }
+
+    public void switchLanguage(String newLanguage) {
+        Locale locale = new Locale(newLanguage);
+        bundle = ResourceBundle.getBundle("Messages", locale);
+
+        DepartureText.setText(bundle.getString("Departuretxt"));
+        ArrivalText.setText(bundle.getString("Destinationtxt"));
+        DepartureTimeText.setText(bundle.getString("DepartureTimetxt"));
+        DepartureDateText.setText(bundle.getString("DepartureDatetxt"));
+        MeansOfTransportText.setText(bundle.getString("MeansOfTransporttxt"));
+        showTravelHistoryButton.setText(bundle.getString("showTravelHistoryButtontxt"));
+
+        logOutButton.setText(bundle.getString("LogOutButtontxt"));
+        GOButton.setText(bundle.getString("RouteButtontxt"));
+
+        arrivalCityComboBox.setPromptText(bundle.getString("ArrivalComboBoxPromt"));
+        departureCityComboBox.setPromptText(bundle.getString("DepartureComboBoxPromt"));
+        departureDatePicker.setPromptText(bundle.getString("DepartureDatePickerPrompt"));
+        transportComboBox.setPromptText(bundle.getString("MeansOfTransportComboBoxPromt"));
+    }
+
+    public void onDuLanguageButtonClick(){
+        switchLanguage("Deutsch");
+    }
+    public void onNlLanguageButtonClick(){
+        switchLanguage("Nederlands");
+    }
+    public void onEnLanguageButtonClick(){
+        switchLanguage("English");
     }
 
     private void updateTravelHistory(String travelInfo) {
@@ -134,7 +204,7 @@ public class LoggedInController  {
     }
 
     private void updateClock() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(" HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("      HH:mm");
         String formattedTime = dateFormat.format(new Date());
 
         Platform.runLater(() -> {
@@ -143,7 +213,7 @@ public class LoggedInController  {
     }
 
     private void updateDate() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat(" dd-MM-yyyy");
         String formattedDate = dateFormat.format(new Date());
 
         Platform.runLater(() -> {
@@ -162,6 +232,10 @@ public class LoggedInController  {
     }
 
     private List<String> getCity() {
-        return Arrays.asList("Amersfoort", "Nieuwegein", "Amsterdam", "Den Haag", "Den Bosch", "Arnhem", "Utrecht", "IJsselstein");
+        return Arrays.asList(
+                "Amersfoort", "Nieuwegein", "Amsterdam", "Den Haag", "Den Bosch", "Arnhem", "Utrecht", "IJsselstein");
+    }
+    private ObservableList<String> getTransport() {
+        return FXCollections.observableArrayList(train.getTransportName(), bus.getTransportName());
     }
 }
