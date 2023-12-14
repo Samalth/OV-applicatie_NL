@@ -19,12 +19,12 @@
           <tooltip>
             <Tooltip fx:id="nlLanguageButtonToolTip" text="wissel naar Nederlands" />
           </tooltip></Button>
-         <Button fx:id="duLanguageButton" layoutX="708.0" layoutY="533.0" mnemonicParsing="false" onAction="#onDuLanguageButtonClick" prefHeight="41.0" prefWidth="76.0" style="-fx-background-image: url('de_flag.png'); -fx-background-size: cover;" >
+         <Button fx:id="deLanguageButton" layoutX="708.0" layoutY="533.0" mnemonicParsing="false" onAction="#onDuLanguageButtonClick" prefHeight="41.0" prefWidth="76.0" style="-fx-background-image: url('de_flag.png'); -fx-background-size: cover;" >
             <font>
                <Font name="Calibri" size="22.0" />
             </font>
          <tooltip>
-            <Tooltip text="auf Deutsch umstellen" />
+            <Tooltip fx:id="deLanguageButtonToolTip" text="auf Deutsch umstellen" />
          </tooltip></Button>
          <Button fx:id="logOutButton" layoutX="801.0" layoutY="13.0" mnemonicParsing="false" onAction="#onLogOutButtonClick" prefHeight="52.0" prefWidth="202.0" style="-fx-border-color: #ff6600;" text="Uitloggen">
             <font>
