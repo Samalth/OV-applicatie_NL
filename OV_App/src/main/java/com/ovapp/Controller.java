@@ -1,11 +1,9 @@
 package com.ovapp;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import javafx.beans.InvalidationListener;
+
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,6 +11,11 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.text.*;
@@ -94,6 +97,13 @@ public class Controller  {
     private LocalDate DepartureDate;
     private String transport;
 
+    @FXML
+    private VBox parent;
+
+    @FXML
+    private ImageView imgMode;
+
+
     private Train train = new Train("Trein", Arrays.asList(0, 15, 30, 45, 60));
     private Bus bus = new Bus("Bus", Arrays.asList(25, 55, 85));
     private ResourceBundle bundle;
@@ -114,6 +124,7 @@ public class Controller  {
         }, 0, 1000);
 
         switchLanguage("Nederlands");
+        setLightMode();
     }
 
     public void onLogInButtonClick() {
@@ -215,6 +226,36 @@ public class Controller  {
         departureTimeMinutesToolTip.setText(bundle.getString("DepartureTimeMinutesToolTiptxt"));
         transportComboBoxToolTip.setText(bundle.getString("TransportComboBoxToolTiptxt"));
         dateLabelToolTip.setText(bundle.getString("DateLabelToolTiptxt"));
+    }
+
+    private boolean isLightMode=true ;
+
+
+    public void changeMode(ActionEvent event){
+        isLightMode = !isLightMode;
+
+        parent.getStylesheets().remove("darkmode.css");
+        parent.getStylesheets().remove("lightmode.css");
+
+        if (isLightMode){
+            setLightMode();
+        }
+        else {
+            setDarkMode();
+        }
+    }
+    private void setLightMode () {
+        parent.getStylesheets().remove ("darkmode.css");
+        parent.getStylesheets().add ("lightmode.css");
+        Image image = new Image("moon.png");
+        imgMode.setImage(image);
+    }
+
+    private void setDarkMode (){
+        parent.getStylesheets().remove ("lightmode.css");
+        parent.getStylesheets().add ("darkmode.css");
+        Image image = new Image ("sun.png");
+        imgMode.setImage(image);
     }
 
     private void updateDate() {
