@@ -273,7 +273,7 @@ public class Controller  {
 
     private List<String> getCity() {
         return Arrays.asList(
-                " Station Amersfoort Centraal", "Station Nieuwegein Noord", "Amsterdam Zuid", "Station Den Haag Centraal","Station Ede-Wageningen", "Den Bosch", "Arnhem", "Utrecht Overvecht", "IJsselstein");
+                "Station Amersfoort Centraal", "Station Nieuwegein Noord", "Amsterdam Zuid", "Station Den Haag Centraal","Station Ede-Wageningen", "Den Bosch", "Arnhem", "Utrecht Overvecht", "IJsselstein");
      }
 
      private ObservableList<String> getTransport() {
