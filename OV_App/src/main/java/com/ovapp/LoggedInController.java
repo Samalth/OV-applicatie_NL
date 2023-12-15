@@ -55,6 +55,8 @@ public class LoggedInController  {
     @FXML
     private Tooltip departureTimeMinutesToolTip;
     @FXML
+    private Tooltip modeToolTip;
+    @FXML
     private Tooltip transportComboBoxToolTip;
     @FXML
     private Tooltip travelHistoryLabelToolTip;
@@ -233,6 +235,7 @@ public class LoggedInController  {
         departureDatePickerTooltip.setText(bundle.getString("DepartureDatePickerTooltiptxt"));
         departureTimeHoursToolTip.setText(bundle.getString("DepartureTimeHoursToolTiptxt"));
         departureTimeMinutesToolTip.setText(bundle.getString("DepartureTimeMinutesToolTiptxt"));
+        modeToolTip.setText(bundle.getString("ModeToolTiptxt"));
         transportComboBoxToolTip.setText(bundle.getString("TransportComboBoxToolTiptxt"));
         travelHistoryLabelToolTip.setText(bundle.getString("TravelHistoryLabelToolTiptxt"));
         showTravelHistoryButtonToolTip.setText(bundle.getString("ShowTravelHistoryButtonToolTiptxt"));

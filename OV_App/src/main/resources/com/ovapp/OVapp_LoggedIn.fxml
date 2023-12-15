@@ -124,7 +124,10 @@
          <Button alignment="CENTER" layoutX="740.0" layoutY="14.0" mnemonicParsing="false" onAction="#onChangeModeClick" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #444444;" styleClass="dark-mode" stylesheets="@../../lightmode.css">
             <opaqueInsets>
                <Insets />
-            </opaqueInsets></Button>
+            </opaqueInsets>
+            <tooltip>
+               <Tooltip fx:id="modeToolTip" styleClass="tooltip" text="Klik hier om te wisselen naar donkere/lichte modus" />
+            </tooltip></Button>
          <ImageView fx:id="imgMode" cache="true" fitHeight="52.0" fitWidth="27.0" layoutX="752.0" layoutY="27.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@../../moon.png" />

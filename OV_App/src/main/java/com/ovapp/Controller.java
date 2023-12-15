@@ -51,6 +51,8 @@ public class Controller  {
     @FXML
     private Tooltip departureTimeMinutesToolTip;
     @FXML
+    private Tooltip modeToolTip;
+    @FXML
     private Tooltip transportComboBoxToolTip;
     @FXML
     private Tooltip dateLabelToolTip;
@@ -224,6 +226,7 @@ public class Controller  {
         departureDatePickerTooltip.setText(bundle.getString("DepartureDatePickerTooltiptxt"));
         departureTimeHoursToolTip.setText(bundle.getString("DepartureTimeHoursToolTiptxt"));
         departureTimeMinutesToolTip.setText(bundle.getString("DepartureTimeMinutesToolTiptxt"));
+        modeToolTip.setText(bundle.getString("ModeToolTiptxt"));
         transportComboBoxToolTip.setText(bundle.getString("TransportComboBoxToolTiptxt"));
         dateLabelToolTip.setText(bundle.getString("DateLabelToolTiptxt"));
     }

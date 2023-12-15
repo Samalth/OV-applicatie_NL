@@ -6,6 +6,9 @@
 .light-mode .text {
     -fx-fill: #000000;
 }
+.dark-mode .tooltip {
+    -fx-text-fill: #FFFFFF;
+}
 
 .light-mode .combo-box {
     -fx-background-color: #FFFFFF;
