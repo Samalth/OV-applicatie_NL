@@ -231,7 +231,7 @@ public class Controller  {
     private boolean isLightMode=true ;
 
 
-    public void changeMode(ActionEvent event){
+    public void onChangeModeClick(ActionEvent event){
         isLightMode = !isLightMode;
 
         parent.getStylesheets().remove("darkmode.css");
@@ -243,6 +243,7 @@ public class Controller  {
         else {
             setDarkMode();
         }
+
     }
     private void setLightMode () {
         parent.getStylesheets().remove ("darkmode.css");

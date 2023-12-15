@@ -1,4 +1,4 @@
-.dark-mode {
+.light-mode {
     -fx-base: #FFFFFF;
     -fx-text-fill: #000000;
     -fx-background-color: #ccffff;
@@ -7,13 +7,21 @@
     -fx-fill: #000000;
 }
 
-.dark-mode .combo-box {
+.light-mode .combo-box {
     -fx-background-color: #FFFFFF;
     -fx-border-color: #FFFFFF;
     -fx-text-fill: #000000;
 }
+.light-mode .label {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #000000;
+}
+.styleModeCustom1 .light-mode .label {
+    -fx-background-color: #ccffff;
+    -fx-text-fill: #000000;
+}
 
-.dark-mode .spinner {
+.light-mode .spinner {
     -fx-background-color: #FFFFFF;
     -fx-border-color: #FFFFFF;
     -fx-text-fill: #000000;

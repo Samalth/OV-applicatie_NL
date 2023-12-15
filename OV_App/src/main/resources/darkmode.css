@@ -12,8 +12,15 @@
     -fx-text-fill: #FFFFFF;
 }
 
+.dark-mode .label {
+    -fx-background-color: #444444;
+    -fx-border-color: #444444;
+    -fx-text-fill: #FFFFFF;
+}
+
 .dark-mode .spinner {
     -fx-background-color: #444444;
     -fx-border-color: #444444;
     -fx-text-fill: #FFFFFF;
 }
+

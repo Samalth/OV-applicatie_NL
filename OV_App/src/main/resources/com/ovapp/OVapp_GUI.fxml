@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" prefHeight="720.0" prefWidth="1280.0" spacing="20.0" style="-fx-background-color: #ccffff; -fx-border-color: #E62F2B;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ovapp.Controller">
+<VBox fx:id="parent" alignment="CENTER" prefHeight="720.0" prefWidth="1280.0" spacing="20.0" style="-fx-border-color: #E62F2B;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ovapp.Controller">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -31,7 +33,7 @@
             <tooltip>
                <Tooltip fx:id="logInButtonToolTip" text="klik hier om in te loggen" />
             </tooltip></Button>
-            <Label fx:id="departureLabel" layoutX="17.0" layoutY="337.0" prefHeight="252.0" prefWidth="517.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #FF6600;" textFill="#E62F2B" wrapText="true">
+            <Label fx:id="departureLabel" layoutX="17.0" layoutY="337.0" prefHeight="252.0" prefWidth="517.0" style="-fx-border-color: #FF6600;" textFill="#E62F2B" wrapText="true">
             <tooltip>
                <Tooltip fx:id="departureLabelToolTip" text="Hier ziet u uw reisinformatie" />
             </tooltip></Label>
@@ -80,32 +82,43 @@
             <tooltip>
                <Tooltip fx:id="transportComboBoxToolTip" text="Klik hier om een vervoermiddel te kiezen." />
             </tooltip></ComboBox>
-            <Label layoutX="29.0" layoutY="165.0" />
-            <Text fx:id="DepartureText" layoutX="20.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vertrek">
+            <Text fx:id="DepartureText" layoutX="20.0" layoutY="60.0" styleClass="text" text="Vertrek">
                 <font>
                     <Font name="Calibri" size="22.0" />
                 </font>
             </Text>
-         <Text fx:id="ArrivalText" layoutX="18.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bestemming">
+         <Text fx:id="ArrivalText" layoutX="18.0" layoutY="112.0" styleClass="text" text="Bestemming">
             <font>
                <Font name="Calibri" size="22.0" />
             </font>
          </Text>
-         <Text fx:id="MeansOfTransportText" layoutX="19.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vervoermiddel">
+         <Text fx:id="MeansOfTransportText" layoutX="19.0" layoutY="170.0" styleClass="text" text="Vervoermiddel">
             <font>
                <Font name="Calibri" size="22.0" />
             </font>
          </Text>
-         <Text fx:id="DepartureDateText" layoutX="20.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vertrek datum">
+         <Text fx:id="DepartureDateText" layoutX="20.0" layoutY="304.0" styleClass="text" text="Vertrek datum">
             <font>
                <Font name="Calibri" size="22.0" />
             </font>
          </Text>
-         <Text fx:id="DepartureTimeText" layoutX="19.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vertrektijd">
+         <Text fx:id="DepartureTimeText" layoutX="19.0" layoutY="243.0" styleClass="text" text="Vertrektijd">
             <font>
                <Font name="Calibri" size="22.0" />
             </font>
          </Text>
-         <ToggleButton layoutX="695.0" layoutY="20.0" mnemonicParsing="false" text="ToggleButton" />
+            <Button alignment="CENTER" layoutX="1188.0" layoutY="16.0" mnemonicParsing="false" onAction="#onChangeModeClick" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #444444;" styleClass="dark-mode" stylesheets="@../../lightmode.css">
+                <opaqueInsets>
+                    <Insets />
+                </opaqueInsets></Button>
+              <ImageView fx:id="imgMode" fitHeight="52.0" fitWidth="27.0" layoutX="1201.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                      <Image url="@../../moon.png" />
+                  </image>
+              </ImageView>
         </children></Pane>
+    <styleClass>
+        <String fx:value="dark-mode" />
+        <String fx:value="light-mode" />
+    </styleClass>
 </VBox>
