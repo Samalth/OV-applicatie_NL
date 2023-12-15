@@ -3,11 +3,9 @@
     -fx-text-fill: #000000;
     -fx-background-color: #ccffff;
 }
+
 .light-mode .text {
     -fx-fill: #000000;
-}
-.dark-mode .tooltip {
-    -fx-text-fill: #FFFFFF;
 }
 
 .light-mode .combo-box {
@@ -15,12 +13,9 @@
     -fx-border-color: #FFFFFF;
     -fx-text-fill: #000000;
 }
+
 .light-mode .label {
     -fx-background-color: #FFFFFF;
-    -fx-text-fill: #000000;
-}
-.styleModeCustom1 .light-mode .label {
-    -fx-background-color: #ccffff;
     -fx-text-fill: #000000;
 }
 
@@ -29,3 +24,7 @@
     -fx-border-color: #FFFFFF;
     -fx-text-fill: #000000;
 }
+
+/*.light-mode .tooltip {*/
+/*    -fx-text-fill: #FFFFFF;*/
+/*}*/
