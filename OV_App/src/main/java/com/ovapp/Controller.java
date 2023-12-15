@@ -151,6 +151,7 @@ public class Controller  {
 
     @FXML
     protected void onGOClick() {
+        ArrayList<City> cities = getCities();
         DepartureCity = departureCityComboBox.getValue();
         ArrivalCity = arrivalCityComboBox.getValue();
         DepartureDate = departureDatePicker.getValue();
@@ -158,13 +159,15 @@ public class Controller  {
         int departureHours = departureTimeHours.getValue();
         int departureMinutes = departureTimeMinutes.getValue();
         ArrayList<String> departureTime = new ArrayList<>();
+        String amenities = determineAmenities(cities);
         try {
             if (transport.equals("Trein")) {
                 departureTime = train.getDepartureTime(train.getTransportSchedule(), departureHours, departureMinutes);
             } else if (transport.equals("Bus")) {
                 departureTime = bus.getDepartureTime(bus.getTransportSchedule(), departureHours, departureMinutes);
             }
-        }catch (NullPointerException e){ }
+        }catch (NullPointerException e){
+        }
         if(DepartureCity == null || ArrivalCity == null || transport == null) {
             departureLabel.setText("Selecteer alstublieft een vertrekplaats, aankomstplaats en vervoermiddel.");
         } else if (DepartureCity.equals(ArrivalCity)){
@@ -175,7 +178,7 @@ public class Controller  {
                     ? DepartureDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))
                     : currentDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
             String departureLabelInfo = String.format(
-                    "Van %s naar %s om %s met de %s op %s", DepartureCity, ArrivalCity, departureTime.get(0), transport.toLowerCase(), formattedDate);
+                    "Van %s naar %s om %s met de %s op %s. De aanwezige voorzieningen zijn %s", DepartureCity, ArrivalCity, departureTime.get(0), transport.toLowerCase(), formattedDate, amenities);
             departureLabel.setText(departureLabelInfo);
         }
     }
@@ -251,7 +254,33 @@ public class Controller  {
         return cityNames;
      }
 
+    public ObservableList<List> getAmenities(ArrayList<City> cities) {
+        ObservableList<List> amenities = FXCollections.observableArrayList();
+        int i = 0;
+        for (i =0; i < cities.size(); i++ ){
+            currentCity = cities.get(i);
+            amenities.add(currentCity.getAmenities());
+        }
+        return amenities;
+    }
+
      private ObservableList<String> getTransport() {
          return FXCollections.observableArrayList(train.getTransportName(), bus.getTransportName());
+    }
+
+    private String determineAmenities(ArrayList<City> cities){
+        List<String> amenities = new ArrayList<>();
+        int i = 0;
+        String amenityString = "";
+        for(i=0; i < cities.size(); i++){
+            currentCity = cities.get(i);
+            if(ArrivalCity.equals(currentCity.getName())){
+                amenities.addAll(currentCity.getAmenities());
+            }
+        }
+        for(i=0; i < amenities.size(); i++){
+            amenityString += amenities.get(i);
+        }
+        return amenityString;
     }
  }
