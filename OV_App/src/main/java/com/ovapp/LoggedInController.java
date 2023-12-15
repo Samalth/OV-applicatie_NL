@@ -4,15 +4,26 @@ import java.util.*;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.text.*;
 import java.time.format.DateTimeFormatter;
 public class LoggedInController  {
+
+    @FXML
+    private Button logOutButton;
+    @FXML
+    private Button GOButton;
+    @FXML
+    private Button showTravelHistoryButton;
 
     @FXML
     private Text DepartureText;
@@ -44,6 +55,8 @@ public class LoggedInController  {
     @FXML
     private Tooltip departureTimeMinutesToolTip;
     @FXML
+    private Tooltip modeToolTip;
+    @FXML
     private Tooltip transportComboBoxToolTip;
     @FXML
     private Tooltip travelHistoryLabelToolTip;
@@ -53,11 +66,9 @@ public class LoggedInController  {
     private Tooltip showTravelHistoryButtonToolTip;
 
     @FXML
-    private Button logOutButton;
-    @FXML
-    private Button GOButton;
-    @FXML
-    private Button showTravelHistoryButton;
+    private VBox parent;
+
+
     @FXML
     private ComboBox<String> departureCityComboBox;
     @FXML
@@ -67,6 +78,10 @@ public class LoggedInController  {
 
     @FXML
     private DatePicker departureDatePicker;
+
+    @FXML
+    private ImageView imgMode;
+
     @FXML
     private Spinner<Integer> departureTimeHours;
     @FXML
@@ -113,6 +128,7 @@ public class LoggedInController  {
 
         travelHistoryLabel.setVisible(false);
         switchLanguage("Nederlands");
+        setLightMode();
     }
 
     public void onLogOutButtonClick() {
@@ -219,10 +235,42 @@ public class LoggedInController  {
         departureDatePickerTooltip.setText(bundle.getString("DepartureDatePickerTooltiptxt"));
         departureTimeHoursToolTip.setText(bundle.getString("DepartureTimeHoursToolTiptxt"));
         departureTimeMinutesToolTip.setText(bundle.getString("DepartureTimeMinutesToolTiptxt"));
+        modeToolTip.setText(bundle.getString("ModeToolTiptxt"));
         transportComboBoxToolTip.setText(bundle.getString("TransportComboBoxToolTiptxt"));
         travelHistoryLabelToolTip.setText(bundle.getString("TravelHistoryLabelToolTiptxt"));
         showTravelHistoryButtonToolTip.setText(bundle.getString("ShowTravelHistoryButtonToolTiptxt"));
         dateLabelToolTip.setText(bundle.getString("DateLabelToolTiptxt"));
+    }
+
+    private boolean isLightMode=true ;
+
+
+    public void onChangeModeClick(ActionEvent event){
+        isLightMode = !isLightMode;
+
+        parent.getStylesheets().remove("darkmode.css");
+        parent.getStylesheets().remove("lightmode.css");
+
+        if (isLightMode){
+            setLightMode();
+        }
+        else {
+            setDarkMode();
+        }
+
+    }
+    private void setLightMode () {
+        parent.getStylesheets().remove ("darkmode.css");
+        parent.getStylesheets().add ("lightmode.css");
+        Image image = new Image("moon.png");
+        imgMode.setImage(image);
+    }
+
+    private void setDarkMode (){
+        parent.getStylesheets().remove ("lightmode.css");
+        parent.getStylesheets().add ("darkmode.css");
+        Image image = new Image ("sun.png");
+        imgMode.setImage(image);
     }
 
     public void onDuLanguageButtonClick(){
