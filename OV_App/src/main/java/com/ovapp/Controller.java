@@ -113,14 +113,14 @@ public class Controller  {
 
     public ArrayList<City> getCities(){
         ArrayList<City> cities = new ArrayList<>();
-        cities.add(new City("Amersfoort", Arrays.asList("lift", "geleidenstrook")));
-        cities.add(new City("Amsterdam", Arrays.asList("lift", "geleidenstrook", "trapmarkeringen")));
-        cities.add(new City("Arnhem", Arrays.asList("geleidenstrook", "trapmarkeringen")));
-        cities.add(new City("Den Bosch", Arrays.asList("lift", "trapmarkeringen")));
-        cities.add(new City("Den Haag", Arrays.asList("geleidenstrook", "gehele station is gelijkvloers")));
-        cities.add(new City("IJsselstein", Arrays.asList("geleidenstrook", "gehele station is gelijkvloers")));
-        cities.add(new City("Nieuwegein", Arrays.asList("lift", "geleidenstrook")));
-        cities.add(new City("Utrecht", Arrays.asList("lift", "geleidenstrook", "trapmarkeringen")));
+        cities.add(new City("Amersfoort", Arrays.asList("liften", "geleidenstroken")));
+        cities.add(new City("Amsterdam", Arrays.asList("liften", "geleidenstroken", "trapmarkeringen")));
+        cities.add(new City("Arnhem", Arrays.asList("geleidenstroken", "trapmarkeringen")));
+        cities.add(new City("Den Bosch", Arrays.asList("liften", "trapmarkeringen")));
+        cities.add(new City("Den Haag", Arrays.asList("geleidenstroken", "het hele station is gelijkvloers")));
+        cities.add(new City("IJsselstein", Arrays.asList("geleidenstroken", "het hele station is gelijkvloers")));
+        cities.add(new City("Nieuwegein", Arrays.asList("liften", "geleidenstroken")));
+        cities.add(new City("Utrecht", Arrays.asList("liften", "geleidenstroken", "trapmarkeringen")));
         return cities;
     }
 
@@ -324,7 +324,14 @@ public class Controller  {
             }
         }
         for(i=0; i < amenities.size(); i++){
-            amenityString += amenities.get(i);
+            if(i < amenities.size() -2) {
+                amenityString += amenities.get(i) + ", ";
+            }if(i == amenities.size() -2){
+                amenityString += amenities.get(i) + " en ";
+            }if(i == amenities.size() -1){
+                amenityString += amenities.get(i) + ".";
+            }
+
         }
         return amenityString;
     }
