@@ -1,11 +1,9 @@
 package com.ovapp;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import javafx.beans.InvalidationListener;
+
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,6 +11,11 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.text.*;
@@ -29,6 +32,30 @@ public class Controller  {
     @FXML
     private Text DepartureTimeText;
 
+    @FXML
+    private Tooltip clockLabelToolTip;
+    @FXML
+    private Tooltip departureLabelToolTip;
+    @FXML
+    private Tooltip logInButtonToolTip;
+    @FXML
+    private Tooltip GOButtonToolTip;
+    @FXML
+    private Tooltip departureCityComboBoxToolTip;
+    @FXML
+    private Tooltip arrivalCityComboBoxToolTip;
+    @FXML
+    private Tooltip departureDatePickerTooltip;
+    @FXML
+    private Tooltip departureTimeHoursToolTip;
+    @FXML
+    private Tooltip departureTimeMinutesToolTip;
+    @FXML
+    private Tooltip modeToolTip;
+    @FXML
+    private Tooltip transportComboBoxToolTip;
+    @FXML
+    private Tooltip dateLabelToolTip;
 
     @FXML
     private Button logInButton;
@@ -40,8 +67,10 @@ public class Controller  {
     @FXML
     private Button nlLanguageButton;
     @FXML
-    private Button duLanguageButton;
+    private Button deLanguageButton;
 
+    @FXML
+    private Button switchButton;
 
     @FXML
     private Label departureLabel;
@@ -72,6 +101,13 @@ public class Controller  {
     private LocalDate DepartureDate;
     private String transport;
 
+    @FXML
+    private VBox parent;
+
+    @FXML
+    private ImageView imgMode;
+
+
     private Train train = new Train("Trein", Arrays.asList(0, 15, 30, 45, 60));
     private Bus bus = new Bus("Bus", Arrays.asList(25, 55, 85));
     private ResourceBundle bundle;
@@ -92,6 +128,7 @@ public class Controller  {
         }, 0, 1000);
 
         switchLanguage("Nederlands");
+        setLightMode();
     }
 
     public void onLogInButtonClick() {
@@ -111,9 +148,21 @@ public class Controller  {
             e.printStackTrace();
         }
     }
+    @FXML
+    public void onSwitchButtonClick(ActionEvent actionEvent) {
+        String temp = departureCityComboBox.getValue();
+        departureCityComboBox.setValue(arrivalCityComboBox.getValue());
+        arrivalCityComboBox.setValue(temp);
+    }
 
     @FXML
-    protected void onGOClick() {
+    protected void onGOClick()
+    { if (switchButton.isPressed()) {
+        // Switch departure and arrival locations
+        String temp = DepartureCity;
+        DepartureCity = ArrivalCity;
+        ArrivalCity = temp;
+    }
         DepartureCity = departureCityComboBox.getValue();
         ArrivalCity = arrivalCityComboBox.getValue();
         DepartureDate = departureDatePicker.getValue();
@@ -168,10 +217,10 @@ public class Controller  {
         Locale locale = new Locale(newLanguage);
         bundle = ResourceBundle.getBundle("Messages", locale);
 
-        DepartureText.setText(bundle.getString("Departuretxt"));
         ArrivalText.setText(bundle.getString("Destinationtxt"));
-        DepartureTimeText.setText(bundle.getString("DepartureTimetxt"));
         DepartureDateText.setText(bundle.getString("DepartureDatetxt"));
+        DepartureText.setText(bundle.getString("Departuretxt"));
+        DepartureTimeText.setText(bundle.getString("DepartureTimetxt"));
         MeansOfTransportText.setText(bundle.getString("MeansOfTransporttxt"));
 
         logInButton.setText(bundle.getString("LogInButtontxt"));
@@ -181,6 +230,50 @@ public class Controller  {
         departureCityComboBox.setPromptText(bundle.getString("DepartureComboBoxPromt"));
         departureDatePicker.setPromptText(bundle.getString("DepartureDatePickerPrompt"));
         transportComboBox.setPromptText(bundle.getString("MeansOfTransportComboBoxPromt"));
+
+        arrivalCityComboBoxToolTip.setText(bundle.getString("ArrivalCityComboBoxToolTiptxt"));
+        clockLabelToolTip.setText(bundle.getString("ClockLabelToolTiptxt"));
+        departureLabelToolTip.setText(bundle.getString("DepartureLabelToolTiptxt"));
+        logInButtonToolTip.setText(bundle.getString("LogInButtonToolTiptxt"));
+        GOButtonToolTip.setText(bundle.getString("GOButtonToolTiptxt"));
+        departureCityComboBoxToolTip.setText(bundle.getString("DepartureCityComboBoxToolTiptxt"));
+        departureDatePickerTooltip.setText(bundle.getString("DepartureDatePickerTooltiptxt"));
+        departureTimeHoursToolTip.setText(bundle.getString("DepartureTimeHoursToolTiptxt"));
+        departureTimeMinutesToolTip.setText(bundle.getString("DepartureTimeMinutesToolTiptxt"));
+        modeToolTip.setText(bundle.getString("ModeToolTiptxt"));
+        transportComboBoxToolTip.setText(bundle.getString("TransportComboBoxToolTiptxt"));
+        dateLabelToolTip.setText(bundle.getString("DateLabelToolTiptxt"));
+    }
+
+    private boolean isLightMode=true ;
+
+
+    public void onChangeModeClick(ActionEvent event){
+        isLightMode = !isLightMode;
+
+        parent.getStylesheets().remove("darkmode.css");
+        parent.getStylesheets().remove("lightmode.css");
+
+        if (isLightMode){
+            setLightMode();
+        }
+        else {
+            setDarkMode();
+        }
+
+    }
+    private void setLightMode () {
+        parent.getStylesheets().remove ("darkmode.css");
+        parent.getStylesheets().add ("lightmode.css");
+        Image image = new Image("moon.png");
+        imgMode.setImage(image);
+    }
+
+    private void setDarkMode (){
+        parent.getStylesheets().remove ("lightmode.css");
+        parent.getStylesheets().add ("darkmode.css");
+        Image image = new Image ("sun.png");
+        imgMode.setImage(image);
     }
 
     private void updateDate() {
@@ -200,4 +293,5 @@ public class Controller  {
      private ObservableList<String> getTransport() {
          return FXCollections.observableArrayList(train.getTransportName(), bus.getTransportName());
     }
- }
+
+}
