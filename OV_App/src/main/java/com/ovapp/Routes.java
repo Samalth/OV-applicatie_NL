@@ -2,7 +2,7 @@ package com.ovapp;
 
 import java.util.List;
 
-public class CityList {
+public class Routes {
 	private List<String> cities;
 
 	public List<String> getCities() {

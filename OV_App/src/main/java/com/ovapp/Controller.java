@@ -3,11 +3,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -17,10 +14,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.text.*;
 public class Controller  {
-
-    @FXML
-    private Button listCities;
-    private Data data = new Data();
+    private final Data data = new Data();
 
     @FXML
     private Text DepartureText;
@@ -33,19 +27,16 @@ public class Controller  {
     @FXML
     private Text DepartureTimeText;
 
-
     @FXML
     private Button logInButton;
     @FXML
     private Button GOButton;
-
     @FXML
     private Button enLanguageButton;
     @FXML
     private Button nlLanguageButton;
     @FXML
     private Button duLanguageButton;
-
 
     @FXML
     private Label departureLabel;
@@ -61,6 +52,7 @@ public class Controller  {
     private Spinner<Integer> departureTimeHours;
     @FXML
     private Spinner<Integer> departureTimeMinutes;
+
     @FXML
     private ComboBox<String> departureCityComboBox;
     @FXML
@@ -80,7 +72,7 @@ public class Controller  {
     private Bus bus = new Bus("Bus", Arrays.asList(25, 55, 85));
     private ResourceBundle bundle;
 
-    public void initialize() {
+    public void initialize() throws IOException {
         ObservableList<String> transport = getTransport();
         List<String> steden = getCity();
         departureCityComboBox.getItems().addAll(steden);
@@ -197,20 +189,14 @@ public class Controller  {
     }
 
     private List<String> getCity() {
-        return Arrays.asList(
-                "Amersfoort Centraal Station", "Nieuwegein", "Amsterdam", "Den Haag", "Den Bosch", "Arnhem", "Utrecht", "IJsselstein");
-     }
-
-     private ObservableList<String> getTransport() {
-         return FXCollections.observableArrayList(train.getTransportName(), bus.getTransportName());
-    }
-
-    @FXML
-    protected void onCitiesButtonClick() {
 	    try {
-		    data.listCities();
+		    return data.returnCity();
 	    } catch (IOException e) {
 		    throw new RuntimeException(e);
 	    }
+    }
+
+     private ObservableList<String> getTransport() {
+         return FXCollections.observableArrayList(train.getTransportName(), bus.getTransportName());
     }
  }
