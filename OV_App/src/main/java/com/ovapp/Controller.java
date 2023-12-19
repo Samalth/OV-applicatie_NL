@@ -41,6 +41,7 @@ public class Controller  {
     private Button nlLanguageButton;
     @FXML
     private Button duLanguageButton;
+
     @FXML
     private Button switchButton;
 
