@@ -1,7 +1,7 @@
 module com.example.ov_app {
     requires javafx.controls;
     requires javafx.fxml;
-	requires org.json;
+	requires com.fasterxml.jackson.databind;
 
 
 	opens com.ovapp to javafx.fxml;

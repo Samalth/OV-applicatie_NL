@@ -19,6 +19,10 @@ import java.text.*;
 public class Controller  {
 
     @FXML
+    private Button listCities;
+    private Data data = new Data();
+
+    @FXML
     private Text DepartureText;
     @FXML
     private Text ArrivalText;
@@ -199,5 +203,14 @@ public class Controller  {
 
      private ObservableList<String> getTransport() {
          return FXCollections.observableArrayList(train.getTransportName(), bus.getTransportName());
+    }
+
+    @FXML
+    protected void onCitiesButtonClick() {
+	    try {
+		    data.listCities();
+	    } catch (IOException e) {
+		    throw new RuntimeException(e);
+	    }
     }
  }
