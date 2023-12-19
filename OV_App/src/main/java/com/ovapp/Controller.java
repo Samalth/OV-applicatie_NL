@@ -1,25 +1,25 @@
 package com.ovapp;
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.*;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.*;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import java.text.*;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+
 public class Controller  {
     private final Data data = new Data();
 
@@ -63,14 +63,6 @@ public class Controller  {
     private Button logInButton;
     @FXML
     private Button GOButton;
-
-    @FXML
-    private Button enLanguageButton;
-    @FXML
-    private Button nlLanguageButton;
-    @FXML
-    private Button deLanguageButton;
-
     @FXML
     private Button switchButton;
 
@@ -82,12 +74,12 @@ public class Controller  {
     private Label clockLabel;
 
     @FXML
-    private DatePicker departureDatePicker;
-
-    @FXML
     private Spinner<Integer> departureTimeHours;
     @FXML
     private Spinner<Integer> departureTimeMinutes;
+
+    @FXML
+    private DatePicker departureDatePicker;
 
     @FXML
     private ComboBox<String> departureCityComboBox;
@@ -102,9 +94,8 @@ public class Controller  {
     private String ArrivalCity;
     @FXML
     private LocalDate DepartureDate;
-    private String transport;
 
-    @FXML
+	@FXML
     private VBox parent;
 
     @FXML
@@ -115,11 +106,11 @@ public class Controller  {
     private Bus bus = new Bus("Bus", Arrays.asList(25, 55, 85));
     private ResourceBundle bundle;
 
-    public void initialize() throws IOException {
+    public void initialize() {
         ObservableList<String> transport = getTransport();
-        List<String> steden = getCity();
-        departureCityComboBox.getItems().addAll(steden);
-        arrivalCityComboBox.getItems().addAll(steden);
+        List<String> city = getCity();
+        departureCityComboBox.getItems().addAll(city);
+        arrivalCityComboBox.getItems().addAll(city);
         transportComboBox.getItems().addAll(transport);
         Timer timer = new Timer(true);
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -169,7 +160,7 @@ public class Controller  {
         DepartureCity = departureCityComboBox.getValue();
         ArrivalCity = arrivalCityComboBox.getValue();
         DepartureDate = departureDatePicker.getValue();
-        transport = transportComboBox.getValue();
+	    String transport = transportComboBox.getValue();
         int departureHours = departureTimeHours.getValue();
         int departureMinutes = departureTimeMinutes.getValue();
         ArrayList<String> departureTime = new ArrayList<>();

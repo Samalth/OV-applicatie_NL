@@ -12,7 +12,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="OV_App" options="--add-exports java.xml/jdk.xml.internal=com.example.ov_app --add-exports jdk.jfr/jdk.jfr.internal=com.example.ov_app" />
+      <module name="OV_App" options="" />
     </option>
   </component>
 </project>
