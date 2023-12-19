@@ -29,7 +29,7 @@
             <tooltip>
                <Tooltip text="klik hier om uit te loggen" />
             </tooltip></Button>
-         <Label fx:id="departureLabel" layoutX="17.0" layoutY="337.0" prefHeight="252.0" prefWidth="517.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #FF6600;" text=" " textFill="#E62F2B" wrapText="true">
+         <Label fx:id="departureLabel" layoutX="17.0" layoutY="485.0" prefHeight="104.0" prefWidth="517.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #FF6600;" text=" " textFill="#E62F2B" wrapText="true">
             <tooltip>
                <Tooltip text="Hier ziet u uw reisinformatie" />
             </tooltip></Label>
