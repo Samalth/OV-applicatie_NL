@@ -79,9 +79,6 @@ public class Controller  {
     private Spinner<Integer> departureTimeMinutes;
 
     @FXML
-    private DatePicker departureDatePicker;
-
-    @FXML
     private ComboBox<String> departureCityComboBox;
     @FXML
     private ComboBox<String> arrivalCityComboBox;
@@ -93,14 +90,13 @@ public class Controller  {
     @FXML
     private String ArrivalCity;
     @FXML
+    private ImageView imgMode;
+    @FXML
+    private DatePicker departureDatePicker;
+    @FXML
     private LocalDate DepartureDate;
-
 	@FXML
     private VBox parent;
-
-    @FXML
-    private ImageView imgMode;
-
 
     private Train train = new Train("Trein", Arrays.asList(0, 15, 30, 45, 60));
     private Bus bus = new Bus("Bus", Arrays.asList(25, 55, 85));
@@ -152,7 +148,6 @@ public class Controller  {
     @FXML
     protected void onGOClick()
     { if (switchButton.isPressed()) {
-        // Switch departure and arrival locations
         String temp = DepartureCity;
         DepartureCity = ArrivalCity;
         ArrivalCity = temp;
@@ -170,7 +165,10 @@ public class Controller  {
             } else if (transport.equals("Bus")) {
                 departureTime = bus.getDepartureTime(bus.getTransportSchedule(), departureHours, departureMinutes);
             }
-        }catch (NullPointerException e){ }
+        }catch (NullPointerException e){
+            departureLabel.setText("Selecteer alstublieft een vervoermiddel.");
+        }
+
         if(DepartureCity == null || ArrivalCity == null || transport == null) {
             departureLabel.setText("Selecteer alstublieft een vertrekplaats, aankomstplaats en vervoermiddel.");
         } else if (DepartureCity.equals(ArrivalCity)){
