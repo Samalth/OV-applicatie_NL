@@ -4,15 +4,26 @@ import java.util.*;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.text.*;
 import java.time.format.DateTimeFormatter;
 public class LoggedInController  {
+
+    @FXML
+    private Button logOutButton;
+    @FXML
+    private Button GOButton;
+    @FXML
+    private Button showTravelHistoryButton;
 
     @FXML
     private Text DepartureText;
@@ -26,11 +37,40 @@ public class LoggedInController  {
     private Text DepartureTimeText;
 
     @FXML
-    private Button logOutButton;
+    private Tooltip clockLabelToolTip;
     @FXML
-    private Button GOButton;
+    private Tooltip departureLabelToolTip;
     @FXML
-    private Button showTravelHistoryButton;
+    private Tooltip logOutButtonToolTip;
+    @FXML
+    private Tooltip GOButtonToolTip;
+    @FXML
+    private Tooltip departureCityComboBoxToolTip;
+    @FXML
+    private Tooltip arrivalCityComboBoxToolTip;
+    @FXML
+    private Tooltip departureDatePickerTooltip;
+    @FXML
+    private Tooltip departureTimeHoursToolTip;
+    @FXML
+    private Tooltip departureTimeMinutesToolTip;
+    @FXML
+    private Tooltip modeToolTip;
+    @FXML
+    private Tooltip transportComboBoxToolTip;
+    @FXML
+    private Tooltip travelHistoryLabelToolTip;
+    @FXML
+    private Tooltip dateLabelToolTip;
+    @FXML
+    private Tooltip showTravelHistoryButtonToolTip;
+
+    @FXML
+    private VBox parent;
+
+
+    @FXML
+    private Button switchButton;
     @FXML
     private ComboBox<String> departureCityComboBox;
     @FXML
@@ -40,6 +80,10 @@ public class LoggedInController  {
 
     @FXML
     private DatePicker departureDatePicker;
+
+    @FXML
+    private ImageView imgMode;
+
     @FXML
     private Spinner<Integer> departureTimeHours;
     @FXML
@@ -86,6 +130,7 @@ public class LoggedInController  {
 
         travelHistoryLabel.setVisible(false);
         switchLanguage("Nederlands");
+        setLightMode();
     }
 
     public void onLogOutButtonClick() {
@@ -118,6 +163,12 @@ public class LoggedInController  {
             System.out.println("Reisgeschiedenis verborgen");
         }
     }
+    @FXML
+    public void onSwitchButtonClick(ActionEvent actionEvent) {
+        String temp = departureCityComboBox.getValue();
+        departureCityComboBox.setValue(arrivalCityComboBox.getValue());
+        arrivalCityComboBox.setValue(temp);
+    }
 
     @FXML
     protected void onGOClick() {
@@ -149,7 +200,8 @@ public class LoggedInController  {
                     ? DepartureDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))
                     : currentDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
             String departureLabelInfo = String.format(
-                    "Van %s naar %s om %s met de %s op %s", DepartureCity, ArrivalCity, departureTime.get(0), transport.toLowerCase(), formattedDate);
+                    "Van %s naar %s om %s met de %s op %s", DepartureCity, ArrivalCity
+                    , departureTime.get(0), transport.toLowerCase(), formattedDate);
             departureLabel.setText(departureLabelInfo);
 
             String travelHistoryInfo = String.format("Op %s om %s%nVan %s naar %s om %s met de %s op %s"
@@ -167,20 +219,66 @@ public class LoggedInController  {
         Locale locale = new Locale(newLanguage);
         bundle = ResourceBundle.getBundle("Messages", locale);
 
-        DepartureText.setText(bundle.getString("Departuretxt"));
         ArrivalText.setText(bundle.getString("Destinationtxt"));
-        DepartureTimeText.setText(bundle.getString("DepartureTimetxt"));
+        DepartureText.setText(bundle.getString("Departuretxt"));
         DepartureDateText.setText(bundle.getString("DepartureDatetxt"));
+        DepartureTimeText.setText(bundle.getString("DepartureTimetxt"));
         MeansOfTransportText.setText(bundle.getString("MeansOfTransporttxt"));
-        showTravelHistoryButton.setText(bundle.getString("showTravelHistoryButtontxt"));
 
-        logOutButton.setText(bundle.getString("LogOutButtontxt"));
         GOButton.setText(bundle.getString("RouteButtontxt"));
+        logOutButton.setText(bundle.getString("LogOutButtontxt"));
+        showTravelHistoryButton.setText(bundle.getString("ShowTravelHistoryButtontxt"));
 
         arrivalCityComboBox.setPromptText(bundle.getString("ArrivalComboBoxPromt"));
         departureCityComboBox.setPromptText(bundle.getString("DepartureComboBoxPromt"));
         departureDatePicker.setPromptText(bundle.getString("DepartureDatePickerPrompt"));
         transportComboBox.setPromptText(bundle.getString("MeansOfTransportComboBoxPromt"));
+
+        arrivalCityComboBoxToolTip.setText(bundle.getString("ArrivalCityComboBoxToolTiptxt"));
+        clockLabelToolTip.setText(bundle.getString("ClockLabelToolTiptxt"));
+        departureLabelToolTip.setText(bundle.getString("DepartureLabelToolTiptxt"));
+        logOutButtonToolTip.setText(bundle.getString("LogOutButtonToolTiptxt"));
+        GOButtonToolTip.setText(bundle.getString("GOButtonToolTiptxt"));
+        departureCityComboBoxToolTip.setText(bundle.getString("DepartureCityComboBoxToolTiptxt"));
+        departureDatePickerTooltip.setText(bundle.getString("DepartureDatePickerTooltiptxt"));
+        departureTimeHoursToolTip.setText(bundle.getString("DepartureTimeHoursToolTiptxt"));
+        departureTimeMinutesToolTip.setText(bundle.getString("DepartureTimeMinutesToolTiptxt"));
+        modeToolTip.setText(bundle.getString("ModeToolTiptxt"));
+        transportComboBoxToolTip.setText(bundle.getString("TransportComboBoxToolTiptxt"));
+        travelHistoryLabelToolTip.setText(bundle.getString("TravelHistoryLabelToolTiptxt"));
+        showTravelHistoryButtonToolTip.setText(bundle.getString("ShowTravelHistoryButtonToolTiptxt"));
+        dateLabelToolTip.setText(bundle.getString("DateLabelToolTiptxt"));
+    }
+
+    private boolean isLightMode=true ;
+
+
+    public void onChangeModeClick(ActionEvent event){
+        isLightMode = !isLightMode;
+
+        parent.getStylesheets().remove("darkmode.css");
+        parent.getStylesheets().remove("lightmode.css");
+
+        if (isLightMode){
+            setLightMode();
+        }
+        else {
+            setDarkMode();
+        }
+
+    }
+    private void setLightMode () {
+        parent.getStylesheets().remove ("darkmode.css");
+        parent.getStylesheets().add ("lightmode.css");
+        Image image = new Image("moon.png");
+        imgMode.setImage(image);
+    }
+
+    private void setDarkMode (){
+        parent.getStylesheets().remove ("lightmode.css");
+        parent.getStylesheets().add ("darkmode.css");
+        Image image = new Image ("sun.png");
+        imgMode.setImage(image);
     }
 
     public void onDuLanguageButtonClick(){
