@@ -319,16 +319,6 @@ public class LoggedInController  {
         });
     }
 
-    private List<String> getTime() {
-        List<String> tijden = new ArrayList<>();
-        for (int uur = 0; uur <= 23; uur++) {
-            for (int minuut = 0; minuut <= 59; minuut += 15) {
-                tijden.add(String.format("%02d:%02d", uur, minuut));
-            }
-        }
-        return tijden;
-    }
-
     private List<String> getCity() {
         return Arrays.asList(
                 "Amersfoort", "Nieuwegein", "Amsterdam", "Den Haag", "Den Bosch", "Arnhem", "Utrecht", "IJsselstein");
