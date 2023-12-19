@@ -31,12 +31,6 @@ public class Controller  {
     private Button logInButton;
     @FXML
     private Button GOButton;
-    @FXML
-    private Button enLanguageButton;
-    @FXML
-    private Button nlLanguageButton;
-    @FXML
-    private Button duLanguageButton;
 
     @FXML
     private Label departureLabel;
