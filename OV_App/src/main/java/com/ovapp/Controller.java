@@ -2,7 +2,6 @@ package com.ovapp;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,8 +12,6 @@ import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -61,13 +58,6 @@ public class Controller  {
     private Button logInButton;
     @FXML
     private Button GOButton;
-
-    @FXML
-    private Button enLanguageButton;
-    @FXML
-    private Button nlLanguageButton;
-    @FXML
-    private Button deLanguageButton;
 
     @FXML
     private Button switchButton;
@@ -158,7 +148,6 @@ public class Controller  {
     @FXML
     protected void onGOClick()
     { if (switchButton.isPressed()) {
-        // Switch departure and arrival locations
         String temp = DepartureCity;
         DepartureCity = ArrivalCity;
         ArrivalCity = temp;
@@ -287,11 +276,11 @@ public class Controller  {
 
     private List<String> getCity() {
         return Arrays.asList(
-                "Station Amersfoort Centraal", "Station Nieuwegein Noord", "Amsterdam Zuid", "Station Den Haag Centraal","Station Ede-Wageningen", "Den Bosch", "Arnhem", "Utrecht Overvecht", "IJsselstein");
-     }
+                "Station Amersfoort Centraal", "Station Nieuwegein Noord", "Amsterdam Zuid", "Station Den Haag Centraal"
+                ,"Station Ede-Wageningen", "Den Bosch", "Arnhem", "Utrecht Overvecht", "IJsselstein");
+    }
 
      private ObservableList<String> getTransport() {
          return FXCollections.observableArrayList(train.getTransportName(), bus.getTransportName());
-    }
-
+     }
 }
