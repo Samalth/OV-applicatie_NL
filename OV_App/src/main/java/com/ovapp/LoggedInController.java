@@ -70,6 +70,8 @@ public class LoggedInController  {
 
 
     @FXML
+    private Button switchButton;
+    @FXML
     private ComboBox<String> departureCityComboBox;
     @FXML
     private ComboBox<String> arrivalCityComboBox;
@@ -160,6 +162,12 @@ public class LoggedInController  {
         } else {
             System.out.println("Reisgeschiedenis verborgen");
         }
+    }
+    @FXML
+    public void onSwitchButtonClick(ActionEvent actionEvent) {
+        String temp = departureCityComboBox.getValue();
+        departureCityComboBox.setValue(arrivalCityComboBox.getValue());
+        arrivalCityComboBox.setValue(temp);
     }
 
     @FXML
