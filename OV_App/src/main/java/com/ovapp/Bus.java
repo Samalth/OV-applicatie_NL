@@ -3,9 +3,6 @@ package com.ovapp;
 import java.util.*;
 public class Bus extends meansOfTransport{
 
-    Bus(){
-    }
-
     Bus(String name, List<Integer> schedule){
         super(name, schedule);
     }

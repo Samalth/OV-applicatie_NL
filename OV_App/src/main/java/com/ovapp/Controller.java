@@ -63,7 +63,6 @@ public class Controller  {
     private Button logInButton;
     @FXML
     private Button GOButton;
-
     @FXML
     private Button switchButton;
 
@@ -75,11 +74,6 @@ public class Controller  {
     private Label clockLabel;
 
     @FXML
-    private Spinner<Integer> departureTimeHours;
-    @FXML
-    private Spinner<Integer> departureTimeMinutes;
-
-    @FXML
     private ComboBox<String> departureCityComboBox;
     @FXML
     private ComboBox<String> arrivalCityComboBox;
@@ -87,9 +81,15 @@ public class Controller  {
     private ComboBox<String> transportComboBox;
 
     @FXML
+    private Spinner<Integer> departureTimeHours;
+    @FXML
+    private Spinner<Integer> departureTimeMinutes;
+
+    @FXML
     private String DepartureCity;
     @FXML
     private String ArrivalCity;
+
     @FXML
     private ImageView imgMode;
     @FXML
@@ -140,7 +140,7 @@ public class Controller  {
         }
     }
     @FXML
-    public void onSwitchButtonClick(ActionEvent actionEvent) {
+    public void onSwitchButtonClick() {
         String temp = departureCityComboBox.getValue();
         departureCityComboBox.setValue(arrivalCityComboBox.getValue());
         arrivalCityComboBox.setValue(temp);
@@ -192,10 +192,6 @@ public class Controller  {
         Platform.runLater(() -> clockLabel.setText(formattedTime));
     }
 
-    private List<String> getLanguages() {
-        return Arrays.asList("Nederlands", "English", "Deutsch");
-    }
-
     public void onDuLanguageButtonClick(){
         switchLanguage("Deutsch");
     }
@@ -241,7 +237,7 @@ public class Controller  {
     private boolean isLightMode=true ;
 
 
-    public void onChangeModeClick(ActionEvent event){
+    public void onChangeModeClick(){
         isLightMode = !isLightMode;
 
         parent.getStylesheets().remove("darkmode.css");
@@ -273,9 +269,7 @@ public class Controller  {
         SimpleDateFormat dateFormat = new SimpleDateFormat(" dd-MM-yyyy");
         String formattedDate = dateFormat.format(new Date());
 
-        Platform.runLater(() -> {
-           dateLabel.setText(formattedDate);
-        });
+        Platform.runLater(() -> dateLabel.setText(formattedDate));
     }
 
     private List<String> getCity() {

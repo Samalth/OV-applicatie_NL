@@ -127,10 +127,9 @@
                       <Image url="@../../moon.png" />
                   </image>
               </ImageView>
-            <ImageView fx:id="travelYRouteImg" cache="true" fitHeight="241.0" fitWidth="297.0" layoutX="-49.0" layoutY="-127.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
-                <image>
-                    <Image url="@../../TravelYRouteBlanc.png" />
-                </image>
+            <ImageView fx:id="travelYRouteImg" cache="true" fitHeight="241.0" fitWidth="297.0" layoutX="-49.0"
+                       layoutY="-127.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                <Image url="@../../TravelYRouteBlanc.png"/>
             </ImageView>
         </children></Pane>
     <styleClass>

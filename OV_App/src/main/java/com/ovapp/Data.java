@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Data {
 
+	//Unused example and test code, will be updated in the future.
 	public void listCity() throws IOException {
 		try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("Routes.json")) {
 			ObjectMapper mapper = new ObjectMapper();
