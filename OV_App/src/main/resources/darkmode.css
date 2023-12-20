@@ -2,10 +2,8 @@
     -fx-base: #333333;
     -fx-text-fill: #FFFFFF;
 }
+
 .dark-mode .text {
-    -fx-fill: #FFFFFF;
-}
-.dark-mode .tooltip {
     -fx-text-fill: #FFFFFF;
 }
 
@@ -27,3 +25,6 @@
     -fx-text-fill: #FFFFFF;
 }
 
+/*.dark-mode .tooltip {*/
+/*    -fx-text-fill: #FFFFFF;*/
+/*}*/

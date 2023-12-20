@@ -63,6 +63,7 @@ public class Controller  {
     private Button logInButton;
     @FXML
     private Button GOButton;
+
     @FXML
     private Button switchButton;
 
@@ -287,6 +288,5 @@ public class Controller  {
 
      private ObservableList<String> getTransport() {
          return FXCollections.observableArrayList(train.getTransportName(), bus.getTransportName());
-    }
-
+     }
 }
