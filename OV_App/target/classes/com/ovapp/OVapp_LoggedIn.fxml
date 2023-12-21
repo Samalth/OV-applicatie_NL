@@ -79,7 +79,7 @@
          <tooltip>
             <Tooltip fx:id="travelHistoryLabelToolTip" text="Dit is uw reisgeschiedenis" />
          </tooltip></Label>
-         <Button fx:id="GOButton" layoutX="232.0" layoutY="451.0" mnemonicParsing="false" onAction="#onGOClick" prefHeight="92.0" prefWidth="230.0" style="-fx-border-color: #ff6600;" text="Plan Route">
+         <Button fx:id="GOButton" layoutX="232.0" layoutY="429.0" mnemonicParsing="false" onAction="#onGOClick" prefHeight="92.0" prefWidth="230.0" style="-fx-border-color: #ff6600;" text="Plan Route">
             <font>
                <Font name="Calibri" size="22.0" />
             </font>
@@ -102,19 +102,19 @@
                <Tooltip text="Wissel tussen vertrek en bestemming locatie." />
             </tooltip>
          </Button>
-         <DatePicker fx:id="departureDatePicker" layoutX="232.0" layoutY="366.0" prefHeight="41.0" prefWidth="230.0" style="-fx-border-color: #ff6600;">
+         <DatePicker fx:id="departureDatePicker" layoutX="232.0" layoutY="337.0" prefHeight="41.0" prefWidth="230.0" style="-fx-border-color: #ff6600;">
             <tooltip>
                <Tooltip fx:id="departureDatePickerTooltip" text="Klik hier om de vertrekdatum te kiezen." />
             </tooltip></DatePicker>
-         <Spinner fx:id="departureTimeHours" editable="true" layoutX="256.0" layoutY="309.0" max="23" min="00" prefHeight="24.0" prefWidth="68.0">
+         <Spinner fx:id="departureTimeHours" editable="true" layoutX="256.0" layoutY="284.0" max="23" min="00" prefHeight="24.0" prefWidth="68.0">
             <tooltip>
                <Tooltip fx:id="departureTimeHoursToolTip" text="Klik hier om het uur van vertrek te selecteren." />
             </tooltip></Spinner>
-         <Spinner fx:id="departureTimeMinutes" layoutX="370.0" layoutY="309.0" max="59" min="00" prefHeight="24.0" prefWidth="68.0">
+         <Spinner fx:id="departureTimeMinutes" layoutX="370.0" layoutY="284.0" max="59" min="00" prefHeight="24.0" prefWidth="68.0">
             <tooltip>
                <Tooltip fx:id="departureTimeMinutesToolTip" text="Klik hier om de minuten van vertrek te selecteren." />
             </tooltip></Spinner>
-         <ComboBox fx:id="transportComboBox" layoutX="232.0" layoutY="224.0" prefHeight="41.0" prefWidth="230.0" style="-fx-border-color: #ff6600;">
+         <ComboBox fx:id="transportComboBox" layoutX="232.0" layoutY="207.0" prefHeight="41.0" prefWidth="230.0" style="-fx-border-color: #ff6600;">
             <tooltip>
                <Tooltip fx:id="transportComboBoxToolTip" text="Klik hier om een vervoermiddel te kiezen." />
             </tooltip></ComboBox>
@@ -129,17 +129,17 @@
                <Font name="Calibri" size="30.0" />
             </font>
          </Text>
-         <Text fx:id="MeansOfTransportText" layoutX="13.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Vervoermiddel">
+         <Text fx:id="MeansOfTransportText" layoutX="14.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Vervoermiddel">
             <font>
                <Font name="Calibri" size="30.0" />
             </font>
          </Text>
-         <Text fx:id="DepartureTimeText" layoutX="9.0" layoutY="331.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Vertrektijd">
+         <Text fx:id="DepartureTimeText" layoutX="14.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Vertrektijd">
             <font>
                <Font name="Calibri" size="30.0" />
             </font>
          </Text>
-         <Text fx:id="DepartureDateText" layoutX="15.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Vertrek datum" wrappingWidth="178.86376953125">
+         <Text fx:id="DepartureDateText" layoutX="14.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Vertrek datum" wrappingWidth="178.86376953125">
             <font>
                <Font name="Calibri" size="30.0" />
             </font>
