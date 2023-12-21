@@ -1,14 +1,40 @@
 {
-  "cities": [
-    "Rotterdam",
-    "Amersfoort",
-    "Nieuwegein",
-    "Amsterdam",
-    "Den Haag",
-    "Den Bosch",
-    "Arnhem",
-    "Utrecht",
-    "IJsselstein"
+  "routeData": [
+    {
+      "station": "Rotterdam",
+      "transportType": "Train, Bus"
+    },
+    {
+      "station": "Amersfoort",
+      "transportType": "Train, Bus"
+    },
+    {
+      "station": "Nieuwegein",
+      "transportType": "Train, Bus"
+    },
+    {
+      "station": "Amsterdam",
+      "transportType": "Train, Bus"
+    },
+    {
+      "station": "Den Haag",
+      "transportType": "Train, Bus"
+    },
+    {
+      "station": "Den Bosch",
+      "transportType": "Train, Bus"
+    },
+    {
+      "station": "Arnhem",
+      "transportType": "Train, Bus"
+    },
+    {
+      "station": "Utrecht",
+      "transportType": "Train, Bus"
+    },
+    {
+      "station": "IJsselstein",
+      "transportType": "Train, Bus"
+    }
   ]
-
 }
