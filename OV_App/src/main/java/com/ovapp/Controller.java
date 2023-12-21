@@ -3,7 +3,6 @@ package com.ovapp;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -105,7 +104,7 @@ public class Controller  {
 
     public void initialize() {
         ObservableList<String> transport = getTransport();
-        List<String> city = getCity();
+        List<String> city =getStation();
         departureCityComboBox.getItems().addAll(city);
         arrivalCityComboBox.getItems().addAll(city);
         transportComboBox.getItems().addAll(transport);
@@ -272,9 +271,10 @@ public class Controller  {
         Platform.runLater(() -> dateLabel.setText(formattedDate));
     }
 
-    private List<String> getCity() {
+    private List<String> getStation() {
 	    try {
-		    return data.returnCity();
+            List<RouteData> routeDataList = data.returnStation();
+            return routeDataList.stream().map(RouteData::getStation).toList();
 	    } catch (IOException e) {
 		    throw new RuntimeException(e);
 	    }
