@@ -1,25 +1,27 @@
 package com.ovapp;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.*;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.*;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import java.text.*;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+
 public class Controller  {
+    private final Data data = new Data();
 
     @FXML
     private Text DepartureText;
@@ -61,14 +63,8 @@ public class Controller  {
     private Button logInButton;
     @FXML
     private Button GOButton;
-
     @FXML
-    private Button enLanguageButton;
-    @FXML
-    private Button nlLanguageButton;
-    @FXML
-    private Button deLanguageButton;
-
+    private Button switchButton;
 
     @FXML
     private Label departureLabel;
@@ -78,13 +74,6 @@ public class Controller  {
     private Label clockLabel;
 
     @FXML
-    private DatePicker departureDatePicker;
-
-    @FXML
-    private Spinner<Integer> departureTimeHours;
-    @FXML
-    private Spinner<Integer> departureTimeMinutes;
-    @FXML
     private ComboBox<String> departureCityComboBox;
     @FXML
     private ComboBox<String> arrivalCityComboBox;
@@ -92,19 +81,23 @@ public class Controller  {
     private ComboBox<String> transportComboBox;
 
     @FXML
+    private Spinner<Integer> departureTimeHours;
+    @FXML
+    private Spinner<Integer> departureTimeMinutes;
+
+    @FXML
     private String DepartureCity;
     @FXML
     private String ArrivalCity;
-    @FXML
-    private LocalDate DepartureDate;
-    private String transport;
-
-    @FXML
-    private VBox parent;
 
     @FXML
     private ImageView imgMode;
-
+    @FXML
+    private DatePicker departureDatePicker;
+    @FXML
+    private LocalDate DepartureDate;
+	@FXML
+    private VBox parent;
 
     private Train train = new Train("Trein", Arrays.asList(0, 15, 30, 45, 60));
     private Bus bus = new Bus("Bus", Arrays.asList(25, 55, 85));
@@ -121,15 +114,15 @@ public class Controller  {
         cities.add(new City("IJsselstein", Arrays.asList("geleidenstroken", "het hele station is gelijkvloers")));
         cities.add(new City("Nieuwegein", Arrays.asList("liften", "geleidenstroken")));
         cities.add(new City("Utrecht", Arrays.asList("liften", "geleidenstroken", "trapmarkeringen")));
+
         return cities;
     }
 
     public void initialize() {
-        ArrayList<City> cities = getCities();
-        ObservableList<String> cityNames = getCityNames(cities);
         ObservableList<String> transport = getTransport();
-        departureCityComboBox.getItems().addAll(cityNames);
-        arrivalCityComboBox.getItems().addAll(cityNames);
+        List<String> city = getCity();
+        departureCityComboBox.getItems().addAll(city);
+        arrivalCityComboBox.getItems().addAll(city);
         transportComboBox.getItems().addAll(transport);
         Timer timer = new Timer(true);
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -161,18 +154,31 @@ public class Controller  {
             e.printStackTrace();
         }
     }
+    @FXML
+    public void onSwitchButtonClick() {
+        String temp = departureCityComboBox.getValue();
+        departureCityComboBox.setValue(arrivalCityComboBox.getValue());
+        arrivalCityComboBox.setValue(temp);
+    }
 
     @FXML
     protected void onGOClick() {
-        ArrayList<City> cities = getCities();
+        if (switchButton.isPressed()) {
+        String temp = DepartureCity;
+        DepartureCity = ArrivalCity;
+        ArrivalCity = temp;
+    }
         DepartureCity = departureCityComboBox.getValue();
         ArrivalCity = arrivalCityComboBox.getValue();
         DepartureDate = departureDatePicker.getValue();
-        transport = transportComboBox.getValue();
+	    String transport = transportComboBox.getValue();
         int departureHours = departureTimeHours.getValue();
         int departureMinutes = departureTimeMinutes.getValue();
         ArrayList<String> departureTime = new ArrayList<>();
-        String amenities = determineAmenities(cities);
+        ArrayList<City> cities = getCities();
+        List<String> amenities = determineAmenities(cities);
+        String departureAmenities = amenities.get(0);
+        String arrivalAmenities = amenities.get(1);
         try {
             if (transport.equals("Trein")) {
                 departureTime = train.getDepartureTime(train.getTransportSchedule(), departureHours, departureMinutes);
@@ -180,7 +186,9 @@ public class Controller  {
                 departureTime = bus.getDepartureTime(bus.getTransportSchedule(), departureHours, departureMinutes);
             }
         }catch (NullPointerException e){
+            departureLabel.setText("Selecteer alstublieft een vervoermiddel.");
         }
+
         if(DepartureCity == null || ArrivalCity == null || transport == null) {
             departureLabel.setText("Selecteer alstublieft een vertrekplaats, aankomstplaats en vervoermiddel.");
         } else if (DepartureCity.equals(ArrivalCity)){
@@ -191,7 +199,10 @@ public class Controller  {
                     ? DepartureDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))
                     : currentDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
             String departureLabelInfo = String.format(
-                    "Van %s naar %s om %s met de %s op %s. De aanwezige voorzieningen zijn %s", DepartureCity, ArrivalCity, departureTime.get(0), transport.toLowerCase(), formattedDate, amenities);
+                    "Van %s naar %s om %s met de %s op %s. De voorzieningen op station %s zijn %s " +
+                            "De voorzieningen op station %s zijn %s", DepartureCity, ArrivalCity,
+                    departureTime.get(0), transport.toLowerCase(), formattedDate,
+                    DepartureCity, departureAmenities, ArrivalCity, arrivalAmenities);
             departureLabel.setText(departureLabelInfo);
         }
     }
@@ -201,10 +212,6 @@ public class Controller  {
         String formattedTime = dateFormat.format(new Date());
 
         Platform.runLater(() -> clockLabel.setText(formattedTime));
-    }
-
-    private List<String> getLanguages() {
-        return Arrays.asList("Nederlands", "English", "Deutsch");
     }
 
     public void onDuLanguageButtonClick(){
@@ -252,7 +259,7 @@ public class Controller  {
     private boolean isLightMode=true ;
 
 
-    public void onChangeModeClick(ActionEvent event){
+    public void onChangeModeClick(){
         isLightMode = !isLightMode;
 
         parent.getStylesheets().remove("darkmode.css");
@@ -284,19 +291,19 @@ public class Controller  {
         SimpleDateFormat dateFormat = new SimpleDateFormat(" dd-MM-yyyy");
         String formattedDate = dateFormat.format(new Date());
 
-        Platform.runLater(() -> {
-           dateLabel.setText(formattedDate);
-        });
+        Platform.runLater(() -> dateLabel.setText(formattedDate));
     }
 
-    public ObservableList<String> getCityNames(ArrayList<City> cities) {
-        ObservableList<String> cityNames = FXCollections.observableArrayList();
-        int i = 0;
-        for (i =0; i < cities.size(); i++ ){
-            currentCity = cities.get(i);
-            cityNames.add(currentCity.getName());
-        }
-        return cityNames;
+    private List<String> getCity() {
+	    try {
+		    return data.returnCity();
+	    } catch (IOException e) {
+		    throw new RuntimeException(e);
+	    }
+    }
+
+     private ObservableList<String> getTransport() {
+         return FXCollections.observableArrayList(train.getTransportName(), bus.getTransportName());
      }
 
     public ObservableList<List> getAmenities(ArrayList<City> cities) {
@@ -307,32 +314,50 @@ public class Controller  {
             amenities.add(currentCity.getAmenities());
         }
         return amenities;
+
     }
 
-     private ObservableList<String> getTransport() {
-         return FXCollections.observableArrayList(train.getTransportName(), bus.getTransportName());
-    }
-
-    private String determineAmenities(ArrayList<City> cities){
+    private List<String> determineAmenities(ArrayList<City> cities){
         List<String> amenities = new ArrayList<>();
         int i = 0;
+        int j = 0;
         String amenityString = "";
+        List<String>formattedAmenities = new ArrayList<>();
+        formattedAmenities.add("");
+        formattedAmenities.add("");
         for(i=0; i < cities.size(); i++){
             currentCity = cities.get(i);
+            if(DepartureCity.equals(currentCity.getName())){
+                amenities.addAll(currentCity.getAmenities());
+                for(j=0; j < amenities.size(); j++){
+                    if(j < amenities.size() -2) {
+                        amenityString += amenities.get(j) + ", ";
+                    }if(j == amenities.size() -2){
+                        amenityString += amenities.get(j) + " en ";
+                    }if(j == amenities.size() -1){
+                        amenityString += amenities.get(j) + ".";
+                    }
+                }
+                formattedAmenities.set(0, amenityString);
+                amenityString = "";
+                amenities.clear();
+            }
             if(ArrivalCity.equals(currentCity.getName())){
                 amenities.addAll(currentCity.getAmenities());
+                for(j=0; j < amenities.size(); j++){
+                    if(j < amenities.size() -2) {
+                        amenityString += amenities.get(j) + ", ";
+                    }if(j == amenities.size() -2){
+                        amenityString += amenities.get(j) + " en ";
+                    }if(j == amenities.size() -1){
+                        amenityString += amenities.get(j) + ".";
+                    }
+                }
+                formattedAmenities.set(1, amenityString);
+                amenityString = "";
+                amenities.clear();
             }
         }
-        for(i=0; i < amenities.size(); i++){
-            if(i < amenities.size() -2) {
-                amenityString += amenities.get(i) + ", ";
-            }if(i == amenities.size() -2){
-                amenityString += amenities.get(i) + " en ";
-            }if(i == amenities.size() -1){
-                amenityString += amenities.get(i) + ".";
-            }
-
-        }
-        return amenityString;
+        return formattedAmenities;
     }
- }
+}
