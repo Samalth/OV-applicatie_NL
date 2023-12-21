@@ -9,8 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.image.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -120,6 +119,10 @@ public class Controller  {
 
         switchLanguage("Nederlands");
         setLightMode();
+
+        departureCityComboBox.setOnAction(event -> onDepartureCityComboBoxClick());
+        arrivalCityComboBox.setOnAction(event -> onArrivalCityComboBoxClick());
+
     }
 
     public void onLogInButtonClick() {
@@ -160,6 +163,8 @@ public class Controller  {
         int departureHours = departureTimeHours.getValue();
         int departureMinutes = departureTimeMinutes.getValue();
         ArrayList<String> departureTime = new ArrayList<>();
+
+
         try {
             if (transport.equals("Trein")) {
                 departureTime = train.getDepartureTime(train.getTransportSchedule(), departureHours, departureMinutes);
@@ -182,6 +187,27 @@ public class Controller  {
             String departureLabelInfo = String.format(
                     "Van %s naar %s om %s met de %s op %s", DepartureCity, ArrivalCity, departureTime.get(0), transport.toLowerCase(), formattedDate);
             departureLabel.setText(departureLabelInfo);
+        }
+    }
+
+    public void onDepartureCityComboBoxClick() {
+        updateCityComboBox(departureCityComboBox, arrivalCityComboBox);
+    }
+
+    public void onArrivalCityComboBoxClick() {
+        updateCityComboBox(arrivalCityComboBox, departureCityComboBox);
+    }
+
+    private void updateCityComboBox(ComboBox<String> sourceComboBox, ComboBox<String> otherComboBox) {
+        String selectedCity = sourceComboBox.getValue();
+
+        if (selectedCity != null) {
+            otherComboBox.getItems().remove(selectedCity);
+
+            sourceComboBox.setOnAction(event -> {
+                otherComboBox.getItems().add(selectedCity);
+                sourceComboBox.setOnAction(null);
+            });
         }
     }
 
