@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -284,8 +285,8 @@ public class Controller {
 		return FXCollections.observableArrayList(train.getTransportName(), bus.getTransportName());
 	}
 
-    // Unused method still a work in progress
-    private List<String> NEWgetTransport() {
+	// Unused method still a work in progress
+	private List<String> NEWgetTransport() {
 		try {
 			List<RouteData> routeDataList = data.getRouteData();
 			return routeDataList.stream().map(RouteData::getTransport).toList();
