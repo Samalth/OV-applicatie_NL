@@ -3,13 +3,13 @@ package com.ovapp;
 import java.util.List;
 
 public class Routes {
-	public List<String> cities;
+	private List<RouteData> routeData;
 
-	public List<String> getCities() {
-		return cities;
+	public List<RouteData> getRouteData() {
+		return routeData;
 	}
 
-	public void setCities(List<String> cities) {
-		this.cities = cities;
+	public void setRouteData(List<RouteData> routeData) {
+		this.routeData = routeData;
 	}
 }
