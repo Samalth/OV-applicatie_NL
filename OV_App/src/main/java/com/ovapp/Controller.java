@@ -1,22 +1,27 @@
 package com.ovapp;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.*;
+
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.*;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import java.text.*;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+
 public class Controller  {
+    private final Data data = new Data();
 
     @FXML
     private Text DepartureText;
@@ -58,7 +63,6 @@ public class Controller  {
     private Button logInButton;
     @FXML
     private Button GOButton;
-
     @FXML
     private Button switchButton;
 
@@ -70,13 +74,6 @@ public class Controller  {
     private Label clockLabel;
 
     @FXML
-    private DatePicker departureDatePicker;
-
-    @FXML
-    private Spinner<Integer> departureTimeHours;
-    @FXML
-    private Spinner<Integer> departureTimeMinutes;
-    @FXML
     private ComboBox<String> departureCityComboBox;
     @FXML
     private ComboBox<String> arrivalCityComboBox;
@@ -84,19 +81,23 @@ public class Controller  {
     private ComboBox<String> transportComboBox;
 
     @FXML
+    private Spinner<Integer> departureTimeHours;
+    @FXML
+    private Spinner<Integer> departureTimeMinutes;
+
+    @FXML
     private String DepartureCity;
     @FXML
     private String ArrivalCity;
-    @FXML
-    private LocalDate DepartureDate;
-    private String transport;
-
-    @FXML
-    private VBox parent;
 
     @FXML
     private ImageView imgMode;
-
+    @FXML
+    private DatePicker departureDatePicker;
+    @FXML
+    private LocalDate DepartureDate;
+	@FXML
+    private VBox parent;
 
     private Train train = new Train("Trein", Arrays.asList(0, 15, 30, 45, 60));
     private Bus bus = new Bus("Bus", Arrays.asList(25, 55, 85));
@@ -104,9 +105,9 @@ public class Controller  {
 
     public void initialize() {
         ObservableList<String> transport = getTransport();
-        List<String> steden = getCity();
-        departureCityComboBox.getItems().addAll(steden);
-        arrivalCityComboBox.getItems().addAll(steden);
+        List<String> city = getCity();
+        departureCityComboBox.getItems().addAll(city);
+        arrivalCityComboBox.getItems().addAll(city);
         transportComboBox.getItems().addAll(transport);
         Timer timer = new Timer(true);
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -139,7 +140,7 @@ public class Controller  {
         }
     }
     @FXML
-    public void onSwitchButtonClick(ActionEvent actionEvent) {
+    public void onSwitchButtonClick() {
         String temp = departureCityComboBox.getValue();
         departureCityComboBox.setValue(arrivalCityComboBox.getValue());
         arrivalCityComboBox.setValue(temp);
@@ -155,7 +156,7 @@ public class Controller  {
         DepartureCity = departureCityComboBox.getValue();
         ArrivalCity = arrivalCityComboBox.getValue();
         DepartureDate = departureDatePicker.getValue();
-        transport = transportComboBox.getValue();
+	    String transport = transportComboBox.getValue();
         int departureHours = departureTimeHours.getValue();
         int departureMinutes = departureTimeMinutes.getValue();
         ArrayList<String> departureTime = new ArrayList<>();
@@ -165,7 +166,10 @@ public class Controller  {
             } else if (transport.equals("Bus")) {
                 departureTime = bus.getDepartureTime(bus.getTransportSchedule(), departureHours, departureMinutes);
             }
-        }catch (NullPointerException e){ }
+        }catch (NullPointerException e){
+            departureLabel.setText("Selecteer alstublieft een vervoermiddel.");
+        }
+
         if(DepartureCity == null || ArrivalCity == null || transport == null) {
             departureLabel.setText("Selecteer alstublieft een vertrekplaats, aankomstplaats en vervoermiddel.");
         } else if (DepartureCity.equals(ArrivalCity)){
@@ -186,10 +190,6 @@ public class Controller  {
         String formattedTime = dateFormat.format(new Date());
 
         Platform.runLater(() -> clockLabel.setText(formattedTime));
-    }
-
-    private List<String> getLanguages() {
-        return Arrays.asList("Nederlands", "English", "Deutsch");
     }
 
     public void onDuLanguageButtonClick(){
@@ -237,7 +237,7 @@ public class Controller  {
     private boolean isLightMode=true ;
 
 
-    public void onChangeModeClick(ActionEvent event){
+    public void onChangeModeClick(){
         isLightMode = !isLightMode;
 
         parent.getStylesheets().remove("darkmode.css");
@@ -269,15 +269,15 @@ public class Controller  {
         SimpleDateFormat dateFormat = new SimpleDateFormat(" dd-MM-yyyy");
         String formattedDate = dateFormat.format(new Date());
 
-        Platform.runLater(() -> {
-           dateLabel.setText(formattedDate);
-        });
+        Platform.runLater(() -> dateLabel.setText(formattedDate));
     }
 
     private List<String> getCity() {
-        return Arrays.asList(
-                "Station Amersfoort Centraal", "Station Nieuwegein Noord", "Amsterdam Zuid", "Station Den Haag Centraal"
-                ,"Station Ede-Wageningen", "Den Bosch", "Arnhem", "Utrecht Overvecht", "IJsselstein");
+	    try {
+		    return data.returnCity();
+	    } catch (IOException e) {
+		    throw new RuntimeException(e);
+	    }
     }
 
      private ObservableList<String> getTransport() {
