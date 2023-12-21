@@ -1,5 +1,8 @@
 package com.ovapp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class RouteData {
 	private String station;
 	private String transportType;
@@ -12,11 +15,11 @@ public class RouteData {
 		this.station = station;
 	}
 
-	public String getTransportType() {
+	public String getTransport() {
 		return transportType;
 	}
 
-	public void setTransportType(String transportType) {
+	public void setTransport(String transportType) {
 		this.transportType = transportType;
 	}
 }
