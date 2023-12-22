@@ -162,7 +162,7 @@
                     <Font name="Calibri" size="30.0" />
                 </font>
             </Text>
-            <ImageView fx:id="travelYRouteImg" cache="true" fitHeight="241.0" fitWidth="297.0" layoutY="16.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="travelYRouteImg" cache="true" fitHeight="241.0" fitWidth="297.0" layoutX="862.0" layoutY="133.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                 <image>
                     <Image url="@../../TravelYRouteBlanc.png" />
                 </image>
