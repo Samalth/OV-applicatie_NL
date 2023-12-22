@@ -1,5 +1,7 @@
 package com.ovapp;
 
+import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,26 +17,70 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Objects;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class LogInScreenController {
     private Stage stage;
     private Scene scene;
-    private Parent root;
+
     @FXML
     private VBox parent;
+
     @FXML
     private ImageView imgMode;
+
     @FXML
     private Button cancelButton;
     @FXML
-    private Button loginButton;
+    private Button logInButton;
+
+    @FXML
+    private Label dateLabel;
+    @FXML
+    private Label clockLabel;
     @FXML
     private Label loginMessageLabel;
+
     @FXML
     private TextField usernameTextField;
     @FXML
     private PasswordField passwordPasswordField;
+
+    private ResourceBundle bundle;
+    private boolean isLightMode = true;
+
+    public void initialize() {
+        Timer timer = new Timer(true);
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                updateClock();
+                updateDate();
+            }
+        }, 0, 1000);
+
+        switchLanguage("Nederlands");
+        setLightMode();
+    }
+    private void updateClock() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("      HH:mm");
+        String formattedTime = dateFormat.format(new Date());
+
+        Platform.runLater(() -> {
+            clockLabel.setText(formattedTime);
+        });
+    }
+
+    private void updateDate() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(" dd-MM-yyyy");
+        String formattedDate = dateFormat.format(new Date());
+
+        Platform.runLater(() -> {
+            dateLabel.setText(formattedDate);
+        });
+    }
+
 
     private boolean validateLogin(String username, String password) {
         if (username.equals("user") && password.equals("1234") || (username.equals("1") && password.equals("1")))
@@ -42,8 +88,25 @@ public class LogInScreenController {
         else
             return false;
     }
+    public void onDuLanguageButtonClick(){
+        switchLanguage("Deutsch");
+    }
+    public void onNlLanguageButtonClick(){
+        switchLanguage("Nederlands");
+    }
+    public void onEnLanguageButtonClick(){
+        switchLanguage("English");
+    }
 
-    public void loginButtonOnAction(ActionEvent e) throws IOException {
+    public void switchLanguage(String newLanguage) {
+        Locale locale = new Locale(newLanguage);
+        bundle = ResourceBundle.getBundle("Messages", locale);
+
+        logInButton.setText(bundle.getString("LogInButtontxt"));
+
+    }
+
+    public void logInButtonOnAction(ActionEvent e) throws IOException {
         String username = usernameTextField.getText();
         String password = passwordPasswordField.getText();
 
@@ -55,13 +118,12 @@ public class LogInScreenController {
             loginMessageLabel.setText("Voer uw wachtwoord in.");
         else {
             if (validateLogin(username, password))
-                goToHelloView();
+                openOVapp_LoggedIn();
             else
                 loginMessageLabel.setText("Gegevens onjuist.");
         }
     }
 
-    private boolean isLightMode = true;
     public void onChangeModeClick() {
         isLightMode = !isLightMode;
 
@@ -73,7 +135,6 @@ public class LogInScreenController {
         } else {
             setDarkMode();
         }
-
     }
 
     private void setLightMode() {
@@ -89,10 +150,10 @@ public class LogInScreenController {
         Image image = new Image("sun.png");
         imgMode.setImage(image);
     }
-    public void goToHelloView() throws IOException {
+    public void openOVapp_LoggedIn() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("OVapp_LoggedIn.fxml")));
         scene = new Scene(root);
-        stage = (Stage) (loginButton.getScene().getWindow());
+        stage = (Stage) (logInButton.getScene().getWindow());
         stage.setScene(scene);
         stage.show();
     }
