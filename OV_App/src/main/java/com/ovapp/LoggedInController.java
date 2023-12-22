@@ -111,6 +111,21 @@ public class LoggedInController  {
     private Train train = new Train("Trein", Arrays.asList(0, 15, 30, 45, 60));
     private Bus bus = new Bus("Bus", Arrays.asList(25, 55, 85));
     private ResourceBundle bundle;
+    private City currentCity;
+
+    public ArrayList<City> getCities(){
+        ArrayList<City> cities = new ArrayList<>();
+        cities.add(new City("Amersfoort", Arrays.asList("liften", "geleidenstroken")));
+        cities.add(new City("Amsterdam", Arrays.asList("liften", "geleidenstroken", "trapmarkeringen")));
+        cities.add(new City("Arnhem", Arrays.asList("geleidenstroken", "trapmarkeringen")));
+        cities.add(new City("Den Bosch", Arrays.asList("liften", "trapmarkeringen")));
+        cities.add(new City("Den Haag", Arrays.asList("geleidenstroken", "het hele station is gelijkvloers")));
+        cities.add(new City("IJsselstein", Arrays.asList("geleidenstroken", "het hele station is gelijkvloers")));
+        cities.add(new City("Nieuwegein", Arrays.asList("liften", "geleidenstroken")));
+        cities.add(new City("Utrecht", Arrays.asList("liften", "geleidenstroken", "trapmarkeringen")));
+
+        return cities;
+    }
 
 
     public void initialize() {
@@ -179,6 +194,16 @@ public class LoggedInController  {
         int departureHours = departureTimeHours.getValue();
         int departureMinutes = departureTimeMinutes.getValue();
         ArrayList<String> departureTime = new ArrayList<>();
+        ArrayList<City> cities = getCities();
+        String departureAmenities = "";
+        String arrivalAmenities = "";
+        try {
+            List<String> amenities = determineAmenities(cities);
+            departureAmenities = amenities.get(0);
+            arrivalAmenities = amenities.get(1);
+        }catch (NullPointerException e){
+            departureLabel.setText("Selecteer alstublieft een vertrekplaats, aankomstplaats en vervoermiddel.");
+        }
         try {
             if (transport.equals("Trein")) {
                 departureTime = train.getDepartureTime(train.getTransportSchedule(), departureHours, departureMinutes);
@@ -200,8 +225,10 @@ public class LoggedInController  {
                     ? DepartureDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))
                     : currentDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
             String departureLabelInfo = String.format(
-                    "Van %s naar %s om %s met de %s op %s", DepartureCity, ArrivalCity
-                    , departureTime.get(0), transport.toLowerCase(), formattedDate);
+                    "Van %s naar %s om %s met de %s op %s. De voorzieningen op station %s zijn %s " +
+                            "De voorzieningen op station %s zijn %s", DepartureCity, ArrivalCity
+                    , departureTime.get(0), transport.toLowerCase(), formattedDate,
+                    DepartureCity, departureAmenities, ArrivalCity, arrivalAmenities);
             departureLabel.setText(departureLabelInfo);
 
             String travelHistoryInfo = String.format("Op %s om %s%nVan %s naar %s om %s met de %s op %s"
@@ -346,5 +373,48 @@ public class LoggedInController  {
     }
     private ObservableList<String> getTransport() {
         return FXCollections.observableArrayList(train.getTransportName(), bus.getTransportName());
+    }
+    private List<String> determineAmenities(ArrayList<City> cities){
+        List<String> amenities = new ArrayList<>();
+        int i = 0;
+        int j = 0;
+        String amenityString = "";
+        List<String>formattedAmenities = new ArrayList<>();
+        formattedAmenities.add("");
+        formattedAmenities.add("");
+        for(i=0; i < cities.size(); i++){
+            currentCity = cities.get(i);
+            if(DepartureCity.equals(currentCity.getName())){
+                amenities.addAll(currentCity.getAmenities());
+                for(j=0; j < amenities.size(); j++){
+                    if(j < amenities.size() -2) {
+                        amenityString += amenities.get(j) + ", ";
+                    }if(j == amenities.size() -2){
+                        amenityString += amenities.get(j) + " en ";
+                    }if(j == amenities.size() -1){
+                        amenityString += amenities.get(j) + ".";
+                    }
+                }
+                formattedAmenities.set(0, amenityString);
+                amenityString = "";
+                amenities.clear();
+            }
+            if(ArrivalCity.equals(currentCity.getName())){
+                amenities.addAll(currentCity.getAmenities());
+                for(j=0; j < amenities.size(); j++){
+                    if(j < amenities.size() -2) {
+                        amenityString += amenities.get(j) + ", ";
+                    }if(j == amenities.size() -2){
+                        amenityString += amenities.get(j) + " en ";
+                    }if(j == amenities.size() -1){
+                        amenityString += amenities.get(j) + ".";
+                    }
+                }
+                formattedAmenities.set(1, amenityString);
+                amenityString = "";
+                amenities.clear();
+            }
+        }
+        return formattedAmenities;
     }
 }
