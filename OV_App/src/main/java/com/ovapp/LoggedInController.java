@@ -211,6 +211,27 @@ public class LoggedInController  {
         }
     }
 
+    public void onDepartureCityComboBoxClick() {
+        updateCityComboBox(departureCityComboBox, arrivalCityComboBox);
+    }
+
+    public void onArrivalCityComboBoxClick() {
+        updateCityComboBox(arrivalCityComboBox, departureCityComboBox);
+    }
+
+    private void updateCityComboBox(ComboBox<String> sourceComboBox, ComboBox<String> otherComboBox) {
+        String selectedCity = sourceComboBox.getValue();
+
+        if (selectedCity != null) {
+            otherComboBox.getItems().remove(selectedCity);
+
+            sourceComboBox.setOnAction(event -> {
+                otherComboBox.getItems().add(selectedCity);
+                sourceComboBox.setOnAction(null);
+            });
+        }
+    }
+
     private List<String> getLanguages() {
         return Arrays.asList("Nederlands", "English", "Deutsch");
     }
