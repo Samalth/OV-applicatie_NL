@@ -32,7 +32,7 @@
                <Font name="Calibri" size="15.0" />
             </font>
             <tooltip>
-               <Tooltip fx:id="dateLabelToolTip" text="de huidige datum" />
+               <Tooltip fx:id="dateLabelToolTip" style="-fx-text-fill: #FFFFFF;" text="de huidige datum" />
             </tooltip></Label>
          <Button alignment="CENTER" layoutX="296.0" layoutY="13.0" mnemonicParsing="false" onAction="#onChangeModeClick" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #444444;" styleClass="dark-mode" stylesheets="@../../lightmode.css">
             <opaqueInsets>
@@ -77,22 +77,22 @@
          </tooltip></Label>
          <Label fx:id="travelHistoryLabel" layoutX="803.0" layoutY="297.0" prefHeight="263.0" prefWidth="415.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #FF6600;" textFill="#f50000" wrapText="true">
          <tooltip>
-            <Tooltip fx:id="travelHistoryLabelToolTip" text="Dit is uw reisgeschiedenis" />
+            <Tooltip fx:id="travelHistoryLabelToolTip" style="-fx-text-fill: #FFFFFF;" text="Dit is uw reisgeschiedenis" />
          </tooltip></Label>
          <Button fx:id="GOButton" layoutX="232.0" layoutY="451.0" mnemonicParsing="false" onAction="#onGOClick" prefHeight="92.0" prefWidth="230.0" style="-fx-border-color: #ff6600;" text="Plan Route">
             <font>
                <Font name="Calibri" size="22.0" />
             </font>
             <tooltip>
-               <Tooltip fx:id="GOButtonToolTip" text="Klik op 'Plan route' nadat u uw vertrek- en bestemmingslocatie en vervoermiddel hebt geselecteerd." />
+               <Tooltip fx:id="GOButtonToolTip" style="-fx-text-fill: #FFFFFF;" text="Klik op 'Plan route' nadat u uw vertrek- en bestemmingslocatie en vervoermiddel hebt geselecteerd." />
             </tooltip></Button>
          <ComboBox fx:id="departureCityComboBox" layoutX="232.0" layoutY="32.0" prefHeight="41.0" prefWidth="230.0" style="-fx-border-color: #ff6600;">
             <tooltip>
-               <Tooltip fx:id="departureCityComboBoxToolTip" text="Klik hier om uw huidige locatie te selecteren (vertreklocatie)." />
+               <Tooltip fx:id="departureCityComboBoxToolTip" style="-fx-text-fill: #FFFFFF;" text="Klik hier om uw huidige locatie te selecteren (vertreklocatie)." />
             </tooltip></ComboBox>
          <ComboBox fx:id="arrivalCityComboBox" layoutX="232.0" layoutY="145.0" prefHeight="41.0" prefWidth="230.0" style="-fx-border-color: #ff6600;">
             <tooltip>
-               <Tooltip fx:id="arrivalCityComboBoxToolTip" text="Klik hier om uw bestemmingslocatie te selecteren (bestemmingslocatie)." />
+               <Tooltip fx:id="arrivalCityComboBoxToolTip" style="-fx-text-fill: #FFFFFF;" text="Klik hier om uw bestemmingslocatie te selecteren (bestemmingslocatie)." />
             </tooltip></ComboBox>
          <Button fx:id="switchButton" layoutX="324.0" layoutY="86.0" mnemonicParsing="false" onAction="#onSwitchButtonClick" prefHeight="41.0" prefWidth="46.0" style="-fx-border-color: #ff6600;" text="↑↓">
             <font>
@@ -104,19 +104,27 @@
          </Button>
          <DatePicker fx:id="departureDatePicker" layoutX="232.0" layoutY="366.0" prefHeight="41.0" prefWidth="230.0" style="-fx-border-color: #ff6600;">
             <tooltip>
-               <Tooltip fx:id="departureDatePickerTooltip" text="Klik hier om de vertrekdatum te kiezen." />
+               <Tooltip fx:id="departureDatePickerTooltip" style="-fx-text-fill: #FFFFFF;" text="Klik hier om de vertrekdatum te kiezen." />
             </tooltip></DatePicker>
          <Spinner fx:id="departureTimeHours" editable="true" layoutX="256.0" layoutY="309.0" max="23" min="00" prefHeight="24.0" prefWidth="68.0">
+         <Button fx:id="showTravelHistoryButton" layoutX="1015.0" layoutY="13.0" mnemonicParsing="false" onAction="#onShowTravelHistoryButtonClick" prefHeight="52.0" prefWidth="202.0" style="-fx-border-color: #ff6600;" text="Reisgeschiedenis">
+            <font>
+               <Font name="Calibri" size="22.0" />
+            </font>
             <tooltip>
-               <Tooltip fx:id="departureTimeHoursToolTip" text="Klik hier om het uur van vertrek te selecteren." />
+               <Tooltip fx:id="showTravelHistoryButtonToolTip" style="-fx-text-fill: #FFFFFF;" text="Klik hier om uw reisgeschiedenis te tonen" />
+            </tooltip></Button>
+         <Spinner fx:id="departureTimeHours" editable="true" layoutX="198.0" layoutY="223.0" max="23" min="00" prefHeight="24.0" prefWidth="68.0">
+            <tooltip>
+               <Tooltip fx:id="departureTimeHoursToolTip" style="-fx-text-fill: #FFFFFF;" text="Klik hier om het uur van vertrek te selecteren." />
             </tooltip></Spinner>
          <Spinner fx:id="departureTimeMinutes" layoutX="370.0" layoutY="309.0" max="59" min="00" prefHeight="24.0" prefWidth="68.0">
             <tooltip>
-               <Tooltip fx:id="departureTimeMinutesToolTip" text="Klik hier om de minuten van vertrek te selecteren." />
+               <Tooltip fx:id="departureTimeMinutesToolTip" style="-fx-text-fill: #FFFFFF;" text="Klik hier om de minuten van vertrek te selecteren." />
             </tooltip></Spinner>
          <ComboBox fx:id="transportComboBox" layoutX="232.0" layoutY="224.0" prefHeight="41.0" prefWidth="230.0" style="-fx-border-color: #ff6600;">
             <tooltip>
-               <Tooltip fx:id="transportComboBoxToolTip" text="Klik hier om een vervoermiddel te kiezen." />
+               <Tooltip fx:id="transportComboBoxToolTip" style="-fx-text-fill: #FFFFFF;" text="Klik hier om een vervoermiddel te kiezen." />
             </tooltip></ComboBox>
          <Label layoutX="29.0" layoutY="165.0" />
          <Text fx:id="DepartureText" layoutX="29.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Vertrek">
@@ -144,6 +152,24 @@
                <Font name="Calibri" size="30.0" />
             </font>
          </Text>
+         <Button alignment="CENTER" layoutX="740.0" layoutY="14.0" mnemonicParsing="false" onAction="#onChangeModeClick" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #444444;" styleClass="dark-mode" stylesheets="@../../lightmode.css">
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
+            <tooltip>
+               <Tooltip fx:id="modeToolTip" style="-fx-text-fill: #FFFFFF;" text="Klik hier om te wisselen naar donkere/lichte modus" />
+            </tooltip></Button>
+         <ImageView fx:id="imgMode" cache="true" fitHeight="52.0" fitWidth="27.0" layoutX="752.0" layoutY="27.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../../moon.png" />
+            </image>
+         </ImageView>
+         <ImageView fx:id="travelYRouteImg" cache="true" fitHeight="241.0" fitWidth="297.0" layoutX="-49.0" layoutY="-127.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../../TravelYRouteBlanc.png" />
+            </image>
+         </ImageView>
+
       </children></Pane>
    <styleClass>
       <String fx:value="dark-mode" />
