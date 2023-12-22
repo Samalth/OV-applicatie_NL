@@ -80,12 +80,12 @@
     </AnchorPane>
     <Pane prefHeight="608.0" prefWidth="1238.0">
         <children>
-            <Label fx:id="departureLabel" layoutX="809.0" layoutY="70.0" prefHeight="114.0" prefWidth="415.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #FF6600;" text=" " textFill="#E62F2B" wrapText="true">
+            <Label fx:id="departureLabel" layoutX="809.0" layoutY="70.0" prefHeight="114.0" prefWidth="415.0" style="-fx-border-color: #FF6600;" text=" " textFill="#E62F2B" wrapText="true">
                 <tooltip>
                     <Tooltip fx:id="departureLabelToolTip" text="Hier ziet u uw reisinformatie" />
                 </tooltip>
             </Label>
-            <Label fx:id="travelHistoryLabel" layoutX="803.0" layoutY="297.0" prefHeight="263.0" prefWidth="415.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #FF6600;" textFill="#f50000" wrapText="true">
+            <Label fx:id="travelHistoryLabel" layoutX="803.0" layoutY="297.0" prefHeight="263.0" prefWidth="415.0" style="-fx-border-color: #FF6600;" textFill="#f50000" wrapText="true">
                 <tooltip>
                     <Tooltip fx:id="travelHistoryLabelToolTip" style="-fx-text-fill: #FFFFFF;" text="Dit is uw reisgeschiedenis" />
                 </tooltip>
@@ -137,7 +137,7 @@
                 </tooltip>
             </ComboBox>
             <Label layoutX="29.0" layoutY="165.0" />
-            <Text fx:id="DepartureText" layoutX="29.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Vertrek">
+            <Text fx:id="DepartureText" layoutX="15.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Vertrek">
                 <font>
                     <Font name="Calibri" size="30.0" />
                 </font>
@@ -147,17 +147,17 @@
                     <Font name="Calibri" size="30.0" />
                 </font>
             </Text>
-            <Text fx:id="MeansOfTransportText" layoutX="13.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Vervoermiddel">
+            <Text fx:id="MeansOfTransportText" layoutX="14.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Vervoermiddel">
                 <font>
                     <Font name="Calibri" size="30.0" />
                 </font>
             </Text>
-            <Text fx:id="DepartureTimeText" layoutX="9.0" layoutY="331.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Vertrektijd">
+            <Text fx:id="DepartureTimeText" layoutX="15.0" layoutY="331.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Vertrektijd">
                 <font>
                     <Font name="Calibri" size="30.0" />
                 </font>
             </Text>
-            <Text fx:id="DepartureDateText" layoutX="15.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Vertrek datum" wrappingWidth="178.86376953125">
+            <Text fx:id="DepartureDateText" layoutX="17.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Vertrek datum" wrappingWidth="178.86376953125">
                 <font>
                     <Font name="Calibri" size="30.0" />
                 </font>
