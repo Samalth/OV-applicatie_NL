@@ -195,9 +195,15 @@ public class LoggedInController  {
         int departureMinutes = departureTimeMinutes.getValue();
         ArrayList<String> departureTime = new ArrayList<>();
         ArrayList<City> cities = getCities();
-        List<String> amenities = determineAmenities(cities);
-        String departureAmenities = amenities.get(0);
-        String arrivalAmenities = amenities.get(1);
+        String departureAmenities = "";
+        String arrivalAmenities = "";
+        try {
+            List<String> amenities = determineAmenities(cities);
+            departureAmenities = amenities.get(0);
+            arrivalAmenities = amenities.get(1);
+        }catch (NullPointerException e){
+            departureLabel.setText("Selecteer alstublieft een vertrekplaats, aankomstplaats en vervoermiddel.");
+        }
         try {
             if (transport.equals("Trein")) {
                 departureTime = train.getDepartureTime(train.getTransportSchedule(), departureHours, departureMinutes);
