@@ -133,7 +133,7 @@ public class Controller {
 
     private void openOvappLoggedIn() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("OVapp_LoggedIn.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("OVapp_LogInScreen.fxml"));
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
 
@@ -277,7 +277,6 @@ public class Controller {
         } else {
             setDarkMode();
         }
-
     }
 
     private void setLightMode() {
@@ -314,7 +313,6 @@ public class Controller {
         return FXCollections.observableArrayList(train.getTransportName(), bus.getTransportName());
     }
 
-    // Unused method still a work in progress
     private List<String> NEWgetTransport() {
         try {
             List<RouteData> routeDataList = data.getRouteData();
