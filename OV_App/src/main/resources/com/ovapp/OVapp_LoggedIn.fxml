@@ -98,12 +98,12 @@
                     <Tooltip fx:id="GOButtonToolTip" style="-fx-text-fill: #FFFFFF;" text="Klik op 'Plan route' nadat u uw vertrek- en bestemmingslocatie en vervoermiddel hebt geselecteerd." />
                 </tooltip>
             </Button>
-            <ComboBox fx:id="departureCityComboBox" layoutX="232.0" layoutY="32.0" prefHeight="41.0" prefWidth="230.0" style="-fx-border-color: #ff6600;">
+            <ComboBox fx:id="departureCityComboBox" onAction="#onDepartureCityComboBoxClick" layoutX="232.0" layoutY="32.0" prefHeight="41.0" prefWidth="230.0" style="-fx-border-color: #ff6600;">
                 <tooltip>
                     <Tooltip fx:id="departureCityComboBoxToolTip" style="-fx-text-fill: #FFFFFF;" text="Klik hier om uw huidige locatie te selecteren (vertreklocatie)." />
                 </tooltip>
             </ComboBox>
-            <ComboBox fx:id="arrivalCityComboBox" layoutX="232.0" layoutY="145.0" prefHeight="41.0" prefWidth="230.0" style="-fx-border-color: #ff6600;">
+            <ComboBox fx:id="arrivalCityComboBox" onAction="#onArrivalCityComboBoxClick" layoutX="232.0" layoutY="145.0" prefHeight="41.0" prefWidth="230.0" style="-fx-border-color: #ff6600;">
                 <tooltip>
                     <Tooltip fx:id="arrivalCityComboBoxToolTip" style="-fx-text-fill: #FFFFFF;" text="Klik hier om uw bestemmingslocatie te selecteren (bestemmingslocatie)." />
                 </tooltip>
