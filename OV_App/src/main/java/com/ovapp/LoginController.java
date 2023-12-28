@@ -24,6 +24,9 @@ public class LoginController extends ParentController {
         private Button logInButton;
 
         @FXML
+       private Button makeAccountButton;
+
+        @FXML
         private Label loginMessageLabel;
 
         @FXML
@@ -33,7 +36,8 @@ public class LoginController extends ParentController {
 
         HashMap<String,String> loginInfo= new HashMap<>();
 
-        public void initialize() {
+
+    public void initialize() {
             super.initialize();
             //hasmap login info gebruiker
             loginInfo.put("Hellokittyfan", "blahBlah123");
@@ -78,6 +82,24 @@ public class LoginController extends ParentController {
             stage.setScene(scene);
             stage.show();
         }
+
+    public void setMakeAccountButton() {
+        openMakeAccount();
     }
+
+    private void openMakeAccount() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("OVapp_MakeAccount.fxml"));
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+
+            Stage currentStage = (Stage) makeAccountButton.getScene().getWindow();
+            currentStage.setScene(scene);
+            currentStage.setTitle("Making account");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
 
 

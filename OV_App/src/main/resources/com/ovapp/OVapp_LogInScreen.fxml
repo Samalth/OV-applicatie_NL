@@ -77,7 +77,7 @@
                  </tooltip>
              </Button>
              <Label layoutX="416.0" layoutY="65.0" prefHeight="41.0" prefWidth="471.0" style="-fx-background-color: #FFFFCC; -fx-font-weight: bold;" text="   Voer uw inloggegevens in. Heeft u geen account? Klik op &quot;Account aanmaken&quot;." />
-             <Button layoutX="861.0" layoutY="132.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="187.0" style="-fx-border-color: #0863b5;" text="Account aanmaken">
+             <Button fx:id="makeAccountButton" layoutX="861.0" layoutY="132.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="187.0" style="-fx-border-color: #0863b5;" text="Account aanmaken" onAction="#setMakeAccountButton">
                  <font>
                      <Font name="Calibri" size="15.0" />
                  </font>
