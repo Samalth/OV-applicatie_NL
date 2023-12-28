@@ -71,9 +71,6 @@ public class LoginController extends ParentController {
         }
 
 
-
-
-
         public void openOVapp_LoggedIn() throws IOException {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("OVapp_LoggedIn.fxml")));
             scene = new Scene(root);
@@ -81,9 +78,6 @@ public class LoginController extends ParentController {
             stage.setScene(scene);
             stage.show();
         }
-
-
-
     }
 
 
