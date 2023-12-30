@@ -17,24 +17,24 @@ import java.util.Objects;
 
 public class LoginController extends ParentController {
 
-        private Stage stage;
-        private Scene scene;
+        Stage stage;
+        Scene scene;
 
         @FXML
-        private Button logInButton;
+        Button logInButton;
 
         @FXML
-       private Button makeAccountButton;
+        Button makeAccountButton;
 
         @FXML
-        private Label loginMessageLabel;
+        Label loginMessageLabel;
 
         @FXML
-        private TextField usernameTextField;
+        TextField usernameTextField;
         @FXML
-        private PasswordField passwordPasswordField;
+        PasswordField passwordPasswordField;
 
-        HashMap<String,String> loginInfo= new HashMap<>();
+        static HashMap<String,String> loginInfo= new HashMap<>();
 
 
     public void initialize() {
@@ -84,10 +84,10 @@ public class LoginController extends ParentController {
         }
 
     public void setMakeAccountButton() {
-        openMakeAccount();
+        MakeAccount();
     }
 
-    private void openMakeAccount() {
+    private void MakeAccount() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("OVapp_MakeAccount.fxml"));
             Parent root = fxmlLoader.load();

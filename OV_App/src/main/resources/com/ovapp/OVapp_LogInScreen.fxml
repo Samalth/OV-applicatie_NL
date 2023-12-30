@@ -8,85 +8,85 @@
 <?import javafx.scene.text.*?>
 
 <VBox fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ovapp.LoginController">
-   <children>
-       <AnchorPane minHeight="76.0" prefHeight="76.0" prefWidth="1238.0" style="-fx-background-color: #ff6600;">
-           <children>
-               <Label fx:id="dateLabel" alignment="CENTER" layoutX="32.0" layoutY="19.0" prefHeight="38.0" prefWidth="112.0" style="-fx-border-color: #FF6600; -fx-background-color: #DEDEDE;">
-                   <font>
-                       <Font name="Calibri" size="15.0" />
-                   </font>
-                   <Tooltip fx:id="dateLabelToolTip" styleClass="tooltip" text="de huidige datum" />
-               </Label>
-               <Label fx:id="clockLabel" layoutX="153.0" layoutY="19.0" prefHeight="38.0" prefWidth="112.0" style="-fx-border-color: #ff6600; -fx-background-color: #DEDEDE;">
-                   <font>
-                       <Font name="Calibri" size="15.0" />
-                   </font>
-                   <tooltip>
-                       <Tooltip fx:id="clockLabelToolTip" style="-fx-text-fill: #FFFFFF;" text="de huidige tijd" />
-                   </tooltip>
-               </Label>
-               <Button alignment="CENTER" layoutX="296.0" layoutY="13.0" mnemonicParsing="false" onAction="#onChangeModeClick" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #444444;" styleClass="dark-mode" stylesheets="@../../lightmode.css">
-                   <opaqueInsets>
-                       <Insets />
-                   </opaqueInsets>
-                   <tooltip>
-                       <Tooltip fx:id="modeToolTip" style="-fx-text-fill: #FFFFFF;" text="Klik hier om te wisselen naar donkere/lichte modus" />
-                   </tooltip></Button>
-               <ImageView fx:id="imgMode" cache="true" fitHeight="52.0" fitWidth="27.0" layoutX="307.0" layoutY="25.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
-                   <image>
-                       <Image url="@../../moon.png" />
-                   </image>
-               </ImageView>
-               <Button fx:id="deLanguageButton" layoutX="666.0" layoutY="16.0" mnemonicParsing="false" onAction="#onDuLanguageButtonClick" prefHeight="41.0" prefWidth="76.0" style="-fx-background-image: url('de_flag.png'); -fx-background-size: cover;">
-                   <tooltip>
-                       <Tooltip styleClass="tooltip" text="auf Deutsch umstellen" />
-                   </tooltip>
-               </Button>
-               <Button fx:id="enLanguageButton" layoutX="581.0" layoutY="16.0" mnemonicParsing="false" onAction="#onEnLanguageButtonClick" prefHeight="41.0" prefWidth="76.0" style="-fx-background-image: url('uk_flag.png'); -fx-background-size: cover;">
-                   <tooltip>
-                       <Tooltip fx:id="enLanguageButtonToolTip" styleClass="tooltip" text="Switch to English" />
-                   </tooltip>
-               </Button>
-               <Button fx:id="nlLanguageButton" layoutX="497.0" layoutY="16.0" mnemonicParsing="false" onAction="#onNlLanguageButtonClick" prefHeight="41.0" prefWidth="76.0" style="-fx-background-image: url('nl_flag.png');-fx-background-size: cover;">
-                   <tooltip>
-                       <Tooltip fx:id="nlLanguageButtonToolTip" styleClass="tooltip" text="wissel naar Nederlands" />
-                   </tooltip>
-               </Button>
-           </children>
-       </AnchorPane>
+    <children>
+        <AnchorPane minHeight="76.0" prefHeight="76.0" prefWidth="1238.0" style="-fx-background-color: #ff6600;">
+            <children>
+                <Label fx:id="dateLabel" alignment="CENTER" layoutX="32.0" layoutY="19.0" prefHeight="38.0" prefWidth="112.0" style="-fx-border-color: #FF6600; -fx-background-color: #DEDEDE;">
+                    <font>
+                        <Font name="Calibri" size="15.0" />
+                    </font>
+                    <Tooltip fx:id="dateLabelToolTip" styleClass="tooltip" text="de huidige datum" />
+                </Label>
+                <Label fx:id="clockLabel" layoutX="153.0" layoutY="19.0" prefHeight="38.0" prefWidth="112.0" style="-fx-border-color: #ff6600; -fx-background-color: #DEDEDE;">
+                    <font>
+                        <Font name="Calibri" size="15.0" />
+                    </font>
+                    <tooltip>
+                        <Tooltip fx:id="clockLabelToolTip" style="-fx-text-fill: #FFFFFF;" text="de huidige tijd" />
+                    </tooltip>
+                </Label>
+                <Button alignment="CENTER" layoutX="296.0" layoutY="13.0" mnemonicParsing="false" onAction="#onChangeModeClick" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #444444;" styleClass="dark-mode" stylesheets="@../../lightmode.css">
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <tooltip>
+                        <Tooltip fx:id="modeToolTip" style="-fx-text-fill: #FFFFFF;" text="Klik hier om te wisselen naar donkere/lichte modus" />
+                    </tooltip></Button>
+                <ImageView fx:id="imgMode" cache="true" fitHeight="52.0" fitWidth="27.0" layoutX="307.0" layoutY="25.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../moon.png" />
+                    </image>
+                </ImageView>
+                <Button fx:id="deLanguageButton" layoutX="666.0" layoutY="16.0" mnemonicParsing="false" onAction="#onDuLanguageButtonClick" prefHeight="41.0" prefWidth="76.0" style="-fx-background-image: url('de_flag.png'); -fx-background-size: cover;">
+                    <tooltip>
+                        <Tooltip styleClass="tooltip" text="auf Deutsch umstellen" />
+                    </tooltip>
+                </Button>
+                <Button fx:id="enLanguageButton" layoutX="581.0" layoutY="16.0" mnemonicParsing="false" onAction="#onEnLanguageButtonClick" prefHeight="41.0" prefWidth="76.0" style="-fx-background-image: url('uk_flag.png'); -fx-background-size: cover;">
+                    <tooltip>
+                        <Tooltip fx:id="enLanguageButtonToolTip" styleClass="tooltip" text="Switch to English" />
+                    </tooltip>
+                </Button>
+                <Button fx:id="nlLanguageButton" layoutX="497.0" layoutY="16.0" mnemonicParsing="false" onAction="#onNlLanguageButtonClick" prefHeight="41.0" prefWidth="76.0" style="-fx-background-image: url('nl_flag.png');-fx-background-size: cover;">
+                    <tooltip>
+                        <Tooltip fx:id="nlLanguageButtonToolTip" styleClass="tooltip" text="wissel naar Nederlands" />
+                    </tooltip>
+                </Button>
+            </children>
+        </AnchorPane>
 
-       <Pane prefHeight="720.0" prefWidth="1280.0">
-         <children>
-             <Label fx:id="loginMessageLabel" layoutX="189.0" layoutY="108.0" prefHeight="130.0" prefWidth="245.0" textFill="RED">
-             </Label>
-             <TextField fx:id="usernameTextField" layoutX="464.0" layoutY="144.0" prefHeight="94.0" prefWidth="379.0" promptText="Gebruikersnaam">
-             </TextField>
-             <PasswordField fx:id="passwordPasswordField" layoutX="464.0" layoutY="261.0" prefHeight="94.0" prefWidth="379.0" promptText="Wachtwoord">
-             </PasswordField>
-             <ImageView fx:id="travelYRouteImg" cache="true" fitHeight="169.0" fitWidth="203.0" layoutX="1063.0" layoutY="21.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
-                 <image>
-                     <Image url="@../../TravelYRouteBlanc.png" />
-                 </image>
-             </ImageView>
-             <Button fx:id="logInButton" layoutX="544.0" layoutY="365.0" mnemonicParsing="false" onAction="#logInButtonOnAction" prefHeight="69.0" prefWidth="245.0" style="-fx-border-color: #0863b5;" text="Inloggen">
-                 <font>
-                     <Font name="Calibri" size="22.0" />
-                 </font>
-                 <tooltip>
-                     <Tooltip fx:id="logInButtonToolTip" styleClass="tooltip" text="klik hier om in te loggen" />
-                 </tooltip>
-             </Button>
-             <Label layoutX="416.0" layoutY="65.0" prefHeight="41.0" prefWidth="471.0" style="-fx-background-color: #FFFFCC; -fx-font-weight: bold;" text="   Voer uw inloggegevens in. Heeft u geen account? Klik op &quot;Account aanmaken&quot;." />
-             <Button fx:id="makeAccountButton" layoutX="861.0" layoutY="132.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="187.0" style="-fx-border-color: #0863b5;" text="Account aanmaken" onAction="#setMakeAccountButton">
-                 <font>
-                     <Font name="Calibri" size="15.0" />
-                 </font>
-             </Button>
+        <Pane prefHeight="720.0" prefWidth="1280.0">
+            <children>
+                <Label fx:id="loginMessageLabel" layoutX="189.0" layoutY="108.0" prefHeight="130.0" prefWidth="245.0" textFill="RED">
+                </Label>
+                <TextField fx:id="usernameTextField" layoutX="464.0" layoutY="144.0" prefHeight="94.0" prefWidth="379.0" promptText="Gebruikersnaam">
+                </TextField>
+                <PasswordField fx:id="passwordPasswordField" layoutX="464.0" layoutY="261.0" prefHeight="94.0" prefWidth="379.0" promptText="Wachtwoord">
+                </PasswordField>
+                <ImageView fx:id="travelYRouteImg" cache="true" fitHeight="169.0" fitWidth="203.0" layoutX="1063.0" layoutY="21.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../TravelYRouteBlanc.png" />
+                    </image>
+                </ImageView>
+                <Button fx:id="logInButton" layoutX="544.0" layoutY="365.0" mnemonicParsing="false" onAction="#logInButtonOnAction" prefHeight="69.0" prefWidth="245.0" style="-fx-border-color: #0863b5;" text="Inloggen">
+                    <font>
+                        <Font name="Calibri" size="22.0" />
+                    </font>
+                    <tooltip>
+                        <Tooltip fx:id="logInButtonToolTip" styleClass="tooltip" text="klik hier om in te loggen" />
+                    </tooltip>
+                </Button>
+                <Label layoutX="416.0" layoutY="65.0" prefHeight="41.0" prefWidth="471.0" style="-fx-background-color: #FFFFCC; -fx-font-weight: bold;" text="   Voer uw inloggegevens in. Heeft u geen account? Klik op &quot;Account aanmaken&quot;." />
+                <Button fx:id="makeAccountButton" layoutX="861.0" layoutY="132.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="187.0" style="-fx-border-color: #0863b5;" text="Account aanmaken" onAction="#setMakeAccountButton">
+                    <font>
+                        <Font name="Calibri" size="15.0" />
+                    </font>
+                </Button>
 
-         </children></Pane>
-   </children>
-   <styleClass>
-      <String fx:value="dark-mode" />
-      <String fx:value="light-mode" />
-   </styleClass>
+            </children></Pane>
+    </children>
+    <styleClass>
+        <String fx:value="dark-mode" />
+        <String fx:value="light-mode" />
+    </styleClass>
 </VBox>
