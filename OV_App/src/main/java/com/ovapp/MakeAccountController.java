@@ -1,16 +1,19 @@
 package com.ovapp;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Objects;
 
 public class MakeAccountController extends LoginController {
-
+    @FXML
+    private Button previousButton;
     public void initialize() {
         super.initialize();
 
@@ -71,5 +74,24 @@ public class MakeAccountController extends LoginController {
                 // If everything is okay, add the new user to the loginInfo HashMap
                 loginInfo.put(newUsername, newPassword);
                 loginMessageLabel.setText("Account succesvol aangemaakt. U kunt nu inloggen.");
-            }
-    }}
+            }}
+
+        public void previousButtonOnAction(ActionEvent event) throws IOException {
+            // Get the existing login screen (OVapp_LogInScreen.fxml)
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("OVapp_LogInScreen.fxml")));
+
+            // Get the current stage and set the existing scene
+            Stage currentStage = (Stage) previousButton.getScene().getWindow();
+            currentStage.setScene(new Scene(root));  // You can also reuse the existing scene if needed
+            currentStage.setTitle("Log In");
+
+            // Show the existing scene
+            currentStage.show();
+        }
+    }
+
+
+
+
+
+
