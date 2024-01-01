@@ -40,6 +40,7 @@ public class ParentController {
         }, 0, 1000);
 
         switchLanguage("Nederlands");
+
         setLightMode();
     }
     private void updateClock() {
