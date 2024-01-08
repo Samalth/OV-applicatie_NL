@@ -39,7 +39,7 @@ abstract class ParentController {
     @FXML
     PasswordField passwordPasswordField;
 
-    private ResourceBundle bundle;
+    ResourceBundle bundle;
     private boolean isLightMode = true;
     @FXML
     private Tooltip modeToolTip;
@@ -53,7 +53,7 @@ abstract class ParentController {
     private Tooltip logInButtonToolTip;
     @FXML
     private Tooltip usernameTextFieldToolTip;
-    private Tooltip descriptionLabel;
+
     @FXML
     private Tooltip dateLabelToolTip;
 
@@ -71,6 +71,12 @@ abstract class ParentController {
 
         setLightMode();
     }
+
+    abstract void setdescriptionLabel(String text);
+
+    abstract String getPasswordTooltip();
+    abstract String getUsernameTooltip();
+
     private void updateClock() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("      HH:mm");
         String formattedTime = dateFormat.format(new Date());
@@ -115,7 +121,7 @@ abstract class ParentController {
         passwordPasswordFieldToolTip.setText(bundle.getString("makeAccount.passwordTooltip"));
         usernameTextFieldToolTip.setText(bundle.getString("makeAccount.usernameTooltip"));
         previousButtonTooltip.setText(bundle.getString("previousButtonTooltip"));
-        descriptionLabel.setText(bundle.getString("descreptionMessage.logInInfo"));
+        .setText(bundle.getString("descreptionMessage.logInInfo"));
         dateLabelToolTip.setText(bundle.getString("DateLabelToolTiptxt"));
 
 

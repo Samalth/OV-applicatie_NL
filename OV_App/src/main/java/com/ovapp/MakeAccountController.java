@@ -25,12 +25,27 @@ public class MakeAccountController extends LoginController {
             return false;
         }
     }
+    @Override
+    public String getPasswordTooltip() {
+        return bundle.getString("makeAccount.passwordTooltip");
+    }
+
+    @Override
+    public String getUsernameTooltip() {
+        return bundle.getString("login.usernameTooltip");
+    }
+    @SuppressWarnings("InfiniteRecursion")
+    @Override
+    public void  setdescriptionLabel(String text) {
+        setdescriptionLabel("descreptionMessage.newLogInInfo");
+    }
+
     public String getUsername() {
-        return usernameTextField.getText();
+        return super.getUsername();
     }
 
     public String getPassword() {
-        return passwordPasswordField.getText();
+        return super.getPassword();
     }
 
 
@@ -50,11 +65,7 @@ public class MakeAccountController extends LoginController {
 
 
     public void openOVapp_LoggedIn() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("OVapp_LoggedIn.fxml")));
-        scene = new Scene(root);
-        stage = (Stage) (logInButton.getScene().getWindow());
-        stage.setScene(scene);
-        stage.show();
+        super.openOVapp_LoggedIn();
     }
 
     public void setMakeAccountButton() {

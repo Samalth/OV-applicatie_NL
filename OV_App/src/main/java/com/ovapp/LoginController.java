@@ -44,7 +44,22 @@ public class LoginController extends ParentController {
             loginInfo.put("Johony","Jo1234!");
         }
 
-        private boolean ValidateLogin(String username, String password) {
+    @Override
+    public String getPasswordTooltip() {
+        return bundle.getString("login.passwordTooltip");
+    }
+
+    @Override
+    public String getUsernameTooltip() {
+        return bundle.getString("");
+    }
+    @Override
+    public void  setdescriptionLabel(String text) {
+        setdescriptionLabel("descreptionMessage.logInInfo");
+    }
+
+
+    private boolean ValidateLogin(String username, String password) {
             if (loginInfo.containsKey(username)) {
                 return loginInfo.get(username).equals(password);
             } else {
@@ -84,10 +99,10 @@ public class LoginController extends ParentController {
         }
 
     public void setMakeAccountButton() {
-        MakeAccount();
+        makeAccount();
     }
 
-    private void MakeAccount() {
+    private void makeAccount() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("OVapp_MakeAccount.fxml"));
             Parent root = fxmlLoader.load();
@@ -100,6 +115,17 @@ public class LoginController extends ParentController {
             e.printStackTrace();
         }
     }
-}
 
+    public void previousButtonOnAction(ActionEvent event) throws IOException {
+        // Get the existing login screen (OVapp_LogInScreen.fxml)
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("OVapp_GUI.fxml")));
+
+        // Get the current stage and set the existing scene
+        Stage currentStage = (Stage) makeAccountButton.getScene().getWindow();
+        currentStage.setScene(new Scene(root));  // You can also reuse the existing scene if needed
+        currentStage.setTitle("Uitgelogd scherm");
+
+        // Show the existing scene
+        currentStage.show();
+    }}
 
