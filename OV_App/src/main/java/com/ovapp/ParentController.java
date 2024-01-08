@@ -1,19 +1,16 @@
 package com.ovapp;
-
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
+import java.text.BreakIterator;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class ParentController {
+abstract class ParentController {
 
     @FXML
     private VBox parent;
@@ -25,9 +22,40 @@ public class ParentController {
     private Label dateLabel;
     @FXML
     private Label clockLabel;
+    @FXML
+    Button previousButton;
+
+    @FXML
+    Button logInButton;
+
+    @FXML
+    Button makeAccountButton;
+
+    @FXML
+    Label loginMessageLabel;
+
+    @FXML
+    TextField usernameTextField;
+    @FXML
+    PasswordField passwordPasswordField;
 
     private ResourceBundle bundle;
     private boolean isLightMode = true;
+    @FXML
+    private Tooltip modeToolTip;
+    @FXML
+    private Tooltip passwordPasswordFieldToolTip;
+    @FXML
+    private Tooltip previousButtonTooltip;
+    @FXML
+    private Tooltip makeAccountButtonToolTip;
+    @FXML
+    private Tooltip logInButtonToolTip;
+    @FXML
+    private Tooltip usernameTextFieldToolTip;
+    private Tooltip descriptionLabel;
+    @FXML
+    private Tooltip dateLabelToolTip;
 
     public void initialize() {
         Timer timer = new Timer(true);
@@ -74,6 +102,21 @@ public class ParentController {
     public void switchLanguage(String newLanguage) {
         Locale locale = new Locale(newLanguage);
         bundle = ResourceBundle.getBundle("Messages", locale);
+        modeToolTip.setText(bundle.getString("ModeToolTiptxt"));
+        logInButton.setText(bundle.getString("logInButton"));
+        makeAccountButton.setText(bundle.getString("makeAccountButton"));
+        usernameTextField.setPromptText(bundle.getString("usernameTextField"));
+        passwordPasswordField.setPromptText(bundle.getString("passwordPasswordField"));
+        previousButton.setText(bundle.getString("previousButton"));
+
+        // Tooltips for new buttons
+        makeAccountButtonToolTip.setText(bundle.getString("makeAccountButtonToolTip"));
+        logInButtonToolTip.setText(bundle.getString("logInButtonToolTip"));
+        passwordPasswordFieldToolTip.setText(bundle.getString("makeAccount.passwordTooltip"));
+        usernameTextFieldToolTip.setText(bundle.getString("makeAccount.usernameTooltip"));
+        previousButtonTooltip.setText(bundle.getString("previousButtonTooltip"));
+        descriptionLabel.setText(bundle.getString("descreptionMessage.logInInfo"));
+        dateLabelToolTip.setText(bundle.getString("DateLabelToolTiptxt"));
 
 
     }
