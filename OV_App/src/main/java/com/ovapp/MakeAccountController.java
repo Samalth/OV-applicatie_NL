@@ -41,6 +41,8 @@ public class MakeAccountController extends LoginController {
         return bundle.getString("makeAccount.usernameTooltip");
     }
 
+
+
     public String getUsername() {
         return super.getUsername();
     }
@@ -50,24 +52,6 @@ public class MakeAccountController extends LoginController {
     }
 
 
-    public void logInButtonOnAction(ActionEvent e) throws IOException {
-        String username = getUsername(); //hier hebben we get method aangeroepen
-        String password = getPassword();
-        if (username.isEmpty() || password.isEmpty()) {
-            loginMessageLabel.setText("Voer uw nieuwe gebruikersnaam en wachtwoord in en klik op account aanmaken en probeer opnieuw.");
-        } else {
-            if (ValidateLogin(username, password)) {
-                openOVapp_LoggedIn();
-            } else {
-                loginMessageLabel.setText("Voer uw nieuwe inloggegevens in en klik op account aanmaken en Probeer opnieuw.");
-            }
-        }
-    }
-
-
-    public void openOVapp_LoggedIn() throws IOException {
-        super.openOVapp_LoggedIn();
-    }
 
     public void setMakeAccountButton() {
         MakeAccount();
@@ -79,13 +63,13 @@ public class MakeAccountController extends LoginController {
             String newPassword = getPassword();
 
             if (newUsername.isEmpty() || newPassword.isEmpty()) {
-                loginMessageLabel.setText("Voer uw nieuwe gebruikersnaam en wachtwoord in.");
+                loginMessageLabel.setText(bundle.getString("makeAccount.validation.empty"));
             } else if (newUsername.length() < 4 || newPassword.length() < 4) {
-                loginMessageLabel.setText("Gebruikersnaam en wachtwoord moeten minstens 4 tekens lang zijn.");
+                loginMessageLabel.setText(bundle.getString("makeAccount.validation.length"));
             } else {
                 // If everything is okay, add the new user to the loginInfo HashMap
                 loginInfo.put(newUsername, newPassword);
-                loginMessageLabel.setText("Account succesvol aangemaakt. U kunt nu inloggen.");
+                loginMessageLabel.setText(bundle.getString("makeAccount.success"));
             }}
 
         public void previousButtonOnAction(ActionEvent event) throws IOException {

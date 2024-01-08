@@ -81,12 +81,12 @@ public class LoginController extends ParentController {
             String username = getUsername(); //hier hebben we get method aangeroepen
             String password = getPassword();
             if (username.isEmpty() || password.isEmpty()) {
-                loginMessageLabel.setText("Voer uw gebruikersnaam en wachtwoord in.");
+                loginMessageLabel.setText(bundle.getString("login.validation.empty"));
             } else {
                 if (ValidateLogin(username, password)) {
                     openOVapp_LoggedIn();
                 } else {
-                    loginMessageLabel.setText("Onjuiste inloggegevens. Probeer opnieuw.");
+                    loginMessageLabel.setText(bundle.getString("login.validation.invalid"));
                 }
             }
         }
