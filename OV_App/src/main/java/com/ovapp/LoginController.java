@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 public class LoginController extends ParentController {
 
@@ -45,17 +46,18 @@ public class LoginController extends ParentController {
         }
 
     @Override
-    public String getPasswordTooltip() {
+    String getDescriptionLabelText(ResourceBundle bundle) {
+        return bundle.getString("descriptionMessage.logInInfo");
+    }
+
+    @Override
+    String getPasswordTooltipText(ResourceBundle bundle) {
         return bundle.getString("login.passwordTooltip");
     }
 
     @Override
-    public String getUsernameTooltip() {
-        return bundle.getString("");
-    }
-    @Override
-    public void  setdescriptionLabel(String text) {
-        setdescriptionLabel("descreptionMessage.logInInfo");
+    String getUsernameTooltipText(ResourceBundle bundle) {
+        return bundle.getString("login.usernameTooltip");
     }
 
 

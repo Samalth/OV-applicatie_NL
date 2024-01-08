@@ -33,7 +33,8 @@ abstract class ParentController {
 
     @FXML
     Label loginMessageLabel;
-
+    @FXML
+    Label descriptionLabel;
     @FXML
     TextField usernameTextField;
     @FXML
@@ -72,10 +73,9 @@ abstract class ParentController {
         setLightMode();
     }
 
-    abstract void setdescriptionLabel(String text);
-
-    abstract String getPasswordTooltip();
-    abstract String getUsernameTooltip();
+    abstract String getDescriptionLabelText(ResourceBundle bundle);
+    abstract String getPasswordTooltipText(ResourceBundle bundle);
+    abstract String getUsernameTooltipText(ResourceBundle bundle);
 
     private void updateClock() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("      HH:mm");
@@ -118,10 +118,10 @@ abstract class ParentController {
         // Tooltips for new buttons
         makeAccountButtonToolTip.setText(bundle.getString("makeAccountButtonToolTip"));
         logInButtonToolTip.setText(bundle.getString("logInButtonToolTip"));
-        passwordPasswordFieldToolTip.setText(bundle.getString("makeAccount.passwordTooltip"));
-        usernameTextFieldToolTip.setText(bundle.getString("makeAccount.usernameTooltip"));
+        passwordPasswordFieldToolTip.setText(getPasswordTooltipText(bundle));
+        usernameTextFieldToolTip.setText(getUsernameTooltipText(bundle));
         previousButtonTooltip.setText(bundle.getString("previousButtonTooltip"));
-        .setText(bundle.getString("descreptionMessage.logInInfo"));
+        descriptionLabel.setText(getDescriptionLabelText(bundle));
         dateLabelToolTip.setText(bundle.getString("DateLabelToolTiptxt"));
 
 

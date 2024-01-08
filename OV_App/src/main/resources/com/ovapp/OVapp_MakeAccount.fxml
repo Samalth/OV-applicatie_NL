@@ -96,7 +96,7 @@
                         <Tooltip fx:id="logInButtonToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="klik hier om in te loggen" />
                     </tooltip>
                 </Button>
-                <Label layoutX="416.0" layoutY="65.0" prefHeight="41.0" prefWidth="471.0" style="-fx-background-color: #FFFFCC; -fx-font-weight: bold;" text="Voer uw nieuwe inloggegevens in. heeft u al een account? klik op &quot;vorige pagina&quot;" />
+                <Label fx:id="descriptionLabel" layoutX="416.0" layoutY="65.0" prefHeight="41.0" prefWidth="471.0" style="-fx-background-color: #FFFFCC; -fx-font-weight: bold;" text="Voer uw nieuwe inloggegevens in. heeft u al een account? klik op &quot;vorige pagina&quot;" />
                 <Button fx:id="makeAccountButton" layoutX="861.0" layoutY="132.0" mnemonicParsing="false" onAction="#setMakeAccountButton" prefHeight="50.0" prefWidth="187.0" style="-fx-border-color: #0863b5;" text="Account aanmaken">
                     <font>
                         <Font name="Calibri" size="15.0" />

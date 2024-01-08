@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 public class MakeAccountController extends LoginController {
     @FXML
@@ -26,18 +27,18 @@ public class MakeAccountController extends LoginController {
         }
     }
     @Override
-    public String getPasswordTooltip() {
+    String getDescriptionLabelText(ResourceBundle bundle) {
+        return bundle.getString("descriptionMessage.newLogInInfo");
+    }
+
+    @Override
+    String getPasswordTooltipText(ResourceBundle bundle) {
         return bundle.getString("makeAccount.passwordTooltip");
     }
 
     @Override
-    public String getUsernameTooltip() {
-        return bundle.getString("login.usernameTooltip");
-    }
-    @SuppressWarnings("InfiniteRecursion")
-    @Override
-    public void  setdescriptionLabel(String text) {
-        setdescriptionLabel("descreptionMessage.newLogInInfo");
+    String getUsernameTooltipText(ResourceBundle bundle) {
+        return bundle.getString("makeAccount.usernameTooltip");
     }
 
     public String getUsername() {
