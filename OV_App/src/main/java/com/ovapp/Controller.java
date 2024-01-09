@@ -20,7 +20,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 
 public class Controller {
-	private final Data data = new Data();
 
 	@FXML
 	private Text DepartureText;
@@ -101,7 +100,8 @@ public class Controller {
     private Train train = new Train("Trein", Arrays.asList(0, 15, 30, 45, 60));
     private Bus bus = new Bus("Bus", Arrays.asList(25, 55, 85));
     private ResourceBundle bundle;
-    private City currentCity;
+	private final Data data = new Data();
+	private City currentCity;
 
     public ArrayList<City> getCities(){
         ArrayList<City> cities = new ArrayList<>();
