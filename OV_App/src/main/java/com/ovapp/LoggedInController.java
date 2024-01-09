@@ -68,7 +68,6 @@ public class LoggedInController  {
     @FXML
     private VBox parent;
 
-
     @FXML
     private Button switchButton;
     @FXML
@@ -97,7 +96,6 @@ public class LoggedInController  {
     private Label departureLabel;
     @FXML
     private Label travelHistoryLabel;
-    private boolean isHistoryVisible = false;
 
     @FXML
     private String DepartureCity;
@@ -112,6 +110,7 @@ public class LoggedInController  {
     private Bus bus = new Bus("Bus", Arrays.asList(25, 55, 85));
     private ResourceBundle bundle;
     private City currentCity;
+    private boolean isHistoryVisible = false;
 
     public ArrayList<City> getCities(){
         ArrayList<City> cities = new ArrayList<>();
@@ -123,10 +122,8 @@ public class LoggedInController  {
         cities.add(new City("IJsselstein", Arrays.asList("geleidenstroken", "het hele station is gelijkvloers")));
         cities.add(new City("Nieuwegein", Arrays.asList("liften", "geleidenstroken")));
         cities.add(new City("Utrecht", Arrays.asList("liften", "geleidenstroken", "trapmarkeringen")));
-
         return cities;
     }
-
 
     public void initialize() {
         ObservableList<String> transport = getTransport();
@@ -164,8 +161,8 @@ public class LoggedInController  {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
+
     @FXML
     protected void onShowTravelHistoryButtonClick() {
         isHistoryVisible = !isHistoryVisible;
@@ -178,6 +175,7 @@ public class LoggedInController  {
             System.out.println("Reisgeschiedenis verborgen");
         }
     }
+
     @FXML
     public void onSwitchButtonClick(ActionEvent actionEvent) {
         String temp = departureCityComboBox.getValue();
@@ -241,14 +239,12 @@ public class LoggedInController  {
     public void onDepartureCityComboBoxClick() {
         updateCityComboBox(departureCityComboBox, arrivalCityComboBox);
     }
-
     public void onArrivalCityComboBoxClick() {
         updateCityComboBox(arrivalCityComboBox, departureCityComboBox);
     }
 
     private void updateCityComboBox(ComboBox<String> sourceComboBox, ComboBox<String> otherComboBox) {
         String selectedCity = sourceComboBox.getValue();
-
         if (selectedCity != null) {
             otherComboBox.getItems().remove(selectedCity);
 
@@ -300,10 +296,8 @@ public class LoggedInController  {
 
     private boolean isLightMode=true ;
 
-
     public void onChangeModeClick(ActionEvent event){
         isLightMode = !isLightMode;
-
         parent.getStylesheets().remove("darkmode.css");
         parent.getStylesheets().remove("lightmode.css");
 
@@ -313,8 +307,8 @@ public class LoggedInController  {
         else {
             setDarkMode();
         }
-
     }
+
     private void setLightMode () {
         parent.getStylesheets().remove ("darkmode.css");
         parent.getStylesheets().add ("lightmode.css");
@@ -341,7 +335,6 @@ public class LoggedInController  {
 
     private void updateTravelHistory(String travelInfo) {
         travelHistory.add(travelInfo);
-
         StringBuilder historyText = new StringBuilder();
         for (String entry : travelHistory) {
             historyText.append(entry).append("\n\n");
@@ -352,7 +345,6 @@ public class LoggedInController  {
     private void updateClock() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("      HH:mm");
         String formattedTime = dateFormat.format(new Date());
-
         Platform.runLater(() -> {
             clockLabel.setText(formattedTime);
         });
@@ -361,7 +353,6 @@ public class LoggedInController  {
     private void updateDate() {
         SimpleDateFormat dateFormat = new SimpleDateFormat(" dd-MM-yyyy");
         String formattedDate = dateFormat.format(new Date());
-
         Platform.runLater(() -> {
             dateLabel.setText(formattedDate);
         });
@@ -371,9 +362,11 @@ public class LoggedInController  {
         return Arrays.asList(
                 "Amersfoort", "Nieuwegein", "Amsterdam", "Den Haag", "Den Bosch", "Arnhem", "Utrecht", "IJsselstein");
     }
+
     private ObservableList<String> getTransport() {
         return FXCollections.observableArrayList(train.getTransportName(), bus.getTransportName());
     }
+
     private List<String> determineAmenities(ArrayList<City> cities){
         List<String> amenities = new ArrayList<>();
         int i = 0;

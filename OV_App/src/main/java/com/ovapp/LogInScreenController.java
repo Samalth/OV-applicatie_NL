@@ -1,5 +1,4 @@
 package com.ovapp;
-
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,7 +14,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -63,6 +61,7 @@ public class LogInScreenController {
         switchLanguage("Nederlands");
         setLightMode();
     }
+
     private void updateClock() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("      HH:mm");
         String formattedTime = dateFormat.format(new Date());
@@ -81,13 +80,13 @@ public class LogInScreenController {
         });
     }
 
-
     private boolean validateLogin(String username, String password) {
-        if (username.equals("user") && password.equals("1234") || (username.equals("1") && password.equals("1")))
+        if (username.equals("user") && password.equals("1234") || (username.equals("1") && password.equals("1") || (username.equals(" ") && password.equals(" "))))
             return true;
         else
             return false;
     }
+
     public void onDuLanguageButtonClick(){
         switchLanguage("Deutsch");
     }
@@ -101,9 +100,7 @@ public class LogInScreenController {
     public void switchLanguage(String newLanguage) {
         Locale locale = new Locale(newLanguage);
         bundle = ResourceBundle.getBundle("Messages", locale);
-
         logInButton.setText(bundle.getString("LogInButtontxt"));
-
     }
 
     public void logInButtonOnAction(ActionEvent e) throws IOException {
@@ -126,7 +123,6 @@ public class LogInScreenController {
 
     public void onChangeModeClick() {
         isLightMode = !isLightMode;
-
         parent.getStylesheets().remove("darkmode.css");
         parent.getStylesheets().remove("lightmode.css");
 
@@ -150,6 +146,7 @@ public class LogInScreenController {
         Image image = new Image("sun.png");
         imgMode.setImage(image);
     }
+
     public void openOVapp_LoggedIn() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("OVapp_LoggedIn.fxml")));
         scene = new Scene(root);
