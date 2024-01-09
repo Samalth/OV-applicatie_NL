@@ -69,8 +69,8 @@ abstract class ParentController {
         }, 0, 1000);
 
         switchLanguage("Nederlands");
-
         setLightMode();
+        loginMessageLabel.setWrapText(true);
     }
 
     abstract String getDescriptionLabelText(ResourceBundle bundle);
