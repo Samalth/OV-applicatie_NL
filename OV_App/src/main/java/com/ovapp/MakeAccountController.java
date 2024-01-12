@@ -73,15 +73,14 @@ public class MakeAccountController extends LoginController {
             }}
 
         public void previousButtonOnAction(ActionEvent event) throws IOException {
-            // Get the existing login screen (OVapp_LogInScreen.fxml)
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("OVapp_LogInScreen.fxml")));
 
-            // Get the current stage and set the existing scene
+
             Stage currentStage = (Stage) previousButton.getScene().getWindow();
-            currentStage.setScene(new Scene(root));  // You can also reuse the existing scene if needed
+            currentStage.setScene(new Scene(root));
             currentStage.setTitle("Log In");
 
-            // Show the existing scene
+
             currentStage.show();
         }
     }

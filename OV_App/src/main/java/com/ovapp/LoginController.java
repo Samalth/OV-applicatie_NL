@@ -40,7 +40,7 @@ public class LoginController extends ParentController {
 
     public void initialize() {
             super.initialize();
-            //hasmap login info gebruiker
+            //hasmap login info Users
             loginInfo.put("Hellokittyfan", "blahBlah123");
             loginInfo.put("Johony","Jo1234!");
         }
@@ -78,7 +78,7 @@ public class LoginController extends ParentController {
 
 
         public void logInButtonOnAction(ActionEvent e) throws IOException {
-            String username = getUsername(); //hier hebben we get method aangeroepen
+            String username = getUsername();
             String password = getPassword();
             if (username.isEmpty() || password.isEmpty()) {
                 loginMessageLabel.setText(bundle.getString("login.validation.empty"));
@@ -119,15 +119,14 @@ public class LoginController extends ParentController {
     }
 
     public void previousButtonOnAction(ActionEvent event) throws IOException {
-        // Get the existing login screen (OVapp_LogInScreen.fxml)
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("OVapp_GUI.fxml")));
 
-        // Get the current stage and set the existing scene
+
         Stage currentStage = (Stage) makeAccountButton.getScene().getWindow();
-        currentStage.setScene(new Scene(root));  // You can also reuse the existing scene if needed
+        currentStage.setScene(new Scene(root));
         currentStage.setTitle("Uitgelogd scherm");
 
-        // Show the existing scene
+
         currentStage.show();
     }}
 
