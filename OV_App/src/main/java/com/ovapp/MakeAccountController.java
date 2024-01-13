@@ -7,7 +7,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -19,13 +18,6 @@ public class MakeAccountController extends LoginController {
         super.initialize();
 
 }
-    private boolean ValidateLogin(String username, String password) {
-        if (loginInfo.containsKey(username)) {
-            return loginInfo.get(username).equals(password);
-        } else {
-            return false;
-        }
-    }
     @Override
     String getDescriptionLabelText(ResourceBundle bundle) {
         return bundle.getString("descriptionMessage.newLogInInfo");

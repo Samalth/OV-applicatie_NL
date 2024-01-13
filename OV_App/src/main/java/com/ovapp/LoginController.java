@@ -1,16 +1,9 @@
 package com.ovapp;
-
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Objects;
@@ -20,21 +13,6 @@ public class LoginController extends ParentController {
 
         Stage stage;
         Scene scene;
-
-        @FXML
-        Button logInButton;
-
-        @FXML
-        Button makeAccountButton;
-
-        @FXML
-        Label loginMessageLabel;
-
-        @FXML
-        TextField usernameTextField;
-        @FXML
-        PasswordField passwordPasswordField;
-
         static HashMap<String,String> loginInfo= new HashMap<>();
 
 
@@ -122,11 +100,9 @@ public class LoginController extends ParentController {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("OVapp_GUI.fxml")));
 
 
-        Stage currentStage = (Stage) makeAccountButton.getScene().getWindow();
+        Stage currentStage = (Stage) previousButton.getScene().getWindow();
         currentStage.setScene(new Scene(root));
         currentStage.setTitle("Uitgelogd scherm");
-
-
         currentStage.show();
     }}
 
