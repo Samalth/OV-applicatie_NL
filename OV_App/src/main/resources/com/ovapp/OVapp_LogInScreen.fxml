@@ -11,13 +11,13 @@
    <children>
        <AnchorPane minHeight="76.0" prefHeight="76.0" prefWidth="1238.0" style="-fx-background-color: #ff6600;">
            <children>
-               <Label fx:id="dateLabel" alignment="CENTER" layoutX="32.0" layoutY="19.0" prefHeight="38.0" prefWidth="112.0" style="-fx-border-color: #FF6600; -fx-background-color: #DEDEDE;">
+               <Label fx:id="dateLabel" alignment="CENTER" layoutX="32.0" layoutY="19.0" prefHeight="38.0" prefWidth="112.0" style="-fx-border-color: #FF6600; -fx-text-fill: #000000; -fx-background-color: #DEDEDE;">
                    <font>
                        <Font name="Calibri" size="15.0" />
                    </font>
                    <Tooltip fx:id="dateLabelToolTip" styleClass="tooltip" text="de huidige datum" />
                </Label>
-               <Label fx:id="clockLabel" layoutX="153.0" layoutY="19.0" prefHeight="38.0" prefWidth="112.0" style="-fx-border-color: #ff6600; -fx-background-color: #DEDEDE;">
+               <Label fx:id="clockLabel" layoutX="153.0" layoutY="19.0" prefHeight="38.0" prefWidth="112.0" style="-fx-border-color: #ff6600; -fx-text-fill: #000000; -fx-background-color: #DEDEDE;">
                    <font>
                        <Font name="Calibri" size="15.0" />
                    </font>
