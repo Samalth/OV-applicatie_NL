@@ -145,18 +145,18 @@ public class Controller {
 	}
 
 	public void onLogInButtonClick() {
-		openOvappLoggedIn();
+		openOvappLogin();
 	}
 
-	private void openOvappLoggedIn() {
+	private void openOvappLogin() {
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("OVapp_LoggedIn.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("OVapp_LogInScreen.fxml"));
 			Parent root = fxmlLoader.load();
 			Scene scene = new Scene(root);
 
             Stage currentStage = (Stage) logInButton.getScene().getWindow();
             currentStage.setScene(scene);
-            currentStage.setTitle("Ingelogd scherm");
+            currentStage.setTitle("Log in Screen");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -219,6 +219,27 @@ public class Controller {
             departureLabel.setText(departureLabelInfo);
         }
     }
+
+	public void onDepartureCityComboBoxClick() {
+		updateCityComboBox(departureCityComboBox, arrivalCityComboBox);
+	}
+
+	public void onArrivalCityComboBoxClick() {
+		updateCityComboBox(arrivalCityComboBox, departureCityComboBox);
+	}
+
+	private void updateCityComboBox(ComboBox<String> sourceComboBox, ComboBox<String> otherComboBox) {
+		String selectedCity = sourceComboBox.getValue();
+
+		if (selectedCity != null) {
+			otherComboBox.getItems().remove(selectedCity);
+
+			sourceComboBox.setOnAction(event -> {
+				otherComboBox.getItems().add(selectedCity);
+				sourceComboBox.setOnAction(null);
+			});
+		}
+	}
 
 	private void updateClock() {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("      HH:mm");
