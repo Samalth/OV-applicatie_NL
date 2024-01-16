@@ -167,6 +167,8 @@
                     <Image url="@../../TravelYRouteBlanc.png" />
                 </image>
             </ImageView>
+         <Button fx:id="setFavourite" layoutX="488.0" layoutY="485.0" mnemonicParsing="false" onAction="#addFavourite" text="Set Favourite" />
+         <Button fx:id="useFavourite" layoutX="701.0" layoutY="309.0" mnemonicParsing="false" onAction="#useFavourite" text="Use Favourite" />
 
         </children>
     </Pane>
