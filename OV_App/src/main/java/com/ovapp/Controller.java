@@ -254,11 +254,11 @@ public class Controller {
 		Locale locale = new Locale(newLanguage);
 		bundle = ResourceBundle.getBundle("Messages", locale);
 
-		ArrivalText.setText(bundle.getString("Destinationtxt"));
-		DepartureDateText.setText(bundle.getString("DepartureDatetxt"));
-		DepartureText.setText(bundle.getString("Departuretxt"));
-		DepartureTimeText.setText(bundle.getString("DepartureTimetxt"));
-		MeansOfTransportText.setText(bundle.getString("MeansOfTransporttxt"));
+		//ArrivalText.setText(bundle.getString("Destinationtxt"));
+		//DepartureDateText.setText(bundle.getString("DepartureDatetxt"));
+		//DepartureText.setText(bundle.getString("Departuretxt"));
+		//DepartureTimeText.setText(bundle.getString("DepartureTimetxt"));
+		//MeansOfTransportText.setText(bundle.getString("MeansOfTransporttxt"));
 
 		logInButton.setText(bundle.getString("LogInButtontxt"));
 		GOButton.setText(bundle.getString("RouteButtontxt"));
