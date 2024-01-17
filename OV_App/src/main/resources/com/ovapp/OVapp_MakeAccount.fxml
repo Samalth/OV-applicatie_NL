@@ -16,7 +16,7 @@
     <children>
         <AnchorPane minHeight="76.0" prefHeight="76.0" prefWidth="1238.0" style="-fx-background-color: #ff6600;">
             <children>
-                <Label fx:id="dateLabel" alignment="CENTER" layoutX="32.0" layoutY="19.0" prefHeight="38.0" prefWidth="112.0" style="-fx-border-color: #FF6600; -fx-background-color: #DEDEDE;">
+                <Label fx:id="dateLabel" alignment="CENTER" layoutX="32.0" layoutY="19.0" prefHeight="38.0" prefWidth="112.0" style="-fx-border-color: #FF6600; -fx-text-fill: black; -fx-background-color: #DEDEDE;">
                     <font>
                         <Font name="Calibri" size="15.0" />
                     </font>
@@ -24,7 +24,7 @@
                         <Tooltip fx:id="dateLabelToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="de huidige datum" />
                     </tooltip>
                 </Label>
-                <Label fx:id="clockLabel" layoutX="153.0" layoutY="19.0" prefHeight="38.0" prefWidth="112.0" style="-fx-border-color: #ff6600; -fx-background-color: #DEDEDE;">
+                <Label fx:id="clockLabel" layoutX="153.0" layoutY="19.0" prefHeight="38.0" prefWidth="112.0" style="-fx-border-color: #ff6600; -fx-text-fill: black; -fx-background-color: #DEDEDE;">
                     <font>
                         <Font name="Calibri" size="15.0" />
                     </font>
@@ -59,8 +59,10 @@
                         <Tooltip fx:id="nlLanguageButtonToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="wissel naar Nederlands" />
                     </tooltip>
                 </Button>
-                <Button fx:id="previousButton" layoutX="1130.0" layoutY="18.0" mnemonicParsing="false" onAction="#previousButtonOnAction" prefHeight="41.0" prefWidth="132.0" text="Vorige pagina">
-                    <!-- Associate the Tooltip with the previousButton -->
+                <Button fx:id="previousButton" layoutX="1021.0" layoutY="12.0" mnemonicParsing="false" onAction="#previousButtonOnAction" prefHeight="52.0" prefWidth="202.0" text="Vorige pagina">
+                    <font>
+                        <Font name="Calibri" size="22.0" />
+                    </font>
                     <tooltip>
                         <Tooltip fx:id="previousButtonTooltip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="klik hier om naar vorige pagina terug te gaan" />
                     </tooltip>
@@ -71,14 +73,14 @@
 
         <Pane prefHeight="720.0" prefWidth="1280.0">
             <children>
-                <Label fx:id="loginMessageLabel" layoutX="82.0" layoutY="124.0" prefHeight="277.0" prefWidth="379.0" textFill="RED">
+                <Label fx:id="loginMessageLabel" layoutX="896.0" layoutY="105.0" prefHeight="167.0" prefWidth="291.0" style="-fx-border-color: #ff6600;" textFill="RED">
                 </Label>
-                <TextField fx:id="usernameTextField" layoutX="464.0" layoutY="144.0" prefHeight="94.0" prefWidth="379.0" promptText="Gebruikersnaam">
+                <TextField fx:id="usernameTextField" layoutX="464.0" layoutY="144.0" prefHeight="94.0" prefWidth="379.0" promptText="Gebruikersnaam" style="-fx-border-color: #ff6600;">
                     <tooltip>
                         <Tooltip fx:id="usernameTextFieldToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="Vul uw nieuwe gebruikersnaam in." />
                     </tooltip>
                 </TextField>
-                <PasswordField fx:id="passwordPasswordField" layoutX="464.0" layoutY="261.0" prefHeight="94.0" prefWidth="379.0" promptText="Wachtwoord">
+                <PasswordField fx:id="passwordPasswordField" layoutX="464.0" layoutY="261.0" prefHeight="94.0" prefWidth="379.0" promptText="Wachtwoord" style="-fx-border-color: #ff6600;">
                     <tooltip>
                         <Tooltip fx:id="passwordPasswordFieldToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="Vul uw nieuwe wachtwoord in." />
                     </tooltip>
@@ -88,7 +90,7 @@
                         <Image url="@../../TravelYRouteBlanc.png" />
                     </image>
                 </ImageView>
-                <Button fx:id="logInButton" layoutX="544.0" layoutY="365.0" mnemonicParsing="false" onAction="#logInButtonOnAction" prefHeight="69.0" prefWidth="245.0" style="-fx-border-color: #0863b5;" text="Inloggen">
+                <Button fx:id="logInButton" layoutX="265.0" layoutY="148.0" mnemonicParsing="false" onAction="#logInButtonOnAction" prefHeight="50.0" prefWidth="187.0" style="-fx-border-color: #ff6600;" text="Inloggen">
                     <font>
                         <Font name="Calibri" size="22.0" />
                     </font>
@@ -96,8 +98,8 @@
                         <Tooltip fx:id="logInButtonToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="klik hier om in te loggen" />
                     </tooltip>
                 </Button>
-                <Label fx:id="descriptionLabel" layoutX="416.0" layoutY="65.0" prefHeight="41.0" prefWidth="471.0" style="-fx-background-color: #FFFFCC; -fx-font-weight: bold;" text="Voer uw nieuwe inloggegevens in. heeft u al een account? klik op &quot;vorige pagina&quot;" />
-                <Button fx:id="makeAccountButton" layoutX="861.0" layoutY="132.0" mnemonicParsing="false" onAction="#setMakeAccountButton" prefHeight="50.0" prefWidth="187.0" style="-fx-border-color: #0863b5;" text="Account aanmaken">
+                <Label fx:id="descriptionLabel" layoutX="416.0" layoutY="65.0" prefHeight="41.0" prefWidth="471.0" style="-fx-background-color: #FFFFCC; -fx-font-weight: bold; -fx-text-fill: black;" text="Voer uw nieuwe inloggegevens in. heeft u al een account? klik op &quot;vorige pagina&quot;" />
+                <Button fx:id="makeAccountButton" layoutX="544.0" layoutY="365.0" mnemonicParsing="false" onAction="#setMakeAccountButton" prefHeight="61.0" prefWidth="203.0" style="-fx-border-color: #ff6600;" text="Account aanmaken">
                     <font>
                         <Font name="Calibri" size="15.0" />
                     </font>
