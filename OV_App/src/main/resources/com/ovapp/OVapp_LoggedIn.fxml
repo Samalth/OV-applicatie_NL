@@ -34,7 +34,7 @@
                     <Font name="Calibri" size="22.0" />
                 </font>
                 <tooltip>
-                    <Tooltip fx:id="logOutButtonToolTip"  style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="klik hier om uit te loggen" />
+                    <Tooltip fx:id="logOutButtonToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="klik hier om uit te loggen" />
                 </tooltip>
             </Button>
             <Button alignment="CENTER" layoutX="296.0" layoutY="13.0" mnemonicParsing="false" onAction="#onChangeModeClick" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #444444;" styleClass="dark-mode" stylesheets="@../../lightmode.css">
@@ -85,7 +85,7 @@
                     <Tooltip fx:id="departureLabelToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="Hier ziet u uw reisinformatie" />
                 </tooltip>
             </Label>
-            <Label fx:id="travelHistoryLabel" layoutX="803.0" layoutY="297.0" prefHeight="263.0" prefWidth="415.0" style="-fx-border-color: #FF6600;" textFill="#f50000" wrapText="true">
+            <Label fx:id="favoriteLabel" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="803.0" layoutY="297.0" prefHeight="263.0" prefWidth="415.0" style="-fx-border-color: #FF6600;" textFill="#f50000" wrapText="true">
                 <tooltip>
                     <Tooltip fx:id="travelHistoryLabelToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="Dit is uw reisgeschiedenis" />
                 </tooltip>
@@ -169,6 +169,7 @@
             </ImageView>
          <Button fx:id="setFavourite" layoutX="488.0" layoutY="485.0" mnemonicParsing="false" onAction="#addFavourite" text="Set Favourite" />
          <Button fx:id="useFavourite" layoutX="701.0" layoutY="309.0" mnemonicParsing="false" onAction="#useFavourite" text="Use Favourite" />
+         <Button fx:id="favourite1" layoutX="809.0" layoutY="304.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="405.0" visible="false" />
 
         </children>
     </Pane>
