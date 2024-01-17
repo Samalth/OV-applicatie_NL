@@ -1,26 +1,16 @@
 package com.ovapp;
 import javafx.application.Platform;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.PasswordField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import java.io.IOException;
+
+import java.text.BreakIterator;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class LogInScreenController {
-    private Stage stage;
-    private Scene scene;
+abstract class ParentController {
 
     @FXML
     private VBox parent;
@@ -29,24 +19,44 @@ public class LogInScreenController {
     private ImageView imgMode;
 
     @FXML
-    private Button cancelButton;
-    @FXML
-    private Button logInButton;
-
-    @FXML
     private Label dateLabel;
     @FXML
     private Label clockLabel;
     @FXML
-    private Label loginMessageLabel;
+    Button previousButton;
 
     @FXML
-    private TextField usernameTextField;
-    @FXML
-    private PasswordField passwordPasswordField;
+    Button logInButton;
 
-    private ResourceBundle bundle;
+    @FXML
+    Button makeAccountButton;
+
+    @FXML
+    Label loginMessageLabel;
+    @FXML
+    Label descriptionLabel;
+    @FXML
+    TextField usernameTextField;
+    @FXML
+    PasswordField passwordPasswordField;
+
+    ResourceBundle bundle;
     private boolean isLightMode = true;
+    @FXML
+    private Tooltip modeToolTip;
+    @FXML
+    private Tooltip passwordPasswordFieldToolTip;
+    @FXML
+    private Tooltip previousButtonTooltip;
+    @FXML
+    private Tooltip makeAccountButtonToolTip;
+    @FXML
+    private Tooltip logInButtonToolTip;
+    @FXML
+    private Tooltip usernameTextFieldToolTip;
+
+    @FXML
+    private Tooltip dateLabelToolTip;
 
     public void initialize() {
         Timer timer = new Timer(true);
@@ -60,7 +70,12 @@ public class LogInScreenController {
 
         switchLanguage("Nederlands");
         setLightMode();
+        loginMessageLabel.setWrapText(true);
     }
+
+    abstract String getDescriptionLabelText(ResourceBundle bundle);
+    abstract String getPasswordTooltipText(ResourceBundle bundle);
+    abstract String getUsernameTooltipText(ResourceBundle bundle);
 
     private void updateClock() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("      HH:mm");
@@ -78,14 +93,7 @@ public class LogInScreenController {
         Platform.runLater(() -> {
             dateLabel.setText(formattedDate);
         });
-    }
-
-    private boolean validateLogin(String username, String password) {
-        if (username.equals("user") && password.equals("1234") || (username.equals("1") && password.equals("1") || (username.equals(" ") && password.equals(" "))))
-            return true;
-        else
-            return false;
-    }
+}
 
     public void onDuLanguageButtonClick(){
         switchLanguage("Deutsch");
@@ -100,29 +108,27 @@ public class LogInScreenController {
     public void switchLanguage(String newLanguage) {
         Locale locale = new Locale(newLanguage);
         bundle = ResourceBundle.getBundle("Messages", locale);
-        logInButton.setText(bundle.getString("LogInButtontxt"));
+        modeToolTip.setText(bundle.getString("ModeToolTiptxt"));
+        logInButton.setText(bundle.getString("logInButton"));
+        makeAccountButton.setText(bundle.getString("makeAccountButton"));
+        usernameTextField.setPromptText(bundle.getString("usernameTextField"));
+        passwordPasswordField.setPromptText(bundle.getString("passwordPasswordField"));
+        previousButton.setText(bundle.getString("previousButton"));
+
+        // Tooltips for new buttons
+        makeAccountButtonToolTip.setText(bundle.getString("makeAccountButtonToolTip"));
+        logInButtonToolTip.setText(bundle.getString("logInButtonToolTip"));
+        passwordPasswordFieldToolTip.setText(getPasswordTooltipText(bundle));
+        usernameTextFieldToolTip.setText(getUsernameTooltipText(bundle));
+        previousButtonTooltip.setText(bundle.getString("previousButtonTooltip"));
+        descriptionLabel.setText(getDescriptionLabelText(bundle));
+        dateLabelToolTip.setText(bundle.getString("DateLabelToolTiptxt"));
+
+
     }
-
-    public void logInButtonOnAction(ActionEvent e) throws IOException {
-        String username = usernameTextField.getText();
-        String password = passwordPasswordField.getText();
-
-        if (username.isEmpty() && password.isEmpty())
-            loginMessageLabel.setText("Voer uw gegevens in.");
-        else if (username.isEmpty())
-            loginMessageLabel.setText("Voer uw gebruikersnaam in.");
-        else if (password.isEmpty())
-            loginMessageLabel.setText("Voer uw wachtwoord in.");
-        else {
-            if (validateLogin(username, password))
-                openOVapp_LoggedIn();
-            else
-                loginMessageLabel.setText("Gegevens onjuist.");
-        }
-    }
-
     public void onChangeModeClick() {
         isLightMode = !isLightMode;
+
         parent.getStylesheets().remove("darkmode.css");
         parent.getStylesheets().remove("lightmode.css");
 
@@ -132,7 +138,6 @@ public class LogInScreenController {
             setDarkMode();
         }
     }
-
     private void setLightMode() {
         parent.getStylesheets().remove("darkmode.css");
         parent.getStylesheets().add("lightmode.css");
@@ -145,18 +150,5 @@ public class LogInScreenController {
         parent.getStylesheets().add("darkmode.css");
         Image image = new Image("sun.png");
         imgMode.setImage(image);
-    }
-
-    public void openOVapp_LoggedIn() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("OVapp_LoggedIn.fxml")));
-        scene = new Scene(root);
-        stage = (Stage) (logInButton.getScene().getWindow());
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public void cancelButtonOnAction(ActionEvent e) {
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
-        stage.close();
     }
 }
