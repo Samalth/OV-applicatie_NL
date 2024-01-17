@@ -9,13 +9,12 @@
 
 <VBox fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-border-color: #E62F2B;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ovapp.LoggedInController">
 
-    <AnchorPane minHeight="76.0" prefHeight="76.0" prefWidth="1238.0" style="-fx-background-color: #ff6600;">
+    <AnchorPane minHeight="74.0" prefHeight="74.0" prefWidth="1258.0" style="-fx-background-color: #ff6600;">
         <children>
-            <Label fx:id="dateLabel" alignment="CENTER" layoutX="32.0" layoutY="19.0" prefHeight="38.0" prefWidth="112.0" style="-fx-border-color: #ff6600; -fx-text-fill: black; -fx-background-color: #DEDEDE;" textAlignment="CENTER">
+            <Label fx:id="dateLabel" alignment="CENTER" layoutX="32.0" layoutY="19.0" prefHeight="38.0" prefWidth="112.0" style="-fx-border-color: #FF6600; -fx-text-fill: black; -fx-background-color: #DEDEDE;">
                 <font>
                     <Font name="Calibri" size="15.0" />
                 </font>
-
                 <Tooltip fx:id="dateLabelToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14; " text="de huidige datum" />
             </Label>
             <Label fx:id="clockLabel" layoutX="153.0" layoutY="19.0" prefHeight="38.0" prefWidth="112.0" style="-fx-border-color: #ff6600; -fx-text-fill: black; -fx-background-color: #DEDEDE;">
