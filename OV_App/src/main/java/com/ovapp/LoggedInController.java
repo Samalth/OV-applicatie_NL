@@ -32,6 +32,16 @@ public class LoggedInController {
     private Button showTravelHistoryButton;
     @FXML
     private Button setFavourite;
+    @FXML
+    private Button favourite0;
+    @FXML
+    private Button favourite1;
+    @FXML
+    private Button favourite2;
+    @FXML
+    private Button favourite3;
+    @FXML
+    private Button favourite4;
 
     @FXML
     private Text DepartureText;
@@ -108,14 +118,15 @@ public class LoggedInController {
     private boolean isHistoryVisible = false;
 
     @FXML
-    private String DepartureCity;
+    private String departureCity;
     @FXML
-    private String ArrivalCity;
+    private String arrivalCity;
     @FXML
     private LocalDate DepartureDate;
     private String transport;
 
     private List<String> favouriteList = new ArrayList<>();
+    private List<String> displayFavouriteList = new ArrayList<>();
     private Train train = new Train("Trein", Arrays.asList(0, 15, 30, 45, 60));
     private Bus bus = new Bus("Bus", Arrays.asList(25, 55, 85));
     private ResourceBundle bundle;
@@ -199,8 +210,8 @@ public class LoggedInController {
 
     @FXML
     protected void onGOClick() {
-        DepartureCity = departureCityComboBox.getValue();
-        ArrivalCity = arrivalCityComboBox.getValue();
+        departureCity = departureCityComboBox.getValue();
+        arrivalCity = arrivalCityComboBox.getValue();
         DepartureDate = departureDatePicker.getValue();
         transport = transportComboBox.getValue();
         int departureHours = departureTimeHours.getValue();
@@ -224,9 +235,9 @@ public class LoggedInController {
             }
         } catch (NullPointerException e) {
         }
-        if (DepartureCity == null || ArrivalCity == null || transport == null) {
+        if (departureCity == null || arrivalCity == null || transport == null) {
             departureLabel.setText("Selecteer alstublieft een vertrekplaats, aankomstplaats en vervoermiddel.");
-        } else if (DepartureCity.equals(ArrivalCity)) {
+        } else if (departureCity.equals(arrivalCity)) {
             departureLabel.setText("De vertrekplaats en aankomstplaats kunnen niet hetzelfde zijn.");
         } else {
             LocalDate currentDate = LocalDate.now();
@@ -238,9 +249,9 @@ public class LoggedInController {
                     : currentDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
             String departureLabelInfo = String.format(
                     "Van %s naar %s om %s met de %s op %s. De voorzieningen op station %s zijn %s " +
-                            "De voorzieningen op station %s zijn %s", DepartureCity, ArrivalCity
+                            "De voorzieningen op station %s zijn %s", departureCity, arrivalCity
                     , departureTime.get(0), transport.toLowerCase(), formattedDate,
-                    DepartureCity, departureAmenities, ArrivalCity, arrivalAmenities);
+                    departureCity, departureAmenities, arrivalCity, arrivalAmenities);
             departureLabel.setText(departureLabelInfo);
         }
     }
@@ -346,32 +357,45 @@ public class LoggedInController {
 
     @FXML
     private void addFavourite(ActionEvent actionEvent) {
-        DepartureCity = departureCityComboBox.getValue();
-        ArrivalCity = arrivalCityComboBox.getValue();
+        departureCity = departureCityComboBox.getValue();
+        arrivalCity = arrivalCityComboBox.getValue();
         transport = transportComboBox.getValue();
         String addFavourite = String.format("%s,%s,%s,"
-                , DepartureCity, ArrivalCity, transport);
+                , departureCity, arrivalCity, transport);
 
         favouriteList.add(addFavourite);
-        StringBuilder favourite = new StringBuilder();
-        for (String entry : favouriteList) {
-            favourite.append(entry).append("\n\n");
-        }
         displayFavourite();
     }
 
     private void displayFavourite() {
         try {
-            DepartureCity = departureCityComboBox.getValue();
-            ArrivalCity = arrivalCityComboBox.getValue();
-            transport = transportComboBox.getValue();
-            String addFavourite = String.format("   Van %s naar %s met de %s"
-                    , DepartureCity, ArrivalCity, transport.toLowerCase());
-            favoriteLabel.setText(addFavourite);
+            String[] favouriteString = favouriteList.get(favouriteList.size() - 1).split(",");
+            String departureString = favouriteString[0];
+            String arrivalString = favouriteString[1];
+            String transportString = favouriteString[2];
+
+            String displayFavourite = String.format("   Van %s naar %s met de %s"
+                    , departureString, arrivalString, transportString.toLowerCase());
+            displayFavouriteList.add(displayFavourite);
+
+            StringBuilder favourite = new StringBuilder();
+            for (String entry : displayFavouriteList) {
+                favourite.append(entry).append("\n\n");
+            }
+            favoriteLabel.setText(favourite.toString());
 
         } catch (NullPointerException e) {
             favoriteLabel.setText("   U nog niet alle reisinformatie ingevuld.");
         }
+    }
+
+    @FXML
+    private void setFavourite(ActionEvent actionEvent) {
+        favourite0.setOnAction(e -> favouriteID = 0);
+        favourite1.setOnAction(e -> favouriteID = 1);
+        favourite2.setOnAction(e -> favouriteID = 2);
+        favourite3.setOnAction(e -> favouriteID = 3);
+        favourite4.setOnAction(e -> favouriteID = 4);
     }
 
     @FXML
@@ -427,7 +451,7 @@ public class LoggedInController {
         formattedAmenities.add("");
         for (i = 0; i < cities.size(); i++) {
             currentCity = cities.get(i);
-            if (DepartureCity.equals(currentCity.getName())) {
+            if (departureCity.equals(currentCity.getName())) {
                 amenities.addAll(currentCity.getAmenities());
                 for (j = 0; j < amenities.size(); j++) {
                     if (j < amenities.size() - 2) {
@@ -444,7 +468,7 @@ public class LoggedInController {
                 amenityString = "";
                 amenities.clear();
             }
-            if (ArrivalCity.equals(currentCity.getName())) {
+            if (arrivalCity.equals(currentCity.getName())) {
                 amenities.addAll(currentCity.getAmenities());
                 for (j = 0; j < amenities.size(); j++) {
                     if (j < amenities.size() - 2) {

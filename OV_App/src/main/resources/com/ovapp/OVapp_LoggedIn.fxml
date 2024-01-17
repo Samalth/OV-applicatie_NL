@@ -169,7 +169,11 @@
             </ImageView>
          <Button fx:id="setFavourite" layoutX="488.0" layoutY="485.0" mnemonicParsing="false" onAction="#addFavourite" text="Set Favourite" />
          <Button fx:id="useFavourite" layoutX="701.0" layoutY="309.0" mnemonicParsing="false" onAction="#useFavourite" text="Use Favourite" />
-         <Button fx:id="favourite1" layoutX="809.0" layoutY="304.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="405.0" visible="false" />
+         <Button fx:id="favourite0" layoutX="1167.0" layoutY="304.0" mnemonicParsing="false" onAction="#setFavourite" prefHeight="35.0" prefWidth="46.0"  visible="true" />
+         <Button fx:id="favourite1" layoutX="1167.0" layoutY="356.0" mnemonicParsing="false" onAction="#setFavourite" prefHeight="35.0" prefWidth="46.0" visible="true" />
+         <Button fx:id="favourite2" layoutX="1167.0" layoutY="411.0" mnemonicParsing="false" onAction="#setFavourite" prefHeight="35.0" prefWidth="46.0" visible="true" />
+         <Button fx:id="favourite3" layoutX="1167.0" layoutY="462.0" mnemonicParsing="false" onAction="#setFavourite" prefHeight="35.0" prefWidth="46.0" visible="true" />
+         <Button fx:id="favourite4" layoutX="1167.0" layoutY="510.0" mnemonicParsing="false" onAction="#setFavourite" prefHeight="35.0" prefWidth="46.0" visible="true" />
 
         </children>
     </Pane>
