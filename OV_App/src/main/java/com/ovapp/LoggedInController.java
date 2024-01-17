@@ -240,33 +240,33 @@ public class LoggedInController {
 					, departureTime.get(0), transport.toLowerCase(), formattedDate,
 					DepartureCity, departureAmenities, ArrivalCity, arrivalAmenities);
 			departureLabel.setText(departureLabelInfo);
-        }
+		}
 	}
 
-    public void onDepartureCityComboBoxClick() {
-        updateCityComboBox(departureCityComboBox, arrivalCityComboBox);
-    }
+	public void onDepartureCityComboBoxClick() {
+		updateCityComboBox(departureCityComboBox, arrivalCityComboBox);
+	}
 
-    public void onArrivalCityComboBoxClick() {
-        updateCityComboBox(arrivalCityComboBox, departureCityComboBox);
-    }
+	public void onArrivalCityComboBoxClick() {
+		updateCityComboBox(arrivalCityComboBox, departureCityComboBox);
+	}
 
-    private void updateCityComboBox(ComboBox<String> sourceComboBox, ComboBox<String> otherComboBox) {
-        String selectedCity = sourceComboBox.getValue();
+	private void updateCityComboBox(ComboBox<String> sourceComboBox, ComboBox<String> otherComboBox) {
+		String selectedCity = sourceComboBox.getValue();
 
-        if (selectedCity != null) {
-            otherComboBox.getItems().remove(selectedCity);
+		if (selectedCity != null) {
+			otherComboBox.getItems().remove(selectedCity);
 
-            sourceComboBox.setOnAction(event -> {
-                otherComboBox.getItems().add(selectedCity);
-                sourceComboBox.setOnAction(null);
-            });
-        }
-    }
+			sourceComboBox.setOnAction(event -> {
+				otherComboBox.getItems().add(selectedCity);
+				sourceComboBox.setOnAction(null);
+			});
+		}
+	}
 
-    private List<String> getLanguages() {
-        return Arrays.asList("Nederlands", "English", "Deutsch");
-    }
+	private List<String> getLanguages() {
+		return Arrays.asList("Nederlands", "English", "Deutsch");
+	}
 
 	public void switchLanguage(String newLanguage) {
 		Locale locale = new Locale(newLanguage);
@@ -342,15 +342,14 @@ public class LoggedInController {
 		switchLanguage("English");
 	}
 
-
 	@FXML
 	private void addFavourite(ActionEvent actionEvent) {
 		DepartureCity = departureCityComboBox.getValue();
 		ArrivalCity = arrivalCityComboBox.getValue();
 		transport = transportComboBox.getValue();
 
-        String addFavourite = String.format("Van %s naar %s met de %s"
-                , DepartureCity, ArrivalCity, transport.toLowerCase());
+		String addFavourite = String.format("Van %s naar %s met de %s"
+				, DepartureCity, ArrivalCity, transport);
 
 		favouriteList.add(addFavourite);
 		StringBuilder favourite = new StringBuilder();
