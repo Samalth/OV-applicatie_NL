@@ -81,7 +81,7 @@
                     <Tooltip fx:id="passwordPasswordFieldToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="Vul uw wachtwoord in." />
                 </tooltip>
             </PasswordField>
-            <ImageView fx:id="travelYRouteImg" cache="true" fitHeight="111.0" fitWidth="187.0" layoutX="1132.0" layoutY="10.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="travelYRouteImg" cache="true" fitHeight="169.0" fitWidth="203.0" layoutX="1063.0" layoutY="21.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                 <image>
                     <Image url="@../../TravelYRouteBlanc.png" />
                 </image>
