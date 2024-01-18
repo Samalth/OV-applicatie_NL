@@ -2,11 +2,13 @@ package com.ovapp;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,13 +16,20 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 public class Controller {
+	private final Data data = new Data();
 
 	@FXML
 	private Text DepartureText;
@@ -122,8 +131,7 @@ public class Controller {
     private Train train = new Train("Trein", Arrays.asList(0, 15, 30, 45, 60));
     private Bus bus = new Bus("Bus", Arrays.asList(25, 55, 85));
     private ResourceBundle bundle;
-	private final Data data = new Data();
-	private City currentCity;
+    private City currentCity;
 
     public ArrayList<City> getCities(){
         ArrayList<City> cities = new ArrayList<>();
@@ -168,10 +176,10 @@ public class Controller {
 	}
 
 	public void onLogInButtonClick() {
-		openOvappLoggedIn();
+		openOvappLogin();
 	}
 
-	private void openOvappLoggedIn() {
+	private void openOvappLogin() {
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("OVapp_LogInScreen.fxml"));
 			Parent root = fxmlLoader.load();
@@ -179,7 +187,7 @@ public class Controller {
 
             Stage currentStage = (Stage) logInButton.getScene().getWindow();
             currentStage.setScene(scene);
-            currentStage.setTitle("Log in");
+            currentStage.setTitle("Log in Screen");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -274,6 +282,10 @@ public class Controller {
 		Platform.runLater(() -> clockLabel.setText(formattedTime));
 	}
 
+    private List<String> getLanguages() {
+        return Arrays.asList("Nederlands", "English", "Deutsch");
+    }
+
     public void onDuLanguageButtonClick(){
         switchLanguage("Deutsch");
     }
@@ -288,11 +300,11 @@ public class Controller {
 		Locale locale = new Locale(newLanguage);
 		bundle = ResourceBundle.getBundle("Messages", locale);
 
-		//ArrivalText.setText(bundle.getString("Destinationtxt"));
-		//DepartureDateText.setText(bundle.getString("DepartureDatetxt"));
-		//DepartureText.setText(bundle.getString("Departuretxt"));
-		//DepartureTimeText.setText(bundle.getString("DepartureTimetxt"));
-		//MeansOfTransportText.setText(bundle.getString("MeansOfTransporttxt"));
+		ArrivalText.setText(bundle.getString("Destinationtxt"));
+		DepartureDateText.setText(bundle.getString("DepartureDatetxt"));
+		DepartureText.setText(bundle.getString("Departuretxt"));
+		DepartureTimeText.setText(bundle.getString("DepartureTimetxt"));
+		MeansOfTransportText.setText(bundle.getString("MeansOfTransporttxt"));
 
 		logInButton.setText(bundle.getString("LogInButtontxt"));
 		GOButton.setText(bundle.getString("RouteButtontxt"));
@@ -364,16 +376,6 @@ public class Controller {
 
 	private ObservableList<String> getTransport() {
 		return FXCollections.observableArrayList(train.getTransportName(), bus.getTransportName());
-	}
-
-	// Unused method still a work in progress
-	private List<String> NEWgetTransport() {
-		try {
-			List<RouteData> routeDataList = data.getRouteData();
-			return routeDataList.stream().map(RouteData::getTransport).toList();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
 	}
 
     private List<String> determineAmenities(ArrayList<City> cities){
