@@ -285,7 +285,6 @@ public class LoggedInController {
 		setFavourite.setText(bundle.getString("setFavouriteButtontxt"));
 		logOutButton.setText(bundle.getString("LogOutButtontxt"));
 		showFavouriteButton.setText(bundle.getString("ShowFavouriteButtontxt"));
-		favouriteLabel.setText(bundle.getString("FavouriteLabeltxt"));
 
 		arrivalCityComboBox.setPromptText(bundle.getString("ArrivalComboBoxPromt"));
 		departureCityComboBox.setPromptText(bundle.getString("DepartureComboBoxPromt"));
@@ -306,6 +305,10 @@ public class LoggedInController {
 		favouriteLabelToolTip.setText(bundle.getString("favouriteTooltiptxt"));
 		showTravelHistoryButtonToolTip.setText(bundle.getString("ShowTravelHistoryButtonToolTiptxt"));
 		dateLabelToolTip.setText(bundle.getString("DateLabelToolTiptxt"));
+
+		if (favouriteLabel != null){
+			favouriteLabel.setText(bundle.getString("FavouriteLabelError"));
+		}
 	}
 
 	public void onChangeModeClick(ActionEvent event) {
@@ -354,7 +357,7 @@ public class LoggedInController {
 		transport = transportComboBox.getValue();
 
 		if (departureCity == null || arrivalCity == null || transport == null) {
-			favouriteLabel.setText("   U heeft nog niet alle reisinformatie ingevuld.");
+			favouriteLabel.setText(bundle.getString("FavouriteLabelError"));
 		} else {
 			String addFavourite = String.format("%s,%s,%s,"
 					, departureCity, arrivalCity, transport);
@@ -384,7 +387,7 @@ public class LoggedInController {
 				}
 			}
 		} catch (NullPointerException e) {
-			favouriteLabel.setText("   U heeft nog niet alle reisinformatie ingevuld.");
+			favouriteLabel.setText(bundle.getString("FavouriteLabelError"));
 		}
 		showFavourite();
 	}
