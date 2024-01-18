@@ -80,6 +80,9 @@
                 <tooltip>
                     <Tooltip fx:id="departureLabelToolTip" styleClass="tooltip" text="Hier ziet u uw reisinformatie" />
                 </tooltip>
+            <font>
+               <Font size="36.0" />
+            </font>
             </Label>
             <Button fx:id="GOButton" layoutX="232.0" layoutY="614.0" mnemonicParsing="false" onAction="#onGOClick" prefHeight="92.0" prefWidth="230.0" style="-fx-border-color: #ff6600;" text="Plan Route">
                 <font>
@@ -172,21 +175,23 @@
                 <Image url="@../../Transport.jpg" />
             </image>
          </ImageView>
-         <ImageView fx:id="amenityLiftArrival" fitHeight="150.0" fitWidth="200.0" layoutX="727.0" layoutY="452.0" pickOnBounds="true" preserveRatio="true" >
+         <ImageView fx:id="amenityLiftArrival" fitHeight="150.0" fitWidth="200.0" layoutX="727.0" layoutY="452.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../Green_Light_Departure.png" />
             </image>
          </ImageView>
-         <ImageView fx:id="amenityStairMarkingsArrival" fitHeight="150.0" fitWidth="200.0" layoutX="942.0" layoutY="452.0" pickOnBounds="true" preserveRatio="true" >
+         <ImageView fx:id="amenityStairMarkingsArrival" fitHeight="150.0" fitWidth="200.0" layoutX="942.0" layoutY="452.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../Arrival_Finish_Flag.png" />
             </image>
          </ImageView>
-         <ImageView fx:id="amenityTactilePavementArrival" fitHeight="150.0" fitWidth="200.0" layoutX="1184.0" layoutY="452.0" pickOnBounds="true" preserveRatio="true" >
+         <ImageView fx:id="amenityTactilePavementArrival" fitHeight="150.0" fitWidth="200.0" layoutX="1184.0" layoutY="452.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../Transport.jpg" />
             </image>
          </ImageView>
+         <Button fx:id="amenitiesFavorites" layoutX="539.0" layoutY="408.0" mnemonicParsing="false" onAction="#onAmenitiesFavoritesClick" text="Favorieten/ voorzieningen" />
+         <Label fx:id="favoritesPlaceholder" layoutX="766.0" layoutY="290.0" prefHeight="268.0" prefWidth="442.0" style="-fx-border-color: #FF6600;" />
         </children>
     </Pane>
     <styleClass>

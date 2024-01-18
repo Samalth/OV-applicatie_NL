@@ -108,6 +108,10 @@ public class Controller {
 	private ImageView amenityStairMarkingsArrival;
 	@FXML
 	private ImageView amenityTactilePavementArrival;
+	@FXML
+	private Button amenitiesFavorites;
+	@FXML
+	private Label favoritesPlaceholder;
 
     private Train train = new Train("Trein", Arrays.asList(0, 15, 30, 45, 60));
     private Bus bus = new Bus("Bus", Arrays.asList(25, 55, 85));
@@ -152,6 +156,7 @@ public class Controller {
 		amenityLiftArrival.setVisible(false);
 		amenityStairMarkingsArrival.setVisible(false);
 		amenityTactilePavementArrival.setVisible(false);
+		favoritesPlaceholder.setVisible(false);
 
 	}
 
@@ -440,4 +445,9 @@ public class Controller {
 			amenityTactilePavementArrival.setVisible(false);
 		}
 	}
+	/**
+	public void onAmenitiesFavoritesClick(){
+		if
+	}
+	 */
 }
