@@ -85,7 +85,7 @@
                     <Tooltip fx:id="departureLabelToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="Hier ziet u uw reisinformatie" />
                 </tooltip>
             </Label>
-            <Label fx:id="favouriteLabel" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="740.0" layoutY="243.0" prefHeight="76.0" prefWidth="480.0" style="-fx-border-color: #FF6600;" textFill="#f50000" wrapText="true">
+            <Label fx:id="favouriteLabel" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="740.0" layoutY="243.0" prefHeight="76.0" prefWidth="480.0" style="-fx-border-color: #FF6600;" text="" textFill="#f50000" wrapText="true">
                 <tooltip>
                     <Tooltip fx:id="favouriteLabelToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="Dit zijn uw favorieten" />
                 </tooltip>
@@ -165,7 +165,7 @@
                     <Font name="Calibri" size="30.0" />
                 </font>
             </Text>
-         <Button fx:id="setFavourite" layoutX="232.0" layoutY="418.0" mnemonicParsing="false" onAction="#addFavourite" prefHeight="40.0" prefWidth="230.0" text="Sla op als favouriet">
+         <Button fx:id="setFavourite" layoutX="232.0" layoutY="418.0" mnemonicParsing="false" onAction="#addFavourite" prefHeight="40.0" prefWidth="230.0" text="Sla op als favoriet">
             <font>
                <Font name="Calibri" size="22.0" />
             </font></Button>
