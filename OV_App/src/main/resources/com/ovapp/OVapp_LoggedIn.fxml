@@ -169,23 +169,23 @@
             <font>
                <Font name="Calibri" size="22.0" />
             </font></Button>
-         <Button fx:id="favourite0" layoutX="738.0" layoutY="313.0" mnemonicParsing="false" onAction="#setFavourite0" prefHeight="40.0" prefWidth="480.0" text="0" visible="false">
+         <Button fx:id="favourite0" layoutX="738.0" layoutY="313.0" mnemonicParsing="false" onAction="#setFavourite0" prefHeight="40.0" prefWidth="480.0" visible="false">
             <font>
                <Font name="Calibri" size="22.0" />
             </font></Button>
-         <Button fx:id="favourite1" layoutX="738.0" layoutY="363.0" mnemonicParsing="false" onAction="#setFavourite1" prefHeight="40.0" prefWidth="480.0" text="0" visible="false">
+         <Button fx:id="favourite1" layoutX="738.0" layoutY="363.0" mnemonicParsing="false" onAction="#setFavourite1" prefHeight="40.0" prefWidth="480.0" visible="false">
             <font>
                <Font name="Calibri" size="22.0" />
             </font></Button>
-         <Button fx:id="favourite2" layoutX="738.0" layoutY="412.0" mnemonicParsing="false" onAction="#setFavourite2" prefHeight="40.0" prefWidth="480.0" text="0" visible="false">
+         <Button fx:id="favourite2" layoutX="738.0" layoutY="412.0" mnemonicParsing="false" onAction="#setFavourite2" prefHeight="40.0" prefWidth="480.0" visible="false">
             <font>
                <Font name="Calibri" size="22.0" />
             </font></Button>
-         <Button fx:id="favourite3" layoutX="738.0" layoutY="461.0" mnemonicParsing="false" onAction="#setFavourite3" prefHeight="40.0" prefWidth="480.0" text="0" visible="false">
+         <Button fx:id="favourite3" layoutX="738.0" layoutY="461.0" mnemonicParsing="false" onAction="#setFavourite3" prefHeight="40.0" prefWidth="480.0" visible="false">
             <font>
                <Font name="Calibri" size="22.0" />
             </font></Button>
-         <Button fx:id="favourite4" layoutX="738.0" layoutY="511.0" mnemonicParsing="false" onAction="#setFavourite4" prefHeight="40.0" prefWidth="480.0" text="0" visible="false">
+         <Button fx:id="favourite4" layoutX="738.0" layoutY="511.0" mnemonicParsing="false" onAction="#setFavourite4" prefHeight="40.0" prefWidth="480.0" visible="false">
             <font>
                <Font name="Calibri" size="22.0" />
             </font></Button>
