@@ -179,7 +179,6 @@ public class LoggedInController {
 	protected void onShowFavouriteVisible() {
 		isFavouriteVisible = !isFavouriteVisible;
 		favouriteLabel.setVisible(isFavouriteVisible);
-
 		favourite0.setVisible(isFavouriteVisible);
 		favourite1.setVisible(isFavouriteVisible);
 		favourite2.setVisible(isFavouriteVisible);
