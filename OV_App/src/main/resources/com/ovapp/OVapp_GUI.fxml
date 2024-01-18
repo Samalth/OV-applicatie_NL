@@ -27,7 +27,7 @@
                     <Tooltip fx:id="clockLabelToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="de huidige tijd" />
                 </tooltip>
             </Label>
-            <Button fx:id="logInButton" layoutX="1021.0" layoutY="12.0" mnemonicParsing="false" onAction="#onLogInButtonClick" prefHeight="52.0" prefWidth="202.0" style="-fx-border-color: #FF6600;" text="Inloggen">
+            <Button fx:id="logInButton" layoutX="1098.0" layoutY="12.0" mnemonicParsing="false" onAction="#onLogInButtonClick" prefHeight="52.0" prefWidth="125.0" style="-fx-border-color: #FF6600;" text="Inloggen">
                 <font>
                     <Font name="Calibri" size="22.0" />
                 </font>
@@ -111,7 +111,7 @@
             </Spinner>
             <Spinner fx:id="departureTimeMinutes" layoutX="370.0" layoutY="309.0" max="59" min="00" prefHeight="24.0" prefWidth="68.0">
                 <tooltip>
-                    <Tooltip fx:id="departureTimeMinutesToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14; "  text="Klik hier om de minuten van vertrek te selecteren." />
+                    <Tooltip fx:id="departureTimeMinutesToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14; " text="Klik hier om de minuten van vertrek te selecteren." />
                 </tooltip>
             </Spinner>
             <ComboBox fx:id="transportComboBox" layoutX="232.0" layoutY="224.0" prefHeight="41.0" prefWidth="230.0" style="-fx-border-color: #ff6600;">
