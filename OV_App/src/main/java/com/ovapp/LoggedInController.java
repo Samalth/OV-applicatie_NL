@@ -132,7 +132,6 @@ public class LoggedInController {
 		cities.add(new City("IJsselstein", Arrays.asList("geleidenstroken", "het hele station is gelijkvloers")));
 		cities.add(new City("Nieuwegein", Arrays.asList("liften", "geleidenstroken")));
 		cities.add(new City("Utrecht", Arrays.asList("liften", "geleidenstroken", "trapmarkeringen")));
-
 		return cities;
 	}
 
@@ -302,7 +301,7 @@ public class LoggedInController {
 		departureTimeMinutesToolTip.setText(bundle.getString("DepartureTimeMinutesToolTiptxt"));
 		modeToolTip.setText(bundle.getString("ModeToolTiptxt"));
 		transportComboBoxToolTip.setText(bundle.getString("TransportComboBoxToolTiptxt"));
-		favouriteLabelToolTip.setText(bundle.getString("TravelHistoryLabelToolTiptxt"));
+		favouriteLabelToolTip.setText(bundle.getString("favouriteTooltiptxt"));
 		showTravelHistoryButtonToolTip.setText(bundle.getString("ShowTravelHistoryButtonToolTiptxt"));
 		dateLabelToolTip.setText(bundle.getString("DateLabelToolTiptxt"));
 	}
