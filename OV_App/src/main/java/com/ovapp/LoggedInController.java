@@ -263,11 +263,11 @@ public class LoggedInController  {
         Locale locale = new Locale(newLanguage);
         bundle = ResourceBundle.getBundle("Messages", locale);
 
-        ArrivalText.setText(bundle.getString("Destinationtxt"));
-        DepartureText.setText(bundle.getString("Departuretxt"));
-        DepartureDateText.setText(bundle.getString("DepartureDatetxt"));
-        DepartureTimeText.setText(bundle.getString("DepartureTimetxt"));
-        MeansOfTransportText.setText(bundle.getString("MeansOfTransporttxt"));
+        //ArrivalText.setText(bundle.getString("Destinationtxt"));
+        //DepartureText.setText(bundle.getString("Departuretxt"));
+        //DepartureDateText.setText(bundle.getString("DepartureDatetxt"));
+        //DepartureTimeText.setText(bundle.getString("DepartureTimetxt"));
+        //MeansOfTransportText.setText(bundle.getString("MeansOfTransporttxt"));
 
         GOButton.setText(bundle.getString("RouteButtontxt"));
         logOutButton.setText(bundle.getString("LogOutButtontxt"));
