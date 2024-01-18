@@ -296,7 +296,6 @@ public class Controller {
 
     private boolean isLightMode=true ;
 
-
     public void onChangeModeClick(ActionEvent event){
         isLightMode = !isLightMode;
 
@@ -347,15 +346,6 @@ public class Controller {
 		return FXCollections.observableArrayList(train.getTransportName(), bus.getTransportName());
 	}
 
-	// Unused method still a work in progress
-	private List<String> NEWgetTransport() {
-		try {
-			List<RouteData> routeDataList = data.getRouteData();
-			return routeDataList.stream().map(RouteData::getTransport).toList();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-	}
     private List<String> determineAmenities(ArrayList<City> cities){
         List<String> amenities = new ArrayList<>();
         int i = 0;

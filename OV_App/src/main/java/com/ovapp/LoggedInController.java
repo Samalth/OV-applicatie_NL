@@ -22,470 +22,514 @@ import java.text.*;
 import java.time.format.DateTimeFormatter;
 
 public class LoggedInController {
-    private final Data data = new Data();
+	private final Data data = new Data();
+	Integer favouriteID;
+	@FXML
+	private Button logOutButton;
+	@FXML
+	private Button GOButton;
+	@FXML
+	private Button showFavouriteButton;
+	@FXML
+	private Button setFavourite;
+	@FXML
+	private Button favourite0;
+	@FXML
+	private Button favourite1;
+	@FXML
+	private Button favourite2;
+	@FXML
+	private Button favourite3;
+	@FXML
+	private Button favourite4;
+	@FXML
+	private Text DepartureText;
+	@FXML
+	private Text ArrivalText;
+	@FXML
+	private Text MeansOfTransportText;
+	@FXML
+	private Text DepartureDateText;
+	@FXML
+	private Text DepartureTimeText;
+	@FXML
+	private Tooltip clockLabelToolTip;
+	@FXML
+	private Tooltip departureLabelToolTip;
+	@FXML
+	private Tooltip logOutButtonToolTip;
+	@FXML
+	private Tooltip GOButtonToolTip;
+	@FXML
+	private Tooltip departureCityComboBoxToolTip;
+	@FXML
+	private Tooltip arrivalCityComboBoxToolTip;
+	@FXML
+	private Tooltip departureDatePickerTooltip;
+	@FXML
+	private Tooltip departureTimeHoursToolTip;
+	@FXML
+	private Tooltip departureTimeMinutesToolTip;
+	@FXML
+	private Tooltip modeToolTip;
+	@FXML
+	private Tooltip transportComboBoxToolTip;
+	@FXML
+	private Tooltip favouriteLabelToolTip;
+	@FXML
+	private Tooltip dateLabelToolTip;
+	@FXML
+	private Tooltip showTravelHistoryButtonToolTip;
+	@FXML
+	private VBox parent;
+	@FXML
+	private Button switchButton;
+	@FXML
+	private ComboBox<String> departureCityComboBox;
+	@FXML
+	private ComboBox<String> arrivalCityComboBox;
+	@FXML
+	private ComboBox<String> transportComboBox;
+	@FXML
+	private DatePicker departureDatePicker;
+	@FXML
+	private ImageView imgMode;
+	@FXML
+	private Spinner<Integer> departureTimeHours;
+	@FXML
+	private Spinner<Integer> departureTimeMinutes;
+	@FXML
+	private Label dateLabel;
+	@FXML
+	private Label clockLabel;
+	@FXML
+	private Label departureLabel;
+	@FXML
+	private Label favouriteLabel;
+	private boolean isFavouriteVisible = false;
+	@FXML
+	private String departureCity;
+	@FXML
+	private String arrivalCity;
+	@FXML
+	private LocalDate DepartureDate;
+	private String transport;
+	private List<String> favouriteList = new ArrayList<>();
+	private List<String> displayFavouriteList = new ArrayList<>();
+	private Train train = new Train("Trein", Arrays.asList(0, 15, 30, 45, 60));
+	private Bus bus = new Bus("Bus", Arrays.asList(25, 55, 85));
+	private ResourceBundle bundle;
+	private City currentCity;
+	private boolean isLightMode = true;
 
-    @FXML
-    private Button logOutButton;
-    @FXML
-    private Button GOButton;
-    @FXML
-    private Button showTravelHistoryButton;
-    @FXML
-    private Button setFavourite;
-    @FXML
-    private Button favourite0;
-    @FXML
-    private Button favourite1;
-    @FXML
-    private Button favourite2;
-    @FXML
-    private Button favourite3;
-    @FXML
-    private Button favourite4;
+	public ArrayList<City> getCities() {
+		ArrayList<City> cities = new ArrayList<>();
+		cities.add(new City("Amersfoort", Arrays.asList("liften", "geleidenstroken")));
+		cities.add(new City("Amsterdam", Arrays.asList("liften", "geleidenstroken", "trapmarkeringen")));
+		cities.add(new City("Arnhem", Arrays.asList("geleidenstroken", "trapmarkeringen")));
+		cities.add(new City("Den Bosch", Arrays.asList("liften", "trapmarkeringen")));
+		cities.add(new City("Den Haag", Arrays.asList("geleidenstroken", "het hele station is gelijkvloers")));
+		cities.add(new City("IJsselstein", Arrays.asList("geleidenstroken", "het hele station is gelijkvloers")));
+		cities.add(new City("Nieuwegein", Arrays.asList("liften", "geleidenstroken")));
+		cities.add(new City("Utrecht", Arrays.asList("liften", "geleidenstroken", "trapmarkeringen")));
 
-    @FXML
-    private Text DepartureText;
-    @FXML
-    private Text ArrivalText;
-    @FXML
-    private Text MeansOfTransportText;
-    @FXML
-    private Text DepartureDateText;
-    @FXML
-    private Text DepartureTimeText;
+		return cities;
+	}
 
-    @FXML
-    private Tooltip clockLabelToolTip;
-    @FXML
-    private Tooltip departureLabelToolTip;
-    @FXML
-    private Tooltip logOutButtonToolTip;
-    @FXML
-    private Tooltip GOButtonToolTip;
-    @FXML
-    private Tooltip departureCityComboBoxToolTip;
-    @FXML
-    private Tooltip arrivalCityComboBoxToolTip;
-    @FXML
-    private Tooltip departureDatePickerTooltip;
-    @FXML
-    private Tooltip departureTimeHoursToolTip;
-    @FXML
-    private Tooltip departureTimeMinutesToolTip;
-    @FXML
-    private Tooltip modeToolTip;
-    @FXML
-    private Tooltip transportComboBoxToolTip;
-    @FXML
-    private Tooltip travelHistoryLabelToolTip;
-    @FXML
-    private Tooltip dateLabelToolTip;
-    @FXML
-    private Tooltip showTravelHistoryButtonToolTip;
+	public void initialize() {
+		ObservableList<String> transport = getTransport();
+		List<String> steden = getStation();
+		departureCityComboBox.getItems().addAll(steden);
+		arrivalCityComboBox.getItems().addAll(steden);
+		transportComboBox.getItems().addAll(transport);
+		Timer timer = new Timer(true);
+		timer.scheduleAtFixedRate(new TimerTask() {
+			@Override
+			public void run() {
+				updateClock();
+				updateDate();
+			}
+		}, 0, 1000);
 
-    @FXML
-    private VBox parent;
+		favouriteLabel.setVisible(false);
+		switchLanguage("Nederlands");
+		setLightMode();
+	}
 
+	public void onLogOutButtonClick() {
+		openOvappLogOut();
+	}
 
-    @FXML
-    private Button switchButton;
-    @FXML
-    private ComboBox<String> departureCityComboBox;
-    @FXML
-    private ComboBox<String> arrivalCityComboBox;
-    @FXML
-    private ComboBox<String> transportComboBox;
+	private void openOvappLogOut() {
+		try {
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("OVapp_GUI.fxml"));
+			Parent root = fxmlLoader.load();
+			Scene scene = new Scene(root);
 
-    @FXML
-    private DatePicker departureDatePicker;
+			Stage currentStage = (Stage) logOutButton.getScene().getWindow();
+			currentStage.setScene(scene);
+			currentStage.setTitle("Uitgelogd scherm");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-    @FXML
-    private ImageView imgMode;
+	}
 
-    @FXML
-    private Spinner<Integer> departureTimeHours;
-    @FXML
-    private Spinner<Integer> departureTimeMinutes;
+	@FXML
+	protected void onShowFavouriteVisible() {
+		isFavouriteVisible = !isFavouriteVisible;
+		favouriteLabel.setVisible(isFavouriteVisible);
 
-    @FXML
-    private Label dateLabel;
-    @FXML
-    private Label clockLabel;
-    @FXML
-    private Label departureLabel;
-    @FXML
-    private Label favoriteLabel;
-    private boolean isHistoryVisible = false;
+		favourite0.setVisible(isFavouriteVisible);
+		favourite1.setVisible(isFavouriteVisible);
+		favourite2.setVisible(isFavouriteVisible);
+		favourite3.setVisible(isFavouriteVisible);
+		favourite4.setVisible(isFavouriteVisible);
 
-    @FXML
-    private String departureCity;
-    @FXML
-    private String arrivalCity;
-    @FXML
-    private LocalDate DepartureDate;
-    private String transport;
+		if (isFavouriteVisible) {
+			System.out.println("Favorieten zichtbaar");
+		} else {
+			System.out.println("Favorieten verborgen");
+		}
+	}
 
-    private List<String> favouriteList = new ArrayList<>();
-    private List<String> displayFavouriteList = new ArrayList<>();
-    private Train train = new Train("Trein", Arrays.asList(0, 15, 30, 45, 60));
-    private Bus bus = new Bus("Bus", Arrays.asList(25, 55, 85));
-    private ResourceBundle bundle;
-    private City currentCity;
-    private boolean isLightMode = true;
+	@FXML
+	public void onSwitchButtonClick(ActionEvent actionEvent) {
+		String temp = departureCityComboBox.getValue();
+		departureCityComboBox.setValue(arrivalCityComboBox.getValue());
+		arrivalCityComboBox.setValue(temp);
+	}
 
-    Integer favouriteID;
+	@FXML
+	protected void onGOClick() {
+		departureCity = departureCityComboBox.getValue();
+		arrivalCity = arrivalCityComboBox.getValue();
+		DepartureDate = departureDatePicker.getValue();
+		transport = transportComboBox.getValue();
+		int departureHours = departureTimeHours.getValue();
+		int departureMinutes = departureTimeMinutes.getValue();
+		ArrayList<String> departureTime = new ArrayList<>();
+		ArrayList<City> cities = getCities();
+		String departureAmenities = "";
+		String arrivalAmenities = "";
+		try {
+			List<String> amenities = determineAmenities(cities);
+			departureAmenities = amenities.get(0);
+			arrivalAmenities = amenities.get(1);
+		} catch (NullPointerException e) {
+			departureLabel.setText("Selecteer alstublieft een vertrekplaats, aankomstplaats en vervoermiddel.");
+		}
+		try {
+			if (transport.equals("Trein")) {
+				departureTime = train.getDepartureTime(train.getTransportSchedule(), departureHours, departureMinutes);
+			} else if (transport.equals("Bus")) {
+				departureTime = bus.getDepartureTime(bus.getTransportSchedule(), departureHours, departureMinutes);
+			}
+		} catch (NullPointerException e) {
+		}
+		if (departureCity == null || arrivalCity == null || transport == null) {
+			departureLabel.setText("Selecteer alstublieft een vertrekplaats, aankomstplaats en vervoermiddel.");
+		} else if (departureCity.equals(arrivalCity)) {
+			departureLabel.setText("De vertrekplaats en aankomstplaats kunnen niet hetzelfde zijn.");
+		} else {
+			LocalDate currentDate = LocalDate.now();
+			String formattedCurrentDate = currentDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+			String formattedCurrentTime = new SimpleDateFormat("HH:mm:ss").format(new Date());
 
-    public ArrayList<City> getCities() {
-        ArrayList<City> cities = new ArrayList<>();
-        cities.add(new City("Amersfoort", Arrays.asList("liften", "geleidenstroken")));
-        cities.add(new City("Amsterdam", Arrays.asList("liften", "geleidenstroken", "trapmarkeringen")));
-        cities.add(new City("Arnhem", Arrays.asList("geleidenstroken", "trapmarkeringen")));
-        cities.add(new City("Den Bosch", Arrays.asList("liften", "trapmarkeringen")));
-        cities.add(new City("Den Haag", Arrays.asList("geleidenstroken", "het hele station is gelijkvloers")));
-        cities.add(new City("IJsselstein", Arrays.asList("geleidenstroken", "het hele station is gelijkvloers")));
-        cities.add(new City("Nieuwegein", Arrays.asList("liften", "geleidenstroken")));
-        cities.add(new City("Utrecht", Arrays.asList("liften", "geleidenstroken", "trapmarkeringen")));
+			String formattedDate = (DepartureDate != null)
+					? DepartureDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))
+					: currentDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+			String departureLabelInfo = String.format(
+					"Van %s naar %s om %s met de %s op %s. De voorzieningen op station %s zijn %s " +
+							"De voorzieningen op station %s zijn %s", departureCity, arrivalCity
+					, departureTime.get(0), transport.toLowerCase(), formattedDate,
+					departureCity, departureAmenities, arrivalCity, arrivalAmenities);
+			departureLabel.setText(departureLabelInfo);
+		}
+	}
 
-        return cities;
-    }
+	public void onDepartureCityComboBoxClick() {
+		updateCityComboBox(departureCityComboBox, arrivalCityComboBox);
+	}
 
-    public void initialize() {
-        ObservableList<String> transport = getTransport();
-        List<String> steden = getStation();
-        departureCityComboBox.getItems().addAll(steden);
-        arrivalCityComboBox.getItems().addAll(steden);
-        transportComboBox.getItems().addAll(transport);
-        Timer timer = new Timer(true);
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                updateClock();
-                updateDate();
-            }
-        }, 0, 1000);
+	public void onArrivalCityComboBoxClick() {
+		updateCityComboBox(arrivalCityComboBox, departureCityComboBox);
+	}
 
-        favoriteLabel.setVisible(false);
-        switchLanguage("Nederlands");
-        setLightMode();
-    }
+	private void updateCityComboBox(ComboBox<String> sourceComboBox, ComboBox<String> otherComboBox) {
+		String selectedCity = sourceComboBox.getValue();
 
-    public void onLogOutButtonClick() {
-        openOvappLogOut();
-    }
+		if (selectedCity != null) {
+			otherComboBox.getItems().remove(selectedCity);
 
-    private void openOvappLogOut() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("OVapp_GUI.fxml"));
-            Parent root = fxmlLoader.load();
-            Scene scene = new Scene(root);
+			sourceComboBox.setOnAction(event -> {
+				otherComboBox.getItems().add(selectedCity);
+				sourceComboBox.setOnAction(null);
+			});
+		}
+	}
 
-            Stage currentStage = (Stage) logOutButton.getScene().getWindow();
-            currentStage.setScene(scene);
-            currentStage.setTitle("Uitgelogd scherm");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+	private List<String> getLanguages() {
+		return Arrays.asList("Nederlands", "English", "Deutsch");
+	}
 
-    }
+	public void switchLanguage(String newLanguage) {
+		Locale locale = new Locale(newLanguage);
+		bundle = ResourceBundle.getBundle("Messages", locale);
 
-    @FXML
-    protected void onShowTravelHistoryButtonClick() {
-        isHistoryVisible = !isHistoryVisible;
+		ArrivalText.setText(bundle.getString("Destinationtxt"));
+		DepartureText.setText(bundle.getString("Departuretxt"));
+		DepartureDateText.setText(bundle.getString("DepartureDatetxt"));
+		DepartureTimeText.setText(bundle.getString("DepartureTimetxt"));
+		MeansOfTransportText.setText(bundle.getString("MeansOfTransporttxt"));
 
-        favoriteLabel.setVisible(isHistoryVisible);
+		GOButton.setText(bundle.getString("RouteButtontxt"));
+		logOutButton.setText(bundle.getString("LogOutButtontxt"));
+		showFavouriteButton.setText(bundle.getString("ShowFavouriteButtontxt"));
 
-        if (isHistoryVisible) {
-            System.out.println("Reisgeschiedenis zichtbaar");
-        } else {
-            System.out.println("Reisgeschiedenis verborgen");
-        }
-    }
+		arrivalCityComboBox.setPromptText(bundle.getString("ArrivalComboBoxPromt"));
+		departureCityComboBox.setPromptText(bundle.getString("DepartureComboBoxPromt"));
+		departureDatePicker.setPromptText(bundle.getString("DepartureDatePickerPrompt"));
+		transportComboBox.setPromptText(bundle.getString("MeansOfTransportComboBoxPromt"));
 
-    @FXML
-    public void onSwitchButtonClick(ActionEvent actionEvent) {
-        String temp = departureCityComboBox.getValue();
-        departureCityComboBox.setValue(arrivalCityComboBox.getValue());
-        arrivalCityComboBox.setValue(temp);
-    }
+		arrivalCityComboBoxToolTip.setText(bundle.getString("ArrivalCityComboBoxToolTiptxt"));
+		clockLabelToolTip.setText(bundle.getString("ClockLabelToolTiptxt"));
+		departureLabelToolTip.setText(bundle.getString("DepartureLabelToolTiptxt"));
+		logOutButtonToolTip.setText(bundle.getString("LogOutButtonToolTiptxt"));
+		GOButtonToolTip.setText(bundle.getString("GOButtonToolTiptxt"));
+		departureCityComboBoxToolTip.setText(bundle.getString("DepartureCityComboBoxToolTiptxt"));
+		departureDatePickerTooltip.setText(bundle.getString("DepartureDatePickerTooltiptxt"));
+		departureTimeHoursToolTip.setText(bundle.getString("DepartureTimeHoursToolTiptxt"));
+		departureTimeMinutesToolTip.setText(bundle.getString("DepartureTimeMinutesToolTiptxt"));
+		modeToolTip.setText(bundle.getString("ModeToolTiptxt"));
+		transportComboBoxToolTip.setText(bundle.getString("TransportComboBoxToolTiptxt"));
+		favouriteLabelToolTip.setText(bundle.getString("TravelHistoryLabelToolTiptxt"));
+		showTravelHistoryButtonToolTip.setText(bundle.getString("ShowTravelHistoryButtonToolTiptxt"));
+		dateLabelToolTip.setText(bundle.getString("DateLabelToolTiptxt"));
+	}
 
-    @FXML
-    protected void onGOClick() {
-        departureCity = departureCityComboBox.getValue();
-        arrivalCity = arrivalCityComboBox.getValue();
-        DepartureDate = departureDatePicker.getValue();
-        transport = transportComboBox.getValue();
-        int departureHours = departureTimeHours.getValue();
-        int departureMinutes = departureTimeMinutes.getValue();
-        ArrayList<String> departureTime = new ArrayList<>();
-        ArrayList<City> cities = getCities();
-        String departureAmenities = "";
-        String arrivalAmenities = "";
-        try {
-            List<String> amenities = determineAmenities(cities);
-            departureAmenities = amenities.get(0);
-            arrivalAmenities = amenities.get(1);
-        } catch (NullPointerException e) {
-            departureLabel.setText("Selecteer alstublieft een vertrekplaats, aankomstplaats en vervoermiddel.");
-        }
-        try {
-            if (transport.equals("Trein")) {
-                departureTime = train.getDepartureTime(train.getTransportSchedule(), departureHours, departureMinutes);
-            } else if (transport.equals("Bus")) {
-                departureTime = bus.getDepartureTime(bus.getTransportSchedule(), departureHours, departureMinutes);
-            }
-        } catch (NullPointerException e) {
-        }
-        if (departureCity == null || arrivalCity == null || transport == null) {
-            departureLabel.setText("Selecteer alstublieft een vertrekplaats, aankomstplaats en vervoermiddel.");
-        } else if (departureCity.equals(arrivalCity)) {
-            departureLabel.setText("De vertrekplaats en aankomstplaats kunnen niet hetzelfde zijn.");
-        } else {
-            LocalDate currentDate = LocalDate.now();
-            String formattedCurrentDate = currentDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-            String formattedCurrentTime = new SimpleDateFormat("HH:mm:ss").format(new Date());
+	public void onChangeModeClick(ActionEvent event) {
+		isLightMode = !isLightMode;
 
-            String formattedDate = (DepartureDate != null)
-                    ? DepartureDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))
-                    : currentDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-            String departureLabelInfo = String.format(
-                    "Van %s naar %s om %s met de %s op %s. De voorzieningen op station %s zijn %s " +
-                            "De voorzieningen op station %s zijn %s", departureCity, arrivalCity
-                    , departureTime.get(0), transport.toLowerCase(), formattedDate,
-                    departureCity, departureAmenities, arrivalCity, arrivalAmenities);
-            departureLabel.setText(departureLabelInfo);
-        }
-    }
+		parent.getStylesheets().remove("darkmode.css");
+		parent.getStylesheets().remove("lightmode.css");
 
-    public void onDepartureCityComboBoxClick() {
-        updateCityComboBox(departureCityComboBox, arrivalCityComboBox);
-    }
+		if (isLightMode) {
+			setLightMode();
+		} else {
+			setDarkMode();
+		}
+	}
 
-    public void onArrivalCityComboBoxClick() {
-        updateCityComboBox(arrivalCityComboBox, departureCityComboBox);
-    }
+	private void setLightMode() {
+		parent.getStylesheets().remove("darkmode.css");
+		parent.getStylesheets().add("lightmode.css");
+		Image image = new Image("moon.png");
+		imgMode.setImage(image);
+	}
 
-    private void updateCityComboBox(ComboBox<String> sourceComboBox, ComboBox<String> otherComboBox) {
-        String selectedCity = sourceComboBox.getValue();
+	private void setDarkMode() {
+		parent.getStylesheets().remove("lightmode.css");
+		parent.getStylesheets().add("darkmode.css");
+		Image image = new Image("sun.png");
+		imgMode.setImage(image);
+	}
 
-        if (selectedCity != null) {
-            otherComboBox.getItems().remove(selectedCity);
+	public void onDuLanguageButtonClick() {
+		switchLanguage("Deutsch");
+	}
 
-            sourceComboBox.setOnAction(event -> {
-                otherComboBox.getItems().add(selectedCity);
-                sourceComboBox.setOnAction(null);
-            });
-        }
-    }
+	public void onNlLanguageButtonClick() {
+		switchLanguage("Nederlands");
+	}
 
-    private List<String> getLanguages() {
-        return Arrays.asList("Nederlands", "English", "Deutsch");
-    }
+	public void onEnLanguageButtonClick() {
+		switchLanguage("English");
+	}
 
-    public void switchLanguage(String newLanguage) {
-        Locale locale = new Locale(newLanguage);
-        bundle = ResourceBundle.getBundle("Messages", locale);
+	@FXML
+	private void addFavourite(ActionEvent actionEvent) {
+		departureCity = departureCityComboBox.getValue();
+		arrivalCity = arrivalCityComboBox.getValue();
+		transport = transportComboBox.getValue();
 
-        ArrivalText.setText(bundle.getString("Destinationtxt"));
-        DepartureText.setText(bundle.getString("Departuretxt"));
-        DepartureDateText.setText(bundle.getString("DepartureDatetxt"));
-        DepartureTimeText.setText(bundle.getString("DepartureTimetxt"));
-        MeansOfTransportText.setText(bundle.getString("MeansOfTransporttxt"));
+		if (departureCity == null || arrivalCity == null || transport == null) {
+			favouriteLabel.setText("   U heeft nog niet alle reisinformatie ingevuld.");
+		} else {
+			String addFavourite = String.format("%s,%s,%s,"
+					, departureCity, arrivalCity, transport);
+			favouriteList.add(addFavourite);
+			{
+				if (favouriteList.size() > 5) {
+					favouriteList.remove(0);
+				}
+			}
+			displayFavourite();
+		}
+	}
 
-        GOButton.setText(bundle.getString("RouteButtontxt"));
-        logOutButton.setText(bundle.getString("LogOutButtontxt"));
-        showTravelHistoryButton.setText(bundle.getString("ShowTravelHistoryButtontxt"));
+	private void displayFavourite() {
+		try {
+			String[] favouriteString = favouriteList.get(favouriteList.size() - 1).split(",");
+			String departureString = favouriteString[0];
+			String arrivalString = favouriteString[1];
+			String transportString = favouriteString[2];
 
-        arrivalCityComboBox.setPromptText(bundle.getString("ArrivalComboBoxPromt"));
-        departureCityComboBox.setPromptText(bundle.getString("DepartureComboBoxPromt"));
-        departureDatePicker.setPromptText(bundle.getString("DepartureDatePickerPrompt"));
-        transportComboBox.setPromptText(bundle.getString("MeansOfTransportComboBoxPromt"));
+			String displayFavourite = String.format("   Van %s naar %s met de %s"
+					, departureString, arrivalString, transportString.toLowerCase());
+			displayFavouriteList.add(displayFavourite);
+			{
+				if (displayFavouriteList.size() > 5) {
+					displayFavouriteList.remove(0);
+				}
+			}
+		} catch (NullPointerException e) {
+			favouriteLabel.setText("   U heeft nog niet alle reisinformatie ingevuld.");
+		}
+		showFavourite();
+	}
 
-        arrivalCityComboBoxToolTip.setText(bundle.getString("ArrivalCityComboBoxToolTiptxt"));
-        clockLabelToolTip.setText(bundle.getString("ClockLabelToolTiptxt"));
-        departureLabelToolTip.setText(bundle.getString("DepartureLabelToolTiptxt"));
-        logOutButtonToolTip.setText(bundle.getString("LogOutButtonToolTiptxt"));
-        GOButtonToolTip.setText(bundle.getString("GOButtonToolTiptxt"));
-        departureCityComboBoxToolTip.setText(bundle.getString("DepartureCityComboBoxToolTiptxt"));
-        departureDatePickerTooltip.setText(bundle.getString("DepartureDatePickerTooltiptxt"));
-        departureTimeHoursToolTip.setText(bundle.getString("DepartureTimeHoursToolTiptxt"));
-        departureTimeMinutesToolTip.setText(bundle.getString("DepartureTimeMinutesToolTiptxt"));
-        modeToolTip.setText(bundle.getString("ModeToolTiptxt"));
-        transportComboBoxToolTip.setText(bundle.getString("TransportComboBoxToolTiptxt"));
-        travelHistoryLabelToolTip.setText(bundle.getString("TravelHistoryLabelToolTiptxt"));
-        showTravelHistoryButtonToolTip.setText(bundle.getString("ShowTravelHistoryButtonToolTiptxt"));
-        dateLabelToolTip.setText(bundle.getString("DateLabelToolTiptxt"));
-    }
+	private void showFavourite() {
+		for (int i = 0; i < displayFavouriteList.size(); i++) {
+			switch (i) {
+				case 0 -> {
+					favourite0.setVisible(true);
+					favourite0.setText(displayFavouriteList.get(i));
+				}
+				case 1 -> {
+					favourite1.setVisible(true);
+					favourite1.setText(displayFavouriteList.get(i));
+				}
+				case 2 -> {
+					favourite2.setVisible(true);
+					favourite2.setText(displayFavouriteList.get(i));
+				}
+				case 3 -> {
+					favourite3.setVisible(true);
+					favourite3.setText(displayFavouriteList.get(i));
+				}
+				case 4 -> {
+					favourite4.setVisible(true);
+					favourite4.setText(displayFavouriteList.get(i));
+				}
+			}
+		}
+	}
 
-    public void onChangeModeClick(ActionEvent event) {
-        isLightMode = !isLightMode;
+	@FXML
+	private void setFavourite0(ActionEvent actionEvent) {
+		favouriteID = 0;
+		useFavourite(actionEvent);
+	}
 
-        parent.getStylesheets().remove("darkmode.css");
-        parent.getStylesheets().remove("lightmode.css");
+	@FXML
+	private void setFavourite1(ActionEvent actionEvent) {
+		favouriteID = 1;
+		useFavourite(actionEvent);
+	}
 
-        if (isLightMode) {
-            setLightMode();
-        } else {
-            setDarkMode();
-        }
-    }
+	@FXML
+	private void setFavourite2(ActionEvent actionEvent) {
+		favouriteID = 2;
+		useFavourite(actionEvent);
+	}
 
-    private void setLightMode() {
-        parent.getStylesheets().remove("darkmode.css");
-        parent.getStylesheets().add("lightmode.css");
-        Image image = new Image("moon.png");
-        imgMode.setImage(image);
-    }
+	@FXML
+	private void setFavourite3(ActionEvent actionEvent) {
+		favouriteID = 3;
+		useFavourite(actionEvent);
+	}
 
-    private void setDarkMode() {
-        parent.getStylesheets().remove("lightmode.css");
-        parent.getStylesheets().add("darkmode.css");
-        Image image = new Image("sun.png");
-        imgMode.setImage(image);
-    }
+	@FXML
+	private void setFavourite4(ActionEvent actionEvent) {
+		favouriteID = 4;
+		useFavourite(actionEvent);
+	}
 
-    public void onDuLanguageButtonClick() {
-        switchLanguage("Deutsch");
-    }
+	@FXML
+	private void useFavourite(ActionEvent actionEvent) {
+		String[] favourite = favouriteList.get(favouriteID).split(",");
+		departureCityComboBox.setValue(favourite[0]);
+		arrivalCityComboBox.setValue(favourite[1]);
+		transportComboBox.setValue(favourite[2]);
+	}
 
-    public void onNlLanguageButtonClick() {
-        switchLanguage("Nederlands");
-    }
+	private void updateClock() {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("      HH:mm");
+		String formattedTime = dateFormat.format(new Date());
 
-    public void onEnLanguageButtonClick() {
-        switchLanguage("English");
-    }
+		Platform.runLater(() -> {
+			clockLabel.setText(formattedTime);
+		});
+	}
 
-    @FXML
-    private void addFavourite(ActionEvent actionEvent) {
-        departureCity = departureCityComboBox.getValue();
-        arrivalCity = arrivalCityComboBox.getValue();
-        transport = transportComboBox.getValue();
-        String addFavourite = String.format("%s,%s,%s,"
-                , departureCity, arrivalCity, transport);
+	private void updateDate() {
+		SimpleDateFormat dateFormat = new SimpleDateFormat(" dd-MM-yyyy");
+		String formattedDate = dateFormat.format(new Date());
 
-        favouriteList.add(addFavourite);
-        displayFavourite();
-    }
+		Platform.runLater(() -> {
+			dateLabel.setText(formattedDate);
+		});
+	}
 
-    private void displayFavourite() {
-        try {
-            String[] favouriteString = favouriteList.get(favouriteList.size() - 1).split(",");
-            String departureString = favouriteString[0];
-            String arrivalString = favouriteString[1];
-            String transportString = favouriteString[2];
+	private List<String> getStation() {
+		try {
+			List<RouteData> routeDataList = data.getRouteData();
+			return routeDataList.stream().map(RouteData::getStation).toList();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
-            String displayFavourite = String.format("   Van %s naar %s met de %s"
-                    , departureString, arrivalString, transportString.toLowerCase());
-            displayFavouriteList.add(displayFavourite);
+	private ObservableList<String> getTransport() {
+		return FXCollections.observableArrayList(train.getTransportName(), bus.getTransportName());
+	}
 
-            StringBuilder favourite = new StringBuilder();
-            for (String entry : displayFavouriteList) {
-                favourite.append(entry).append("\n\n");
-            }
-            favoriteLabel.setText(favourite.toString());
-
-        } catch (NullPointerException e) {
-            favoriteLabel.setText("   U nog niet alle reisinformatie ingevuld.");
-        }
-    }
-
-    @FXML
-    private void setFavourite(ActionEvent actionEvent) {
-        favourite0.setOnAction(e -> favouriteID = 0);
-        favourite1.setOnAction(e -> favouriteID = 1);
-        favourite2.setOnAction(e -> favouriteID = 2);
-        favourite3.setOnAction(e -> favouriteID = 3);
-        favourite4.setOnAction(e -> favouriteID = 4);
-    }
-
-    @FXML
-    private void useFavourite(ActionEvent actionEvent) {
-        if (favouriteList.isEmpty()) {
-            favoriteLabel.setText("   U heeft nog geen favorieten opgeslagen.");
-        } else {
-            String[] favourite = favouriteList.get(favouriteID).split(",");
-            departureCityComboBox.setValue(favourite[0]);
-            arrivalCityComboBox.setValue(favourite[1]);
-            transportComboBox.setValue(favourite[2]);
-        }
-    }
-
-    private void updateClock() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("      HH:mm");
-        String formattedTime = dateFormat.format(new Date());
-
-        Platform.runLater(() -> {
-            clockLabel.setText(formattedTime);
-        });
-    }
-
-    private void updateDate() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(" dd-MM-yyyy");
-        String formattedDate = dateFormat.format(new Date());
-
-        Platform.runLater(() -> {
-            dateLabel.setText(formattedDate);
-        });
-    }
-
-    private List<String> getStation() {
-        try {
-            List<RouteData> routeDataList = data.getRouteData();
-            return routeDataList.stream().map(RouteData::getStation).toList();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private ObservableList<String> getTransport() {
-        return FXCollections.observableArrayList(train.getTransportName(), bus.getTransportName());
-    }
-
-    private List<String> determineAmenities(ArrayList<City> cities) {
-        List<String> amenities = new ArrayList<>();
-        int i = 0;
-        int j = 0;
-        String amenityString = "";
-        List<String> formattedAmenities = new ArrayList<>();
-        formattedAmenities.add("");
-        formattedAmenities.add("");
-        for (i = 0; i < cities.size(); i++) {
-            currentCity = cities.get(i);
-            if (departureCity.equals(currentCity.getName())) {
-                amenities.addAll(currentCity.getAmenities());
-                for (j = 0; j < amenities.size(); j++) {
-                    if (j < amenities.size() - 2) {
-                        amenityString += amenities.get(j) + ", ";
-                    }
-                    if (j == amenities.size() - 2) {
-                        amenityString += amenities.get(j) + " en ";
-                    }
-                    if (j == amenities.size() - 1) {
-                        amenityString += amenities.get(j) + ".";
-                    }
-                }
-                formattedAmenities.set(0, amenityString);
-                amenityString = "";
-                amenities.clear();
-            }
-            if (arrivalCity.equals(currentCity.getName())) {
-                amenities.addAll(currentCity.getAmenities());
-                for (j = 0; j < amenities.size(); j++) {
-                    if (j < amenities.size() - 2) {
-                        amenityString += amenities.get(j) + ", ";
-                    }
-                    if (j == amenities.size() - 2) {
-                        amenityString += amenities.get(j) + " en ";
-                    }
-                    if (j == amenities.size() - 1) {
-                        amenityString += amenities.get(j) + ".";
-                    }
-                }
-                formattedAmenities.set(1, amenityString);
-                amenityString = "";
-                amenities.clear();
-            }
-        }
-        return formattedAmenities;
-    }
+	private List<String> determineAmenities(ArrayList<City> cities) {
+		List<String> amenities = new ArrayList<>();
+		int i = 0;
+		int j = 0;
+		String amenityString = "";
+		List<String> formattedAmenities = new ArrayList<>();
+		formattedAmenities.add("");
+		formattedAmenities.add("");
+		for (i = 0; i < cities.size(); i++) {
+			currentCity = cities.get(i);
+			if (departureCity.equals(currentCity.getName())) {
+				amenities.addAll(currentCity.getAmenities());
+				for (j = 0; j < amenities.size(); j++) {
+					if (j < amenities.size() - 2) {
+						amenityString += amenities.get(j) + ", ";
+					}
+					if (j == amenities.size() - 2) {
+						amenityString += amenities.get(j) + " en ";
+					}
+					if (j == amenities.size() - 1) {
+						amenityString += amenities.get(j) + ".";
+					}
+				}
+				formattedAmenities.set(0, amenityString);
+				amenityString = "";
+				amenities.clear();
+			}
+			if (arrivalCity.equals(currentCity.getName())) {
+				amenities.addAll(currentCity.getAmenities());
+				for (j = 0; j < amenities.size(); j++) {
+					if (j < amenities.size() - 2) {
+						amenityString += amenities.get(j) + ", ";
+					}
+					if (j == amenities.size() - 2) {
+						amenityString += amenities.get(j) + " en ";
+					}
+					if (j == amenities.size() - 1) {
+						amenityString += amenities.get(j) + ".";
+					}
+				}
+				formattedAmenities.set(1, amenityString);
+				amenityString = "";
+				amenities.clear();
+			}
+		}
+		return formattedAmenities;
+	}
 }
