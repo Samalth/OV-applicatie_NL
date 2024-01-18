@@ -282,8 +282,10 @@ public class LoggedInController {
 		MeansOfTransportText.setText(bundle.getString("MeansOfTransporttxt"));
 
 		GOButton.setText(bundle.getString("RouteButtontxt"));
+		setFavourite.setText(bundle.getString("setFavouriteButtontxt"));
 		logOutButton.setText(bundle.getString("LogOutButtontxt"));
 		showFavouriteButton.setText(bundle.getString("ShowFavouriteButtontxt"));
+		favouriteLabel.setText(bundle.getString("FavouriteLabeltxt"));
 
 		arrivalCityComboBox.setPromptText(bundle.getString("ArrivalComboBoxPromt"));
 		departureCityComboBox.setPromptText(bundle.getString("DepartureComboBoxPromt"));
