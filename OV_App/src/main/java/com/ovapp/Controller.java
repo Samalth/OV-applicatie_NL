@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -97,6 +98,10 @@ public class Controller {
 	@FXML
 	private VBox parent;
 	@FXML
+	private Pane amenities;
+	@FXML
+	private Pane favorites;
+	@FXML
 	private ImageView amenityLiftDeparture;
 	@FXML
 	private ImageView amenityStairMarkingsDeparture;
@@ -111,7 +116,8 @@ public class Controller {
 	@FXML
 	private Button amenitiesFavorites;
 	@FXML
-	private Label favoritesPlaceholder;
+	private Label favoritesLabel;
+
 
     private Train train = new Train("Trein", Arrays.asList(0, 15, 30, 45, 60));
     private Bus bus = new Bus("Bus", Arrays.asList(25, 55, 85));
@@ -156,7 +162,8 @@ public class Controller {
 		amenityLiftArrival.setVisible(false);
 		amenityStairMarkingsArrival.setVisible(false);
 		amenityTactilePavementArrival.setVisible(false);
-		favoritesPlaceholder.setVisible(false);
+		amenities.setVisible(false);
+		favorites.setVisible(false);
 
 	}
 
@@ -445,9 +452,18 @@ public class Controller {
 			amenityTactilePavementArrival.setVisible(false);
 		}
 	}
-	/**
+
 	public void onAmenitiesFavoritesClick(){
-		if
+		if(!amenities.isVisible() && !favorites.isVisible()){
+			amenities.setVisible(true);
+			favorites.setVisible(false);
+		} else if (!favorites.isVisible() && amenities.isVisible()){
+			amenities.setVisible(false);
+			favorites.setVisible(true);
+		}else if (favorites.isVisible() && !amenities.isVisible()){
+			favorites.setVisible(false);
+			amenities.setVisible(true);
+		}
+
 	}
-	 */
 }
