@@ -135,12 +135,15 @@ public class LoggedInController {
 	@FXML
 	private ImageView amenityTactilePavementArrival;
 	private List<String> favouriteList = new ArrayList<>();
-	private List<String> displayFavouriteList = new ArrayList<>();
+	private List<String> displayFavouriteListNL = new ArrayList<>();
+	private List<String> displayFavouriteListEN = new ArrayList<>();
+	private List<String> displayFavouriteListDE = new ArrayList<>();
 	private Train train = new Train("Trein", Arrays.asList(0, 15, 30, 45, 60));
 	private Bus bus = new Bus("Bus", Arrays.asList(25, 55, 85));
 	private ResourceBundle bundle;
 	private City currentCity;
 	private boolean isLightMode = true;
+	private String currentLanguage = "Nederlands";
 
 	public ArrayList<City> getCities() {
 		ArrayList<City> cities = new ArrayList<>();
@@ -280,12 +283,9 @@ public class LoggedInController {
 		}
 	}
 
-	private List<String> getLanguages() {
-		return Arrays.asList("Nederlands", "English", "Deutsch");
-	}
-
 	public void switchLanguage(String newLanguage) {
 		Locale locale = new Locale(newLanguage);
+		currentLanguage = newLanguage;
 		bundle = ResourceBundle.getBundle("Messages", locale);
 
 		//ArrivalText.setText(bundle.getString("Destinationtxt"));
@@ -343,6 +343,29 @@ public class LoggedInController {
 
 		if (favouriteLabel != null) {
 			favouriteLabel.setText(bundle.getString("FavouriteLabelError"));
+		}
+	}
+
+	//WIP code to change language of favourites
+	public void changeFavouriteLanguage() {
+		if (currentLanguage == "Nederlands") {
+			favourite0.setText(displayFavouriteListNL.get(0));
+			favourite1.setText(displayFavouriteListNL.get(1));
+			favourite2.setText(displayFavouriteListNL.get(2));
+			favourite3.setText(displayFavouriteListNL.get(3));
+			favourite4.setText(displayFavouriteListNL.get(4));
+		} else if (currentLanguage == "English") {
+			favourite0.setText(displayFavouriteListEN.get(0));
+			favourite1.setText(displayFavouriteListEN.get(1));
+			favourite2.setText(displayFavouriteListEN.get(2));
+			favourite3.setText(displayFavouriteListEN.get(3));
+			favourite4.setText(displayFavouriteListEN.get(4));
+		} else if (currentLanguage == "Deutsch") {
+			favourite0.setText(displayFavouriteListDE.get(0));
+			favourite1.setText(displayFavouriteListDE.get(1));
+			favourite2.setText(displayFavouriteListDE.get(2));
+			favourite3.setText(displayFavouriteListDE.get(3));
+			favourite4.setText(displayFavouriteListDE.get(4));
 		}
 	}
 
@@ -416,10 +439,25 @@ public class LoggedInController {
 
 			String displayFavourite = String.format("   Van %s naar %s met de %s"
 					, departureString, arrivalString, transportString.toLowerCase());
-			displayFavouriteList.add(displayFavourite);
+			displayFavouriteListNL.add(displayFavourite);
+
+			String displayFavouriteEN = String.format("   From %s to %s with the %s"
+					, departureString, arrivalString, transportString.toLowerCase());
+			displayFavouriteListEN.add(displayFavourite);
+
+			String displayFavouriteDE = String.format("   Von %s nach %s mit der %s"
+					, departureString, arrivalString, transportString.toLowerCase());
+			displayFavouriteListDE.add(displayFavourite);
+
 			{
-				if (displayFavouriteList.size() > 5) {
-					displayFavouriteList.remove(0);
+				if (displayFavouriteListNL.size() > 5) {
+					displayFavouriteListNL.remove(0);
+				}
+				if (displayFavouriteListEN.size() > 5) {
+					displayFavouriteListEN.remove(0);
+				}
+				if (displayFavouriteListDE.size() > 5) {
+					displayFavouriteListDE.remove(0);
 				}
 			}
 		} catch (NullPointerException e) {
@@ -430,26 +468,26 @@ public class LoggedInController {
 	}
 
 	private void showFavourite() {
-		for (int i = 0; i < displayFavouriteList.size(); i++) {
+		for (int i = 0; i < displayFavouriteListNL.size(); i++) {
 			switch (i) {
 				case 0 -> {
-					favourite0.setText(displayFavouriteList.get(i));
+					favourite0.setText(displayFavouriteListNL.get(i));
 					setFavouriteVisible();
 				}
 				case 1 -> {
-					favourite1.setText(displayFavouriteList.get(i));
+					favourite1.setText(displayFavouriteListNL.get(i));
 					setFavouriteVisible();
 				}
 				case 2 -> {
-					favourite2.setText(displayFavouriteList.get(i));
+					favourite2.setText(displayFavouriteListNL.get(i));
 					setFavouriteVisible();
 				}
 				case 3 -> {
-					favourite3.setText(displayFavouriteList.get(i));
+					favourite3.setText(displayFavouriteListNL.get(i));
 					setFavouriteVisible();
 				}
 				case 4 -> {
-					favourite4.setText(displayFavouriteList.get(i));
+					favourite4.setText(displayFavouriteListNL.get(i));
 					setFavouriteVisible();
 				}
 			}
@@ -458,32 +496,57 @@ public class LoggedInController {
 
 	@FXML
 	private void setFavourite0(ActionEvent actionEvent) {
-		favouriteID = 0;
-		useFavourite(actionEvent);
+		if (favourite0.getText().equals("Lege favoriet") || favourite0.getText().equals("Empty favourite") ||
+				favourite0.getText().equals("Leeres Lieblingsziel")) {
+			favouriteLabel.setText(bundle.getString("favouriteEmptyError"));
+		} else {
+			favouriteID = 0;
+			useFavourite(actionEvent);
+		}
 	}
 
 	@FXML
 	private void setFavourite1(ActionEvent actionEvent) {
-		favouriteID = 1;
-		useFavourite(actionEvent);
+		if (favourite1.getText().equals("Lege favoriet") || favourite1.getText().equals("Empty favourite") ||
+				favourite1.getText().equals("Leeres Lieblingsziel")) {
+			favouriteLabel.setText(bundle.getString("favouriteEmptyError"));
+		} else {
+			favouriteID = 1;
+			useFavourite(actionEvent);
+		}
 	}
 
 	@FXML
 	private void setFavourite2(ActionEvent actionEvent) {
-		favouriteID = 2;
-		useFavourite(actionEvent);
+		if (favourite2.getText().equals("Lege favoriet") || favourite2.getText().equals("Empty favourite") ||
+				favourite2.getText().equals("Leeres Lieblingsziel")) {
+			favouriteLabel.setText(bundle.getString("favouriteEmptyError"));
+		} else {
+			favouriteID = 2;
+			useFavourite(actionEvent);
+		}
 	}
 
 	@FXML
 	private void setFavourite3(ActionEvent actionEvent) {
-		favouriteID = 3;
-		useFavourite(actionEvent);
+		if (favourite3.getText().equals("Lege favoriet") || favourite3.getText().equals("Empty favourite") ||
+				favourite3.getText().equals("Leeres Lieblingsziel")) {
+			favouriteLabel.setText(bundle.getString("favouriteEmptyError"));
+		} else {
+			favouriteID = 3;
+			useFavourite(actionEvent);
+		}
 	}
 
 	@FXML
 	private void setFavourite4(ActionEvent actionEvent) {
-		favouriteID = 4;
-		useFavourite(actionEvent);
+		if (favourite4.getText().equals("Lege favoriet") || favourite4.getText().equals("Empty favourite") ||
+				favourite4.getText().equals("Leeres Lieblingsziel")) {
+			favouriteLabel.setText(bundle.getString("favouriteEmptyError"));
+		} else {
+			favouriteID = 4;
+			useFavourite(actionEvent);
+		}
 	}
 
 	@FXML
