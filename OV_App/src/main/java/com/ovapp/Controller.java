@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -105,6 +106,21 @@ public class Controller {
 	private LocalDate DepartureDate;
 	@FXML
 	private VBox parent;
+	@FXML
+	private Pane amenities;
+	@FXML
+	private ImageView amenityLiftDeparture;
+	@FXML
+	private ImageView amenityStairMarkingsDeparture;
+	@FXML
+	private ImageView amenityTactilePavementDeparture;
+	@FXML
+	private ImageView amenityLiftArrival;
+	@FXML
+	private ImageView amenityStairMarkingsArrival;
+	@FXML
+	private ImageView amenityTactilePavementArrival;
+
 
     private Train train = new Train("Trein", Arrays.asList(0, 15, 30, 45, 60));
     private Bus bus = new Bus("Bus", Arrays.asList(25, 55, 85));
@@ -142,6 +158,14 @@ public class Controller {
 
 		switchLanguage("Nederlands");
 		setLightMode();
+		amenityLiftDeparture.setVisible(false);
+		amenityStairMarkingsDeparture.setVisible(false);
+		amenityTactilePavementDeparture.setVisible(false);
+		amenityLiftArrival.setVisible(false);
+		amenityStairMarkingsArrival.setVisible(false);
+		amenityTactilePavementArrival.setVisible(false);
+		amenities.setVisible(true);
+
 	}
 
 	public void onLogInButtonClick() {
@@ -189,6 +213,9 @@ public class Controller {
 			List<String> amenities = determineAmenities(cities);
 			departureAmenities = amenities.get(0);
 			arrivalAmenities = amenities.get(1);
+			if (departureAmenities != null && arrivalAmenities != null && transport != null) {
+				setAmenityImages(departureAmenities, arrivalAmenities);
+			}
 		}catch (NullPointerException e){
 			departureLabel.setText("Selecteer alstublieft een vertrekplaats, aankomstplaats en vervoermiddel.");
 		}
@@ -266,11 +293,11 @@ public class Controller {
 		Locale locale = new Locale(newLanguage);
 		bundle = ResourceBundle.getBundle("Messages", locale);
 
-		ArrivalText.setText(bundle.getString("Destinationtxt"));
-		DepartureDateText.setText(bundle.getString("DepartureDatetxt"));
-		DepartureText.setText(bundle.getString("Departuretxt"));
-		DepartureTimeText.setText(bundle.getString("DepartureTimetxt"));
-		MeansOfTransportText.setText(bundle.getString("MeansOfTransporttxt"));
+		//ArrivalText.setText(bundle.getString("Destinationtxt"));
+		//DepartureDateText.setText(bundle.getString("DepartureDatetxt"));
+		//DepartureText.setText(bundle.getString("Departuretxt"));
+		//DepartureTimeText.setText(bundle.getString("DepartureTimetxt"));
+		//MeansOfTransportText.setText(bundle.getString("MeansOfTransporttxt"));
 
 		logInButton.setText(bundle.getString("LogInButtontxt"));
 		GOButton.setText(bundle.getString("RouteButtontxt"));
@@ -307,7 +334,6 @@ public class Controller {
 		} else {
 			setDarkMode();
 		}
-
 	}
 
 	private void setLightMode() {
@@ -327,7 +353,6 @@ public class Controller {
     private void updateDate() {
         SimpleDateFormat dateFormat = new SimpleDateFormat(" dd-MM-yyyy");
         String formattedDate = dateFormat.format(new Date());
-
         Platform.runLater(() -> {
            dateLabel.setText(formattedDate);
         });
@@ -389,4 +414,37 @@ public class Controller {
         }
         return formattedAmenities;
     }
+	private void setAmenityImages(String departureAmenities, String arrivalAmenities){
+		if (departureAmenities.contains("liften")){
+			amenityLiftDeparture.setVisible(true);
+		} else {
+			amenityLiftDeparture.setVisible(false);
+		}
+		if(departureAmenities.contains("trapmarkeringen")){
+			amenityStairMarkingsDeparture.setVisible(true);
+		} else {
+			amenityStairMarkingsDeparture.setVisible(false);
+		}
+		if(departureAmenities.contains("geleidenstroken")){
+			amenityTactilePavementDeparture.setVisible(true);
+		} else {
+			amenityTactilePavementDeparture.setVisible(false);
+		}
+
+		if (arrivalAmenities.contains("liften")){
+			amenityLiftArrival.setVisible(true);
+		} else {
+			amenityLiftArrival.setVisible(false);
+		}
+		if(arrivalAmenities.contains("trapmarkeringen")){
+			amenityStairMarkingsArrival.setVisible(true);
+		} else {
+			amenityStairMarkingsArrival.setVisible(false);
+		}
+		if(arrivalAmenities.contains("geleidenstroken")){
+			amenityTactilePavementArrival.setVisible(true);
+		} else {
+			amenityTactilePavementArrival.setVisible(false);
+		}
+	}
 }
