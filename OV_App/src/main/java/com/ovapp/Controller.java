@@ -133,8 +133,8 @@ public class Controller {
         cities.add(new City("Amsterdam", Arrays.asList("liften", "geleidenstroken", "trapmarkeringen")));
         cities.add(new City("Arnhem", Arrays.asList("geleidenstroken", "trapmarkeringen")));
         cities.add(new City("Den Bosch", Arrays.asList("liften", "trapmarkeringen")));
-        cities.add(new City("Den Haag", Arrays.asList("geleidenstroken", "het hele station is gelijkvloers")));
-        cities.add(new City("IJsselstein", Arrays.asList("geleidenstroken", "het hele station is gelijkvloers")));
+        cities.add(new City("Den Haag", Arrays.asList("liften", "geleidenstroken")));
+        cities.add(new City("IJsselstein", Arrays.asList("geleidenstroken", "trapmarkeringen")));
         cities.add(new City("Nieuwegein", Arrays.asList("liften", "geleidenstroken")));
         cities.add(new City("Utrecht", Arrays.asList("liften", "geleidenstroken", "trapmarkeringen")));
 		cities.add(new City("Rotterdam", Arrays.asList("liften", "trapmarkeringen")));
@@ -213,7 +213,9 @@ public class Controller {
         try {
 			List<String> amenities = determineAmenities(cities);
 			departureAmenities = amenities.get(0);
+			System.out.println(departureAmenities);
 			arrivalAmenities = amenities.get(1);
+			System.out.println(arrivalAmenities);
 			if (departureAmenities != null && arrivalAmenities != null && transport != null) {
 				setAmenityImages(departureAmenities, arrivalAmenities);
 			}
