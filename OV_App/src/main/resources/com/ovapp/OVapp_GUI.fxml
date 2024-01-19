@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox fx:id="parent" alignment="CENTER" prefHeight="900.0" prefWidth="1440.0" spacing="20.0" style="-fx-border-color: #E62F2B;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ovapp.Controller">
+<VBox fx:id="parent" alignment="CENTER" prefHeight="900.0" prefWidth="1440.0" spacing="20.0" style="-fx-border-color: #E62F2B;" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ovapp.Controller">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
