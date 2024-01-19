@@ -164,7 +164,7 @@ public class Controller {
 		amenityLiftArrival.setVisible(false);
 		amenityStairMarkingsArrival.setVisible(false);
 		amenityTactilePavementArrival.setVisible(false);
-		amenities.setVisible(false);
+		amenities.setVisible(true);
 
 	}
 

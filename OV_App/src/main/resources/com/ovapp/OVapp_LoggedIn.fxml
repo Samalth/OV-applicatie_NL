@@ -209,32 +209,32 @@
                 <children>
                     <ImageView fx:id="amenityLiftDeparture" fitHeight="150.0" fitWidth="200.0" layoutX="44.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                         <image>
-                            <Image url="@../../Green_Light_Departure.png" />
+                            <Image url="@../../Lift.jpeg" />
                         </image>
                     </ImageView>
                     <ImageView fx:id="amenityTactilePavementArrival" fitHeight="150.0" fitWidth="200.0" layoutX="444.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true">
                         <image>
-                            <Image url="@../../Transport.jpg" />
+                            <Image url="@../../TactilePavement.jpeg" />
                         </image>
                     </ImageView>
                     <ImageView fx:id="amenityStairMarkingsArrival" fitHeight="150.0" fitWidth="200.0" layoutX="244.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true">
                         <image>
-                            <Image url="@../../Arrival_Finish_Flag.png" />
+                            <Image url="@../../StairMarkings.jpeg" />
                         </image>
                     </ImageView>
                     <ImageView fx:id="amenityLiftArrival" fitHeight="150.0" fitWidth="200.0" layoutX="44.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true">
                         <image>
-                            <Image url="@../../Green_Light_Departure.png" />
+                            <Image url="@../../Lift.jpeg" />
                         </image>
                     </ImageView>
                     <ImageView fx:id="amenityStairMarkingsDeparture" fitHeight="150.0" fitWidth="200.0" layoutX="244.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                         <image>
-                            <Image url="@../../Arrival_Finish_Flag.png" />
+                            <Image url="@../../StairMarkings.jpeg" />
                         </image>
                     </ImageView>
                     <ImageView fx:id="amenityTactilePavementDeparture" fitHeight="150.0" fitWidth="200.0" layoutX="444.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                         <image>
-                            <Image url="@../../Transport.jpg" />
+                            <Image url="@../../TactilePavement.jpeg" />
                         </image>
                     </ImageView>
                 </children>
