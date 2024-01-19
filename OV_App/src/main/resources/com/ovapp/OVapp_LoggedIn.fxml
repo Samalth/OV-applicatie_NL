@@ -1,23 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Spinner?>
-<?import javafx.scene.control.Tooltip?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox fx:id="parent" alignment="CENTER" prefHeight="900.0" prefWidth="1440.0" spacing="20.0" style="-fx-border-color: #E62F2B;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ovapp.LoggedInController">
+<VBox fx:id="parent" alignment="CENTER" prefHeight="900.0" prefWidth="1440.0" spacing="20.0" style="-fx-border-color: #E62F2B;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ovapp.LoggedInController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -76,14 +66,6 @@
             <Button fx:id="enLanguageButton" layoutX="581.0" layoutY="16.0" mnemonicParsing="false" onAction="#onEnLanguageButtonClick" prefHeight="41.0" prefWidth="76.0" style="-fx-background-image: url('uk_flag.png'); -fx-background-size: cover;">
                 <tooltip>
                     <Tooltip fx:id="enLanguageButtonToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="Switch to English" />
-                </tooltip>
-            </Button>
-            <Button fx:id="showFavouriteButton" layoutX="951.0" layoutY="12.0" mnemonicParsing="false" onAction="#onShowFavouriteVisible" prefHeight="52.0" prefWidth="146.0" style="-fx-border-color: #ff6600;" text="Favourieten">
-                <font>
-                    <Font name="Calibri" size="22.0" />
-                </font>
-                <tooltip>
-                    <Tooltip fx:id="showTravelHistoryButtonToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="Klik hier om uw reisgeschiedenis te tonen" />
                 </tooltip>
             </Button>
         </children>
@@ -175,27 +157,27 @@
             <children>
                <Pane fx:id="favorites" layoutX="730.0" layoutY="270.0" prefHeight="200.0" prefWidth="200.0">
                    <children>
-                <Button fx:id="favourite0" layoutX="30.0" layoutY="100.0" mnemonicParsing="false" onAction="#setFavourite0" prefHeight="40.0" prefWidth="480.0" visible="false">
+                <Button fx:id="favourite0" layoutX="30.0" layoutY="100.0" mnemonicParsing="false" onAction="#setFavourite0" prefHeight="40.0" prefWidth="480.0" text="Lege favoriet" visible="true">
                     <font>
                         <Font name="Calibri" size="22.0" />
                     </font></Button>
-                <Button fx:id="favourite1" layoutX="30.0" layoutY="150.0" mnemonicParsing="false" onAction="#setFavourite1" prefHeight="40.0" prefWidth="480.0" visible="false">
+                <Button fx:id="favourite1" layoutX="30.0" layoutY="150.0" mnemonicParsing="false" onAction="#setFavourite1" prefHeight="40.0" prefWidth="480.0" text="Lege favoriet" visible="true">
                     <font>
                         <Font name="Calibri" size="22.0" />
                     </font></Button>
-                <Button fx:id="favourite2" layoutX="30.0" layoutY="200.0" mnemonicParsing="false" onAction="#setFavourite2" prefHeight="40.0" prefWidth="480.0" visible="false">
+                <Button fx:id="favourite2" layoutX="30.0" layoutY="200.0" mnemonicParsing="false" onAction="#setFavourite2" prefHeight="40.0" prefWidth="480.0" text="Lege favoriet" visible="true">
                     <font>
                         <Font name="Calibri" size="22.0" />
                     </font></Button>
-                <Button fx:id="favourite3" layoutX="30.0" layoutY="250.0" mnemonicParsing="false" onAction="#setFavourite3" prefHeight="40.0" prefWidth="480.0" visible="false">
+                <Button fx:id="favourite3" layoutX="30.0" layoutY="250.0" mnemonicParsing="false" onAction="#setFavourite3" prefHeight="40.0" prefWidth="480.0" text="Lege favoriet" visible="true">
                     <font>
                         <Font name="Calibri" size="22.0" />
                     </font></Button>
-                <Button fx:id="favourite4" layoutX="30.0" layoutY="300.0" mnemonicParsing="false" onAction="#setFavourite4" prefHeight="40.0" prefWidth="480.0" visible="false">
+                <Button fx:id="favourite4" layoutX="30.0" layoutY="300.0" mnemonicParsing="false" onAction="#setFavourite4" prefHeight="40.0" prefWidth="480.0" text="Lege favoriet" visible="true">
                     <font>
                         <Font name="Calibri" size="22.0" />
                     </font></Button>
-                <Label fx:id="favouriteLabel" layoutX="30.0" layoutY="10.0" alignment="TOP_LEFT" contentDisplay="TOP" prefHeight="76.0" prefWidth="480.0" style="-fx-border-color: #FF6600;" text="" textFill="#f50000" wrapText="true">
+                <Label fx:id="favouriteLabel" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="30.0" layoutY="10.0" prefHeight="76.0" prefWidth="480.0" style="-fx-border-color: #FF6600;" text="" textFill="#f50000" wrapText="true">
                     <tooltip>
                         <Tooltip fx:id="favouriteLabelToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="Dit zijn uw favorieten" />
                     </tooltip>
@@ -240,11 +222,19 @@
                 </children>
                </Pane>
             </children></StackPane>
-         <Button fx:id="amenitiesFavorites" layoutX="850.0" layoutY="280.0" prefHeight="41.0" prefWidth="350.0" mnemonicParsing="false" onAction="#onAmenitiesFavoritesClick" text="Favorieten/ voorzieningen" >
+         <Button fx:id="amenitiesFavorites" layoutX="774.0" layoutY="279.0" mnemonicParsing="false" onAction="#setAmenitiesVisible" prefHeight="41.0" prefWidth="198.0" text="Voorzieningen">
             <font>
                 <Font name="Calibri" size="22.0" />
             </font>
          </Button>
+            <Button fx:id="showFavouriteButton" layoutX="1122.0" layoutY="279.0" mnemonicParsing="false" onAction="#setFavouriteVisible" prefHeight="42.0" prefWidth="198.0" style="-fx-border-color: #ff6600;" text="Favourieten">
+                <font>
+                    <Font name="Calibri" size="22.0" />
+                </font>
+                <tooltip>
+                    <Tooltip fx:id="showTravelHistoryButtonToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="Klik hier om uw reisgeschiedenis te tonen" />
+                </tooltip>
+            </Button>
 
         </children>
     </Pane>
