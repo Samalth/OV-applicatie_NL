@@ -11,131 +11,98 @@
       prefHeight="900.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.ovapp.LoginController">
     <styleClass>
-        <String fx:value="dark-mode"/>
-        <String fx:value="light-mode"/>
+        <String fx:value="dark-mode" />
+        <String fx:value="light-mode" />
     </styleClass>
     <AnchorPane minHeight="76.0" prefHeight="76.0" prefWidth="1238.0" style="-fx-background-color: #ff6600;">
-        <Label fx:id="dateLabel" alignment="CENTER" layoutX="32.0" layoutY="19.0" prefHeight="38.0" prefWidth="112.0"
-               style="-fx-border-color: #FF6600; -fx-background-color: #DEDEDE;">
+        <Label fx:id="dateLabel" alignment="CENTER" layoutX="32.0" layoutY="19.0" prefHeight="38.0" prefWidth="112.0" style="-fx-border-color: #FF6600; -fx-background-color: #DEDEDE;">
             <font>
-                <Font name="Calibri" size="15.0"/>
+                <Font name="Calibri" size="15.0" />
             </font>
             <tooltip>
-                <Tooltip fx:id="dateLabelToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;"
-                         text="de huidige datum"/>
+                <Tooltip fx:id="dateLabelToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="de huidige datum" />
             </tooltip>
         </Label>
-        <Label fx:id="clockLabel" layoutX="153.0" layoutY="19.0" prefHeight="38.0" prefWidth="112.0"
-               style="-fx-border-color: #ff6600; -fx-background-color: #DEDEDE;">
+        <Label fx:id="clockLabel" layoutX="153.0" layoutY="19.0" prefHeight="38.0" prefWidth="112.0" style="-fx-border-color: #ff6600; -fx-background-color: #DEDEDE;">
             <font>
-                <Font name="Calibri" size="15.0"/>
+                <Font name="Calibri" size="15.0" />
             </font>
             <tooltip>
-                <Tooltip fx:id="clockLabelToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;"
-                         text="de huidige tijd"/>
+                <Tooltip fx:id="clockLabelToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="de huidige tijd" />
             </tooltip>
         </Label>
-        <Button alignment="CENTER" layoutX="296.0" layoutY="13.0" mnemonicParsing="false" onAction="#onChangeModeClick"
-                prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #444444;" styleClass="dark-mode"
-                stylesheets="@../../lightmode.css">
+        <Button alignment="CENTER" layoutX="296.0" layoutY="13.0" mnemonicParsing="false" onAction="#onChangeModeClick" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #444444;" styleClass="dark-mode" stylesheets="@../../lightmode.css">
             <opaqueInsets>
-                <Insets/>
+                <Insets />
             </opaqueInsets>
             <tooltip>
-                <Tooltip fx:id="modeToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;"
-                         text="Klik hier om te wisselen naar donkere/lichte modus"/>
+                <Tooltip fx:id="modeToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="Klik hier om te wisselen naar donkere/lichte modus" />
             </tooltip>
         </Button>
-        <ImageView fx:id="imgMode" cache="true" fitHeight="52.0" fitWidth="27.0" layoutX="307.0" layoutY="25.0"
-                   mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="imgMode" cache="true" fitHeight="52.0" fitWidth="27.0" layoutX="307.0" layoutY="25.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../moon.png"/>
+                <Image url="@../../moon.png" />
             </image>
         </ImageView>
-        <Button fx:id="deLanguageButton" layoutX="666.0" layoutY="16.0" mnemonicParsing="false"
-                onAction="#onDuLanguageButtonClick" prefHeight="41.0" prefWidth="76.0"
-                style="-fx-background-image: url('de_flag.png'); -fx-background-size: cover;">
+        <Button fx:id="deLanguageButton" layoutX="666.0" layoutY="16.0" mnemonicParsing="false" onAction="#onDuLanguageButtonClick" prefHeight="41.0" prefWidth="76.0" style="-fx-background-image: url('de_flag.png'); -fx-background-size: cover;">
             <tooltip>
-                <Tooltip fx:id="deLanguageButtonToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;"
-                         text="auf Deutsch umstellen"/>
+                <Tooltip fx:id="deLanguageButtonToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="auf Deutsch umstellen" />
             </tooltip>
         </Button>
-        <Button fx:id="enLanguageButton" layoutX="581.0" layoutY="16.0" mnemonicParsing="false"
-                onAction="#onEnLanguageButtonClick" prefHeight="41.0" prefWidth="76.0"
-                style="-fx-background-image: url('uk_flag.png'); -fx-background-size: cover;">
+        <Button fx:id="enLanguageButton" layoutX="581.0" layoutY="16.0" mnemonicParsing="false" onAction="#onEnLanguageButtonClick" prefHeight="41.0" prefWidth="76.0" style="-fx-background-image: url('uk_flag.png'); -fx-background-size: cover;">
             <tooltip>
-                <Tooltip fx:id="enLanguageButtonToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;"
-                         text="Switch to English"/>
+                <Tooltip fx:id="enLanguageButtonToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="Switch to English" />
             </tooltip>
         </Button>
-        <Button fx:id="previousButton" layoutX="1130.0" layoutY="18.0" mnemonicParsing="false"
-                onAction="#previousButtonOnAction" prefHeight="41.0" prefWidth="132.0" text="Vorige pagina">
+        <Button fx:id="previousButton" layoutX="1130.0" layoutY="18.0" mnemonicParsing="false" onAction="#previousButtonOnAction" prefHeight="41.0" prefWidth="132.0" text="Vorige pagina">
             <!-- Associate the Tooltip with the previousButton -->
             <tooltip>
-                <Tooltip fx:id="previousButtonTooltip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;"
-                         text="klik hier om naar vorige pagina terug te gaan"/>
+                <Tooltip fx:id="previousButtonTooltip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="klik hier om naar vorige pagina terug te gaan" />
             </tooltip>
         </Button>
-        <Button fx:id="nlLanguageButton" layoutX="497.0" layoutY="16.0" mnemonicParsing="false"
-                onAction="#onNlLanguageButtonClick" prefHeight="41.0" prefWidth="76.0"
-                style="-fx-background-image: url('nl_flag.png');-fx-background-size: cover;">
+        <Button fx:id="nlLanguageButton" layoutX="497.0" layoutY="16.0" mnemonicParsing="false" onAction="#onNlLanguageButtonClick" prefHeight="41.0" prefWidth="76.0" style="-fx-background-image: url('nl_flag.png');-fx-background-size: cover;">
             <tooltip>
-                <Tooltip fx:id="nlLanguageButtonToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;"
-                         text="wissel naar Nederlands"/>
+                <Tooltip fx:id="nlLanguageButtonToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="wissel naar Nederlands" />
             </tooltip>
         </Button>
     </AnchorPane>
 
     <Pane prefHeight="720.0" prefWidth="1280.0">
         <children>
-            <Label fx:id="loginMessageLabel" layoutX="189.0" layoutY="108.0" prefHeight="130.0" prefWidth="245.0"
-                   textFill="RED">
+            <Label fx:id="loginMessageLabel" layoutX="189.0" layoutY="181.0" prefHeight="130.0" prefWidth="245.0" textFill="RED">
             </Label>
-            <TextField fx:id="usernameTextField" layoutX="464.0" layoutY="144.0" prefHeight="94.0" prefWidth="379.0"
-                       promptText="Gebruikersnaam">
+            <PasswordField fx:id="passwordPasswordField" layoutX="531.0" layoutY="288.0" prefHeight="94.0" prefWidth="379.0" promptText="Wachtwoord">
                 <tooltip>
-                    <Tooltip fx:id="usernameTextFieldToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;"
-                             text="Vul uw gebruikersnaam in."/>
-                </tooltip>
-            </TextField>
-            <PasswordField fx:id="passwordPasswordField" layoutX="464.0" layoutY="261.0" prefHeight="94.0"
-                           prefWidth="379.0" promptText="Wachtwoord">
-                <tooltip>
-                    <Tooltip fx:id="passwordPasswordFieldToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;"
-                             text="Vul uw wachtwoord in."/>
+                    <Tooltip fx:id="passwordPasswordFieldToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="Vul uw wachtwoord in." />
                 </tooltip>
             </PasswordField>
-            <ImageView fx:id="travelYRouteImg" cache="true" fitHeight="169.0" fitWidth="203.0" layoutX="1063.0"
-                       layoutY="21.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+            <Button fx:id="logInButton" layoutX="598.0" layoutY="425.0" mnemonicParsing="false" onAction="#logInButtonOnAction" prefHeight="69.0" prefWidth="245.0" style="-fx-border-color: #0863b5;" text="Inloggen">
+                <font>
+                    <Font name="Calibri" size="22.0" />
+                </font>
+                <tooltip>
+                    <Tooltip fx:id="logInButtonToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="klik hier om in te loggen" />
+                </tooltip>
+            </Button>
+            <Label fx:id="descriptionLabel" alignment="CENTER" layoutX="485.0" layoutY="76.0" prefHeight="41.0" prefWidth="471.0" style="-fx-background-color: #FFFFCC; -fx-font-weight: bold; -fx-text-fill: #000000;" text="Voer uw inloggegevens in. Heeft u geen account? Klik op &quot;Account aanmaken&quot;." textAlignment="CENTER" />
+            <Button fx:id="makeAccountButton" layoutX="975.0" layoutY="138.0" mnemonicParsing="false" onAction="#setMakeAccountButton" prefHeight="50.0" prefWidth="187.0" style="-fx-border-color: #0863b5;" text="Account aanmaken">
+                <font>
+                    <Font name="Calibri" size="15.0" />
+                </font>
+                <tooltip>
+                    <Tooltip fx:id="makeAccountButtonToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="3. Klik hier om een nieuw account aan te maken." />
+                </tooltip>
+            </Button>
+            <ImageView fx:id="travelYRouteImg" cache="true" fitHeight="166.0" fitWidth="262.0" layoutX="1208.0" layoutY="662.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                 <image>
-                    <Image url="@../../TravelYRouteBlanc.png"/>
+                    <Image url="@../../TravelYRouteBlanc.png" />
                 </image>
             </ImageView>
-            <Button fx:id="logInButton" layoutX="544.0" layoutY="365.0" mnemonicParsing="false"
-                    onAction="#logInButtonOnAction" prefHeight="69.0" prefWidth="245.0"
-                    style="-fx-border-color: #0863b5;" text="Inloggen">
-                <font>
-                    <Font name="Calibri" size="22.0"/>
-                </font>
+            <TextField fx:id="usernameTextField" layoutX="531.0" layoutY="163.0" prefHeight="94.0" prefWidth="379.0" promptText="Gebruikersnaam">
                 <tooltip>
-                    <Tooltip fx:id="logInButtonToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;"
-                             text="klik hier om in te loggen"/>
+                    <Tooltip fx:id="usernameTextFieldToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="Vul uw gebruikersnaam in." />
                 </tooltip>
-            </Button>
-            <Label fx:id="descriptionLabel" layoutX="416.0" layoutY="65.0" prefHeight="41.0" prefWidth="471.0"
-                   style="-fx-background-color: #FFFFCC; -fx-font-weight: bold;"
-                   text="   Voer uw inloggegevens in. Heeft u geen account? Klik op &quot;Account aanmaken&quot;."/>
-            <Button fx:id="makeAccountButton" layoutX="861.0" layoutY="132.0" mnemonicParsing="false"
-                    onAction="#setMakeAccountButton" prefHeight="50.0" prefWidth="187.0"
-                    style="-fx-border-color: #0863b5;" text="Account aanmaken">
-                <font>
-                    <Font name="Calibri" size="15.0"/>
-                </font>
-                <tooltip>
-                    <Tooltip fx:id="makeAccountButtonToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;"
-                             text="3. Klik hier om een nieuw account aan te maken."/>
-                </tooltip>
-            </Button>
+            </TextField>
         </children>
     </Pane>
 </VBox>

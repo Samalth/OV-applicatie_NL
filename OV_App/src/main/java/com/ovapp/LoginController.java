@@ -1,12 +1,20 @@
 package com.ovapp;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -16,6 +24,18 @@ public class LoginController extends ParentController {
 	static HashMap<String, String> loginInfo = new HashMap<>();
 	Stage stage;
 	Scene scene;
+    @FXML
+    private Button logInButton;
+    @FXML
+    private Label dateLabel;
+    @FXML
+    private Label clockLabel;
+
+    @FXML
+    private ImageView imgMode;
+
+    @FXML
+    private VBox parent;
 
 	public void initialize() {
 		super.initialize();
@@ -23,8 +43,9 @@ public class LoginController extends ParentController {
 		loginInfo.put("1", "1");
 		loginInfo.put("aaaa", "aaaa");
 		loginInfo.put("Hellokittyfan", "blahBlah123");
-		loginInfo.put("Johony", "Jo1234!");
-	}
+        loginInfo.put("User", "1234");
+        loginInfo.put(" "," ");
+    }
 
 	@Override
 	String getDescriptionLabelText(ResourceBundle bundle) {

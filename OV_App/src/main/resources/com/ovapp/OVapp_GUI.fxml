@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Spinner?>
-<?import javafx.scene.control.Tooltip?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <VBox fx:id="parent" alignment="CENTER" prefHeight="900.0" prefWidth="1440.0" spacing="20.0"
       style="-fx-border-color: #E62F2B;" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1"
@@ -24,16 +15,14 @@
     </padding>
     <AnchorPane minHeight="76.0" prefHeight="76.0" prefWidth="1238.0" style="-fx-background-color: #ff6600;">
         <children>
-            <Label fx:id="dateLabel" alignment="CENTER" layoutX="32.0" layoutY="19.0" prefHeight="38.0"
-                   prefWidth="112.0" style="-fx-border-color: #FF6600; -fx-background-color: #DEDEDE;">
+            <Label fx:id="dateLabel" alignment="CENTER" layoutX="32.0" layoutY="19.0" prefHeight="38.0" prefWidth="112.0" style="-fx-border-color: #FF6600; -fx-text-fill: #000000; -fx-background-color: #DEDEDE;">
                 <font>
                     <Font name="Calibri" size="15.0"/>
                 </font>
                 <Tooltip fx:id="dateLabelToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14; "
                          text="de huidige datum"/>
             </Label>
-            <Label fx:id="clockLabel" layoutX="153.0" layoutY="19.0" prefHeight="38.0" prefWidth="112.0"
-                   style="-fx-border-color: #ff6600; -fx-background-color: #DEDEDE;">
+            <Label fx:id="clockLabel" layoutX="153.0" layoutY="19.0" prefHeight="38.0" prefWidth="112.0" style="-fx-border-color: #ff6600; -fx-text-fill: #000000; -fx-background-color: #DEDEDE;">
                 <font>
                     <Font name="Calibri" size="15.0"/>
                 </font>
@@ -104,9 +93,9 @@
                     <Tooltip fx:id="departureLabelToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14; "
                              text="Hier ziet u uw reisinformatie"/>
                 </tooltip>
-                <font>
-                    <Font size="22.0"/>
-                </font>
+            <font>
+               <Font size="36.0" />
+            </font>
             </Label>
             <Button fx:id="GOButton" layoutX="232.0" layoutY="664.0" mnemonicParsing="false" onAction="#onGOClick"
                     prefHeight="92.0" prefWidth="230.0" style="-fx-border-color: #ff6600;" text="Plan Route">
@@ -171,10 +160,9 @@
                              text="Klik hier om een vervoermiddel te kiezen."/>
                 </tooltip>
             </ComboBox>
-            <ImageView fx:id="travelYRouteImg" cache="true" fitHeight="241.0" fitWidth="297.0" layoutX="865.0"
-                       layoutY="579.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="travelYRouteImg" cache="true" fitHeight="166.0" fitWidth="262.0" layoutX="1208.0" layoutY="662.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                 <image>
-                    <Image url="@../../TravelYRouteBlanc.png"/>
+                    <Image url="@../../TravelYRouteBlanc.png" />
                 </image>
             </ImageView>
             <ImageView fitHeight="99.0" fitWidth="95.0" layoutX="83.0" layoutY="5.0" pickOnBounds="true"
