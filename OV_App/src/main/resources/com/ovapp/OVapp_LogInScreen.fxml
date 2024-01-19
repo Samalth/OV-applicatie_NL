@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ovapp.LoginController">
+<VBox fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ovapp.LoginController">
     <styleClass>
         <String fx:value="dark-mode" />
         <String fx:value="light-mode" />
@@ -65,21 +65,16 @@
         </Button>
     </AnchorPane>
 
-    <Pane prefHeight="720.0" prefWidth="1280.0">
+    <Pane prefHeight="832.0" prefWidth="1440.0">
         <children>
             <Label fx:id="loginMessageLabel" layoutX="189.0" layoutY="181.0" prefHeight="130.0" prefWidth="245.0" textFill="RED">
             </Label>
-            <TextField fx:id="usernameTextField" layoutX="464.0" layoutY="144.0" prefHeight="94.0" prefWidth="379.0" promptText="Gebruikersnaam">
-                <tooltip>
-                    <Tooltip fx:id="usernameTextFieldToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="Vul uw gebruikersnaam in." />
-                </tooltip>
-            </TextField>
-            <PasswordField fx:id="passwordPasswordField" layoutX="464.0" layoutY="261.0" prefHeight="94.0" prefWidth="379.0" promptText="Wachtwoord">
+            <PasswordField fx:id="passwordPasswordField" layoutX="531.0" layoutY="288.0" prefHeight="94.0" prefWidth="379.0" promptText="Wachtwoord">
                 <tooltip>
                     <Tooltip fx:id="passwordPasswordFieldToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="Vul uw wachtwoord in." />
                 </tooltip>
             </PasswordField>
-            <Button fx:id="logInButton" layoutX="544.0" layoutY="365.0" mnemonicParsing="false" onAction="#logInButtonOnAction" prefHeight="69.0" prefWidth="245.0" style="-fx-border-color: #0863b5;" text="Inloggen">
+            <Button fx:id="logInButton" layoutX="598.0" layoutY="425.0" mnemonicParsing="false" onAction="#logInButtonOnAction" prefHeight="69.0" prefWidth="245.0" style="-fx-border-color: #0863b5;" text="Inloggen">
                 <font>
                     <Font name="Calibri" size="22.0" />
                 </font>
@@ -87,8 +82,8 @@
                     <Tooltip fx:id="logInButtonToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="klik hier om in te loggen" />
                 </tooltip>
             </Button>
-            <Label fx:id="descriptionLabel" alignment="CENTER" layoutX="416.0" layoutY="65.0" prefHeight="41.0" prefWidth="471.0" style="-fx-background-color: #FFFFCC; -fx-font-weight: bold; -fx-text-fill: #000000;" text="Voer uw inloggegevens in. Heeft u geen account? Klik op &quot;Account aanmaken&quot;." textAlignment="CENTER" />
-            <Button fx:id="makeAccountButton" layoutX="861.0" layoutY="132.0" mnemonicParsing="false" onAction="#setMakeAccountButton" prefHeight="50.0" prefWidth="187.0" style="-fx-border-color: #0863b5;" text="Account aanmaken">
+            <Label fx:id="descriptionLabel" alignment="CENTER" layoutX="485.0" layoutY="76.0" prefHeight="41.0" prefWidth="471.0" style="-fx-background-color: #FFFFCC; -fx-font-weight: bold; -fx-text-fill: #000000;" text="Voer uw inloggegevens in. Heeft u geen account? Klik op &quot;Account aanmaken&quot;." textAlignment="CENTER" />
+            <Button fx:id="makeAccountButton" layoutX="975.0" layoutY="138.0" mnemonicParsing="false" onAction="#setMakeAccountButton" prefHeight="50.0" prefWidth="187.0" style="-fx-border-color: #0863b5;" text="Account aanmaken">
                 <font>
                     <Font name="Calibri" size="15.0" />
                 </font>
@@ -101,6 +96,11 @@
                     <Image url="@../../TravelYRouteBlanc.png" />
                 </image>
             </ImageView>
+            <TextField fx:id="usernameTextField" layoutX="531.0" layoutY="163.0" prefHeight="94.0" prefWidth="379.0" promptText="Gebruikersnaam">
+                <tooltip>
+                    <Tooltip fx:id="usernameTextFieldToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="Vul uw gebruikersnaam in." />
+                </tooltip>
+            </TextField>
         </children>
     </Pane>
 </VBox>
