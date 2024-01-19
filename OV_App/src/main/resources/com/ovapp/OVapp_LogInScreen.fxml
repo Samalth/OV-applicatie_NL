@@ -67,7 +67,7 @@
 
     <Pane prefHeight="720.0" prefWidth="1280.0">
         <children>
-            <Label fx:id="loginMessageLabel" layoutX="189.0" layoutY="108.0" prefHeight="130.0" prefWidth="245.0" textFill="RED">
+            <Label fx:id="loginMessageLabel" layoutX="189.0" layoutY="181.0" prefHeight="130.0" prefWidth="245.0" textFill="RED">
             </Label>
             <TextField fx:id="usernameTextField" layoutX="464.0" layoutY="144.0" prefHeight="94.0" prefWidth="379.0" promptText="Gebruikersnaam">
                 <tooltip>
@@ -92,7 +92,7 @@
                     <Tooltip fx:id="logInButtonToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="klik hier om in te loggen" />
                 </tooltip>
             </Button>
-            <Label fx:id="descriptionLabel" alignment="CENTER" layoutX="416.0" layoutY="65.0" prefHeight="41.0" prefWidth="471.0" style="-fx-background-color: #FFFFCC; -fx-font-weight: bold;" text="Voer uw inloggegevens in. Heeft u geen account? Klik op &quot;Account aanmaken&quot;." textAlignment="CENTER" />
+            <Label fx:id="descriptionLabel" alignment="CENTER" layoutX="416.0" layoutY="65.0" prefHeight="41.0" prefWidth="471.0" style="-fx-background-color: #FFFFCC; -fx-font-weight: bold; -fx-text-fill: #000000;" text="Voer uw inloggegevens in. Heeft u geen account? Klik op &quot;Account aanmaken&quot;." textAlignment="CENTER" />
             <Button fx:id="makeAccountButton" layoutX="861.0" layoutY="132.0" mnemonicParsing="false" onAction="#setMakeAccountButton" prefHeight="50.0" prefWidth="187.0" style="-fx-border-color: #0863b5;" text="Account aanmaken">
                 <font>
                     <Font name="Calibri" size="15.0" />

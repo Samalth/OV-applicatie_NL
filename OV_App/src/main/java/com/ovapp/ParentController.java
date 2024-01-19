@@ -143,6 +143,9 @@ abstract class ParentController {
         parent.getStylesheets().add("lightmode.css");
         Image image = new Image("moon.png");
         imgMode.setImage(image);
+        dateLabel.setStyle("-fx-background-color: #EEEEEE;");
+        clockLabel.setStyle("-fx-background-color: #EEEEEE;");
+
     }
 
     private void setDarkMode() {
@@ -150,5 +153,7 @@ abstract class ParentController {
         parent.getStylesheets().add("darkmode.css");
         Image image = new Image("sun.png");
         imgMode.setImage(image);
+        dateLabel.setStyle("-fx-background-color: #444444;");
+        clockLabel.setStyle("-fx-background-color: #444444;");
     }
 }
