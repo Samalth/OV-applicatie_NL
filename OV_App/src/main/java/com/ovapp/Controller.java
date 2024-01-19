@@ -109,8 +109,6 @@ public class Controller {
 	@FXML
 	private Pane amenities;
 	@FXML
-	private Pane favorites;
-	@FXML
 	private ImageView amenityLiftDeparture;
 	@FXML
 	private ImageView amenityStairMarkingsDeparture;
@@ -122,10 +120,6 @@ public class Controller {
 	private ImageView amenityStairMarkingsArrival;
 	@FXML
 	private ImageView amenityTactilePavementArrival;
-	@FXML
-	private Button amenitiesFavorites;
-	@FXML
-	private Label favoritesLabel;
 
 
     private Train train = new Train("Trein", Arrays.asList(0, 15, 30, 45, 60));
@@ -171,7 +165,6 @@ public class Controller {
 		amenityStairMarkingsArrival.setVisible(false);
 		amenityTactilePavementArrival.setVisible(false);
 		amenities.setVisible(false);
-		favorites.setVisible(false);
 
 	}
 
@@ -300,11 +293,11 @@ public class Controller {
 		Locale locale = new Locale(newLanguage);
 		bundle = ResourceBundle.getBundle("Messages", locale);
 
-		ArrivalText.setText(bundle.getString("Destinationtxt"));
-		DepartureDateText.setText(bundle.getString("DepartureDatetxt"));
-		DepartureText.setText(bundle.getString("Departuretxt"));
-		DepartureTimeText.setText(bundle.getString("DepartureTimetxt"));
-		MeansOfTransportText.setText(bundle.getString("MeansOfTransporttxt"));
+		//ArrivalText.setText(bundle.getString("Destinationtxt"));
+		//DepartureDateText.setText(bundle.getString("DepartureDatetxt"));
+		//DepartureText.setText(bundle.getString("Departuretxt"));
+		//DepartureTimeText.setText(bundle.getString("DepartureTimetxt"));
+		//MeansOfTransportText.setText(bundle.getString("MeansOfTransporttxt"));
 
 		logInButton.setText(bundle.getString("LogInButtontxt"));
 		GOButton.setText(bundle.getString("RouteButtontxt"));
@@ -453,19 +446,5 @@ public class Controller {
 		} else {
 			amenityTactilePavementArrival.setVisible(false);
 		}
-	}
-
-	public void onAmenitiesFavoritesClick(){
-		if(!amenities.isVisible() && !favorites.isVisible()){
-			amenities.setVisible(true);
-			favorites.setVisible(false);
-		} else if (!favorites.isVisible() && amenities.isVisible()){
-			amenities.setVisible(false);
-			favorites.setVisible(true);
-		}else if (favorites.isVisible() && !amenities.isVisible()){
-			favorites.setVisible(false);
-			amenities.setVisible(true);
-		}
-
 	}
 }

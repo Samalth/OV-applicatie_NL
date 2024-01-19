@@ -19,6 +19,7 @@ public class LoginController extends ParentController {
     public void initialize() {
             super.initialize();
             //hasmap login info Users
+            loginInfo.put("aaaa","aaaa");
             loginInfo.put("Hellokittyfan", "blahBlah123");
             loginInfo.put("Johony","Jo1234!");
         }

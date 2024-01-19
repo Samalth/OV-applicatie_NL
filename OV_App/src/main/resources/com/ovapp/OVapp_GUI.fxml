@@ -77,7 +77,7 @@
 
     <Pane prefHeight="720.0" prefWidth="1280.0">
         <children>
-            <Label fx:id="departureLabel" layoutX="722.0" layoutY="70.0" prefHeight="191.0" prefWidth="639.0" style="-fx-border-color: #FF6600;" textFill="#E62F2B" wrapText="true">
+            <Label fx:id="departureLabel" layoutX="730.0" layoutY="70.0" prefHeight="191.0" prefWidth="639.0" style="-fx-border-color: #FF6600;" textFill="#E62F2B" wrapText="true">
                 <tooltip>
                     <Tooltip fx:id="departureLabelToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14; " text="Hier ziet u uw reisinformatie" />
                 </tooltip>
@@ -85,7 +85,7 @@
                <Font size="36.0" />
             </font>
             </Label>
-            <Button fx:id="GOButton" layoutX="232.0" layoutY="614.0" mnemonicParsing="false" onAction="#onGOClick" prefHeight="92.0" prefWidth="230.0" style="-fx-border-color: #ff6600;" text="Plan Route">
+            <Button fx:id="GOButton" layoutX="232.0" layoutY="664.0" mnemonicParsing="false" onAction="#onGOClick" prefHeight="92.0" prefWidth="230.0" style="-fx-border-color: #ff6600;" text="Plan Route">
                 <font>
                     <Font name="Calibri" size="22.0" />
                 </font>
@@ -161,7 +161,6 @@
                 <Image url="@../../Departure_Time.png" />
             </image>
          </ImageView>
-         <Button fx:id="amenitiesFavorites" layoutX="501.0" layoutY="418.0" mnemonicParsing="false" onAction="#onAmenitiesFavoritesClick" text="Favorieten/ voorzieningen" />
          <StackPane layoutX="722.0" layoutY="261.0" prefHeight="365.0" prefWidth="639.0">
             <children>
                <Pane fx:id="amenities" prefHeight="200.0" prefWidth="200.0">
@@ -196,11 +195,6 @@
                             <Image url="@../../Transport.jpg" />
                         </image>
                      </ImageView>
-                  </children>
-               </Pane>
-               <Pane fx:id="favorites" prefHeight="200.0" prefWidth="200.0">
-                  <children>
-                     <Label prefHeight="365.0" prefWidth="639.0" text="Label" />
                   </children>
                </Pane>
             </children>
