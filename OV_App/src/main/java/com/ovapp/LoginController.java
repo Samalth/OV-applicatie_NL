@@ -31,18 +31,11 @@ public class LoginController extends ParentController {
     @FXML
     private Label clockLabel;
 
-
     @FXML
     private ImageView imgMode;
 
     @FXML
     private VBox parent;
-
-
-        Stage stage;
-        Scene scene;
-        static HashMap<String,String> loginInfo= new HashMap<>();
-
 
 	public void initialize() {
 		super.initialize();

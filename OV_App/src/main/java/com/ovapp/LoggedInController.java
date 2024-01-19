@@ -201,7 +201,6 @@ public class LoggedInController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	@FXML
@@ -649,7 +648,6 @@ public class LoggedInController {
 		} else {
 			amenityTactilePavementDeparture.setVisible(false);
 		}
-
 		if (arrivalAmenities.contains("liften")) {
 			amenityLiftArrival.setVisible(true);
 		} else {
