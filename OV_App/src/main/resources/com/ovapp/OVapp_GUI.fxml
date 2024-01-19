@@ -16,60 +16,81 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="parent" alignment="CENTER" prefHeight="900.0" prefWidth="1440.0" spacing="20.0" style="-fx-border-color: #E62F2B;" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ovapp.Controller">
+<VBox fx:id="parent" alignment="CENTER" prefHeight="900.0" prefWidth="1440.0" spacing="20.0"
+      style="-fx-border-color: #E62F2B;" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.ovapp.Controller">
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
     <AnchorPane minHeight="76.0" prefHeight="76.0" prefWidth="1238.0" style="-fx-background-color: #ff6600;">
         <children>
-            <Label fx:id="dateLabel" alignment="CENTER" layoutX="32.0" layoutY="19.0" prefHeight="38.0" prefWidth="112.0" style="-fx-border-color: #FF6600; -fx-background-color: #DEDEDE;">
+            <Label fx:id="dateLabel" alignment="CENTER" layoutX="32.0" layoutY="19.0" prefHeight="38.0"
+                   prefWidth="112.0" style="-fx-border-color: #FF6600; -fx-background-color: #DEDEDE;">
                 <font>
-                    <Font name="Calibri" size="15.0" />
+                    <Font name="Calibri" size="15.0"/>
                 </font>
-                <Tooltip fx:id="dateLabelToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14; " text="de huidige datum" />
+                <Tooltip fx:id="dateLabelToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14; "
+                         text="de huidige datum"/>
             </Label>
-            <Label fx:id="clockLabel" layoutX="153.0" layoutY="19.0" prefHeight="38.0" prefWidth="112.0" style="-fx-border-color: #ff6600; -fx-background-color: #DEDEDE;">
+            <Label fx:id="clockLabel" layoutX="153.0" layoutY="19.0" prefHeight="38.0" prefWidth="112.0"
+                   style="-fx-border-color: #ff6600; -fx-background-color: #DEDEDE;">
                 <font>
-                    <Font name="Calibri" size="15.0" />
+                    <Font name="Calibri" size="15.0"/>
                 </font>
                 <tooltip>
-                    <Tooltip fx:id="clockLabelToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="de huidige tijd" />
+                    <Tooltip fx:id="clockLabelToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;"
+                             text="de huidige tijd"/>
                 </tooltip>
             </Label>
-            <Button fx:id="logInButton" layoutX="1098.0" layoutY="12.0" mnemonicParsing="false" onAction="#onLogInButtonClick" prefHeight="52.0" prefWidth="125.0" style="-fx-border-color: #FF6600;" text="Inloggen">
+            <Button fx:id="logInButton" layoutX="1098.0" layoutY="12.0" mnemonicParsing="false"
+                    onAction="#onLogInButtonClick" prefHeight="52.0" prefWidth="125.0"
+                    style="-fx-border-color: #FF6600;" text="Inloggen">
                 <font>
-                    <Font name="Calibri" size="22.0" />
+                    <Font name="Calibri" size="22.0"/>
                 </font>
                 <tooltip>
-                    <Tooltip fx:id="logInButtonToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14; " text="klik hier om in te loggen" />
+                    <Tooltip fx:id="logInButtonToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14; "
+                             text="klik hier om in te loggen"/>
                 </tooltip>
             </Button>
-            <Button alignment="CENTER" layoutX="296.0" layoutY="13.0" mnemonicParsing="false" onAction="#onChangeModeClick" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #444444;" styleClass="dark-mode" stylesheets="@../../lightmode.css">
+            <Button alignment="CENTER" layoutX="296.0" layoutY="13.0" mnemonicParsing="false"
+                    onAction="#onChangeModeClick" prefHeight="50.0" prefWidth="50.0"
+                    style="-fx-background-color: #444444;" styleClass="dark-mode" stylesheets="@../../lightmode.css">
                 <opaqueInsets>
-                    <Insets />
+                    <Insets/>
                 </opaqueInsets>
                 <tooltip>
-                    <Tooltip fx:id="modeToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14; " text="Klik hier om te wisselen naar donkere/lichte modus" />
+                    <Tooltip fx:id="modeToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14; "
+                             text="Klik hier om te wisselen naar donkere/lichte modus"/>
                 </tooltip>
             </Button>
-            <ImageView fx:id="imgMode" cache="true" fitHeight="52.0" fitWidth="27.0" layoutX="308.0" layoutY="25.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgMode" cache="true" fitHeight="52.0" fitWidth="27.0" layoutX="308.0" layoutY="25.0"
+                       mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                 <image>
-                    <Image url="@../../moon.png" />
+                    <Image url="@../../moon.png"/>
                 </image>
             </ImageView>
-            <Button fx:id="deLanguageButton" layoutX="666.0" layoutY="16.0" mnemonicParsing="false" onAction="#onDuLanguageButtonClick" prefHeight="41.0" prefWidth="76.0" style="-fx-background-image: url('de_flag.png'); -fx-background-size: cover;">
+            <Button fx:id="deLanguageButton" layoutX="666.0" layoutY="16.0" mnemonicParsing="false"
+                    onAction="#onDuLanguageButtonClick" prefHeight="41.0" prefWidth="76.0"
+                    style="-fx-background-image: url('de_flag.png'); -fx-background-size: cover;">
                 <tooltip>
-                    <Tooltip style="-fx-text-fill: #FFFFFF; -fx-font-size: 14; " text="auf Deutsch umstellen" />
+                    <Tooltip style="-fx-text-fill: #FFFFFF; -fx-font-size: 14; " text="auf Deutsch umstellen"/>
                 </tooltip>
             </Button>
-            <Button fx:id="enLanguageButton" layoutX="581.0" layoutY="16.0" mnemonicParsing="false" onAction="#onEnLanguageButtonClick" prefHeight="41.0" prefWidth="76.0" style="-fx-background-image: url('uk_flag.png'); -fx-background-size: cover;">
+            <Button fx:id="enLanguageButton" layoutX="581.0" layoutY="16.0" mnemonicParsing="false"
+                    onAction="#onEnLanguageButtonClick" prefHeight="41.0" prefWidth="76.0"
+                    style="-fx-background-image: url('uk_flag.png'); -fx-background-size: cover;">
                 <tooltip>
-                    <Tooltip fx:id="enLanguageButtonToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14; " text="Switch to English" />
+                    <Tooltip fx:id="enLanguageButtonToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14; "
+                             text="Switch to English"/>
                 </tooltip>
             </Button>
-            <Button fx:id="nlLanguageButton" layoutX="497.0" layoutY="16.0" mnemonicParsing="false" onAction="#onNlLanguageButtonClick" prefHeight="41.0" prefWidth="76.0" style="-fx-background-image: url('nl_flag.png');-fx-background-size: cover;">
+            <Button fx:id="nlLanguageButton" layoutX="497.0" layoutY="16.0" mnemonicParsing="false"
+                    onAction="#onNlLanguageButtonClick" prefHeight="41.0" prefWidth="76.0"
+                    style="-fx-background-image: url('nl_flag.png');-fx-background-size: cover;">
                 <tooltip>
-                    <Tooltip fx:id="nlLanguageButtonToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="wissel naar Nederlands" />
+                    <Tooltip fx:id="nlLanguageButtonToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;"
+                             text="wissel naar Nederlands"/>
                 </tooltip>
             </Button>
         </children>
@@ -77,132 +98,163 @@
 
     <Pane prefHeight="720.0" prefWidth="1280.0">
         <children>
-            <Label fx:id="departureLabel" layoutX="730.0" layoutY="70.0" prefHeight="191.0" prefWidth="639.0" style="-fx-border-color: #FF6600;" textFill="#E62F2B" wrapText="true">
+            <Label fx:id="departureLabel" layoutX="730.0" layoutY="70.0" prefHeight="191.0" prefWidth="639.0"
+                   style="-fx-border-color: #FF6600;" textFill="#E62F2B" wrapText="true">
                 <tooltip>
-                    <Tooltip fx:id="departureLabelToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14; " text="Hier ziet u uw reisinformatie" />
+                    <Tooltip fx:id="departureLabelToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14; "
+                             text="Hier ziet u uw reisinformatie"/>
                 </tooltip>
-            <font>
-               <Font size="22.0" />
-            </font>
+                <font>
+                    <Font size="22.0"/>
+                </font>
             </Label>
-            <Button fx:id="GOButton" layoutX="232.0" layoutY="664.0" mnemonicParsing="false" onAction="#onGOClick" prefHeight="92.0" prefWidth="230.0" style="-fx-border-color: #ff6600;" text="Plan Route">
+            <Button fx:id="GOButton" layoutX="232.0" layoutY="664.0" mnemonicParsing="false" onAction="#onGOClick"
+                    prefHeight="92.0" prefWidth="230.0" style="-fx-border-color: #ff6600;" text="Plan Route">
                 <font>
-                    <Font name="Calibri" size="22.0" />
+                    <Font name="Calibri" size="22.0"/>
                 </font>
                 <tooltip>
-                    <Tooltip fx:id="GOButtonToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="Klik op 'Plan route' nadat u uw vertrek- en bestemmingslocatie en vervoermiddel hebt geselecteerd." />
+                    <Tooltip fx:id="GOButtonToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;"
+                             text="Klik op 'Plan route' nadat u uw vertrek- en bestemmingslocatie en vervoermiddel hebt geselecteerd."/>
                 </tooltip>
             </Button>
-            <ComboBox fx:id="departureCityComboBox" layoutX="232.0" layoutY="32.0" onAction="#onDepartureCityComboBoxClick" prefHeight="41.0" prefWidth="230.0" style="-fx-border-color: #ff6600;">
+            <ComboBox fx:id="departureCityComboBox" layoutX="232.0" layoutY="32.0"
+                      onAction="#onDepartureCityComboBoxClick" prefHeight="41.0" prefWidth="230.0"
+                      style="-fx-border-color: #ff6600;">
                 <tooltip>
-                    <Tooltip fx:id="departureCityComboBoxToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="Klik hier om uw huidige locatie te selecteren (vertreklocatie)." />
+                    <Tooltip fx:id="departureCityComboBoxToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;"
+                             text="Klik hier om uw huidige locatie te selecteren (vertreklocatie)."/>
                 </tooltip>
             </ComboBox>
-            <Button fx:id="switchButton" layoutX="324.0" layoutY="96.0" mnemonicParsing="false" onAction="#onSwitchButtonClick" prefHeight="41.0" prefWidth="46.0" style="-fx-border-color: #ff6600;" text="↑↓">
+            <Button fx:id="switchButton" layoutX="324.0" layoutY="96.0" mnemonicParsing="false"
+                    onAction="#onSwitchButtonClick" prefHeight="41.0" prefWidth="46.0"
+                    style="-fx-border-color: #ff6600;" text="↑↓">
                 <font>
-                    <Font name="Calibri" size="14.0" />
+                    <Font name="Calibri" size="14.0"/>
                 </font>
                 <tooltip>
-                    <Tooltip text="Wissel tussen vertrek en bestemming locatie." />
+                    <Tooltip text="Wissel tussen vertrek en bestemming locatie."/>
                 </tooltip>
             </Button>
-            <ComboBox fx:id="arrivalCityComboBox" layoutX="232.0" layoutY="153.0" onAction="#onArrivalCityComboBoxClick" prefHeight="41.0" prefWidth="230.0" style="-fx-border-color: #ff6600;">
+            <ComboBox fx:id="arrivalCityComboBox" layoutX="232.0" layoutY="153.0" onAction="#onArrivalCityComboBoxClick"
+                      prefHeight="41.0" prefWidth="230.0" style="-fx-border-color: #ff6600;">
                 <tooltip>
-                    <Tooltip fx:id="arrivalCityComboBoxToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="Klik hier om uw bestemmingslocatie te selecteren (bestemmingslocatie)." />
+                    <Tooltip fx:id="arrivalCityComboBoxToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;"
+                             text="Klik hier om uw bestemmingslocatie te selecteren (bestemmingslocatie)."/>
                 </tooltip>
             </ComboBox>
-            <DatePicker fx:id="departureDatePicker" layoutX="232.0" layoutY="527.0" prefHeight="41.0" prefWidth="230.0" style="-fx-border-color: #ff6600;">
+            <DatePicker fx:id="departureDatePicker" layoutX="232.0" layoutY="527.0" prefHeight="41.0" prefWidth="230.0"
+                        style="-fx-border-color: #ff6600;">
                 <tooltip>
-                    <Tooltip fx:id="departureDatePickerTooltip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="Klik hier om de vertrekdatum te kiezen." />
+                    <Tooltip fx:id="departureDatePickerTooltip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;"
+                             text="Klik hier om de vertrekdatum te kiezen."/>
                 </tooltip>
             </DatePicker>
-            <Spinner fx:id="departureTimeHours" layoutX="232.0" layoutY="399.0" max="23" min="00" prefHeight="41.0" prefWidth="84.0">
+            <Spinner fx:id="departureTimeHours" layoutX="232.0" layoutY="399.0" max="23" min="00" prefHeight="41.0"
+                     prefWidth="84.0">
                 <tooltip>
-                    <Tooltip fx:id="departureTimeHoursToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="Klik hier om het uur van vertrek te selecteren." />
+                    <Tooltip fx:id="departureTimeHoursToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;"
+                             text="Klik hier om het uur van vertrek te selecteren."/>
                 </tooltip>
             </Spinner>
-            <Spinner fx:id="departureTimeMinutes" layoutX="370.0" layoutY="399.0" max="59" min="00" prefHeight="41.0" prefWidth="84.0">
+            <Spinner fx:id="departureTimeMinutes" layoutX="370.0" layoutY="399.0" max="59" min="00" prefHeight="41.0"
+                     prefWidth="84.0">
                 <tooltip>
-                    <Tooltip fx:id="departureTimeMinutesToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14; " text="Klik hier om de minuten van vertrek te selecteren." />
+                    <Tooltip fx:id="departureTimeMinutesToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14; "
+                             text="Klik hier om de minuten van vertrek te selecteren."/>
                 </tooltip>
             </Spinner>
-            <ComboBox fx:id="transportComboBox" layoutX="232.0" layoutY="277.0" prefHeight="41.0" prefWidth="230.0" style="-fx-border-color: #ff6600;">
+            <ComboBox fx:id="transportComboBox" layoutX="232.0" layoutY="277.0" prefHeight="41.0" prefWidth="230.0"
+                      style="-fx-border-color: #ff6600;">
                 <tooltip>
-                    <Tooltip fx:id="transportComboBoxToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="Klik hier om een vervoermiddel te kiezen." />
+                    <Tooltip fx:id="transportComboBoxToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;"
+                             text="Klik hier om een vervoermiddel te kiezen."/>
                 </tooltip>
             </ComboBox>
-            <ImageView fx:id="travelYRouteImg" cache="true" fitHeight="241.0" fitWidth="297.0" layoutX="865.0" layoutY="579.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="travelYRouteImg" cache="true" fitHeight="241.0" fitWidth="297.0" layoutX="865.0"
+                       layoutY="579.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                 <image>
-                    <Image url="@../../TravelYRouteBlanc.png" />
+                    <Image url="@../../TravelYRouteBlanc.png"/>
                 </image>
             </ImageView>
-         <ImageView fitHeight="99.0" fitWidth="95.0" layoutX="83.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../../Green_Light_Departure.png" />
-            </image>
-         </ImageView>
-         <ImageView fitHeight="114.0" fitWidth="122.0" layoutX="75.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../../Arrival_Finish_Flag.png" />
-            </image>
-         </ImageView>
-         <ImageView fitHeight="114.0" fitWidth="145.0" layoutX="56.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../../Transport.jpg" />
-            </image>
-         </ImageView>
-         <ImageView fitHeight="122.0" fitWidth="114.0" layoutX="60.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../../Travel_Date.jpeg" />
-            </image>
-         </ImageView>
-         <ImageView fitHeight="114.0" fitWidth="121.0" layoutX="60.0" layoutY="490.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../../Departure_Time.png" />
-            </image>
-         </ImageView>
-         <StackPane layoutX="722.0" layoutY="361.0" prefHeight="463.0" prefWidth="499.0">
-            <children>
-               <Pane fx:id="amenities" layoutX="730.0" layoutY="270.0" prefHeight="200.0" prefWidth="200.0">
-                  <children>
-                     <ImageView fx:id="amenityLiftDeparture" fitHeight="150.0" fitWidth="200.0" layoutX="44.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                            <Image url="@../../Lift.jpeg" />
-                        </image>
-                     </ImageView>
-                     <ImageView fx:id="amenityTactilePavementArrival" fitHeight="150.0" fitWidth="200.0" layoutX="444.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                            <Image url="@../../TactilePavement.jpeg" />
-                        </image>
-                     </ImageView>
-                     <ImageView fx:id="amenityStairMarkingsArrival" fitHeight="150.0" fitWidth="200.0" layoutX="244.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                            <Image url="@../../StairMarkings.jpeg" />
-                        </image>
-                     </ImageView>
-                     <ImageView fx:id="amenityLiftArrival" fitHeight="150.0" fitWidth="200.0" layoutX="44.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                            <Image url="@../../Lift.jpeg" />
-                        </image>
-                     </ImageView>
-                     <ImageView fx:id="amenityStairMarkingsDeparture" fitHeight="150.0" fitWidth="200.0" layoutX="244.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                            <Image url="@../../StairMarkings.jpeg" />
-                        </image>
-                     </ImageView>
-                  </children>
-               </Pane>
-            </children>
-         </StackPane>
-         <ImageView fx:id="amenityTactilePavementDeparture" fitHeight="150.0" fitWidth="200.0" layoutX="1162.0" layoutY="377.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../../TactilePavement.jpeg" />
-            </image>
-         </ImageView>
+            <ImageView fitHeight="99.0" fitWidth="95.0" layoutX="83.0" layoutY="5.0" pickOnBounds="true"
+                       preserveRatio="true">
+                <image>
+                    <Image url="@../../Green_Light_Departure.png"/>
+                </image>
+            </ImageView>
+            <ImageView fitHeight="114.0" fitWidth="122.0" layoutX="75.0" layoutY="116.0" pickOnBounds="true"
+                       preserveRatio="true">
+                <image>
+                    <Image url="@../../Arrival_Finish_Flag.png"/>
+                </image>
+            </ImageView>
+            <ImageView fitHeight="114.0" fitWidth="145.0" layoutX="56.0" layoutY="236.0" pickOnBounds="true"
+                       preserveRatio="true">
+                <image>
+                    <Image url="@../../Transport.jpg"/>
+                </image>
+            </ImageView>
+            <ImageView fitHeight="122.0" fitWidth="114.0" layoutX="60.0" layoutY="361.0" pickOnBounds="true"
+                       preserveRatio="true">
+                <image>
+                    <Image url="@../../Travel_Date.jpeg"/>
+                </image>
+            </ImageView>
+            <ImageView fitHeight="114.0" fitWidth="121.0" layoutX="60.0" layoutY="490.0" pickOnBounds="true"
+                       preserveRatio="true">
+                <image>
+                    <Image url="@../../Departure_Time.png"/>
+                </image>
+            </ImageView>
+            <StackPane layoutX="722.0" layoutY="361.0" prefHeight="463.0" prefWidth="499.0">
+                <children>
+                    <Pane fx:id="amenities" layoutX="730.0" layoutY="270.0" prefHeight="200.0" prefWidth="200.0">
+                        <children>
+                            <ImageView fx:id="amenityLiftDeparture" fitHeight="150.0" fitWidth="200.0" layoutX="44.0"
+                                       layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@../../Lift.jpeg"/>
+                                </image>
+                            </ImageView>
+                            <ImageView fx:id="amenityTactilePavementArrival" fitHeight="150.0" fitWidth="200.0"
+                                       layoutX="444.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@../../TactilePavement.jpeg"/>
+                                </image>
+                            </ImageView>
+                            <ImageView fx:id="amenityStairMarkingsArrival" fitHeight="150.0" fitWidth="200.0"
+                                       layoutX="244.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@../../StairMarkings.jpeg"/>
+                                </image>
+                            </ImageView>
+                            <ImageView fx:id="amenityLiftArrival" fitHeight="150.0" fitWidth="200.0" layoutX="44.0"
+                                       layoutY="210.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@../../Lift.jpeg"/>
+                                </image>
+                            </ImageView>
+                            <ImageView fx:id="amenityStairMarkingsDeparture" fitHeight="150.0" fitWidth="200.0"
+                                       layoutX="244.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@../../StairMarkings.jpeg"/>
+                                </image>
+                            </ImageView>
+                        </children>
+                    </Pane>
+                </children>
+            </StackPane>
+            <ImageView fx:id="amenityTactilePavementDeparture" fitHeight="150.0" fitWidth="200.0" layoutX="1162.0"
+                       layoutY="377.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../../TactilePavement.jpeg"/>
+                </image>
+            </ImageView>
         </children>
     </Pane>
     <styleClass>
-        <String fx:value="dark-mode" />
-        <String fx:value="light-mode" />
+        <String fx:value="dark-mode"/>
+        <String fx:value="light-mode"/>
     </styleClass>
 </VBox>
