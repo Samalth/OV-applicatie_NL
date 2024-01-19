@@ -235,11 +235,6 @@
                     <Tooltip fx:id="showTravelHistoryButtonToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="Klik hier om uw reisgeschiedenis te tonen" />
                 </tooltip>
             </Button>
-            <ImageView fx:id="travelYRouteImg" cache="true" fitHeight="166.0" fitWidth="262.0" layoutX="1208.0" layoutY="662.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
-                <image>
-                    <Image url="@../../TravelYRouteBlanc.png" />
-                </image>
-            </ImageView>
 
         </children>
     </Pane>
