@@ -222,7 +222,7 @@
                 </children>
                </Pane>
             </children></StackPane>
-         <Button fx:id="amenitiesFavorites" layoutX="774.0" layoutY="279.0" mnemonicParsing="false" onAction="#setAmenitiesVisible" prefHeight="41.0" prefWidth="198.0" text="Voorzieningen">
+         <Button fx:id="amenitiesButton" layoutX="774.0" layoutY="279.0" mnemonicParsing="false" onAction="#setAmenitiesVisible" prefHeight="41.0" prefWidth="198.0" text="Voorzieningen">
             <font>
                 <Font name="Calibri" size="22.0" />
             </font>

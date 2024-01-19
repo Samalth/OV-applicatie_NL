@@ -117,7 +117,7 @@ public class LoggedInController {
 	private LocalDate DepartureDate;
 	private String transport;
 	@FXML
-	private Button amenitiesFavorites;
+	private Button amenitiesButton;
 	@FXML
 	private Pane amenities;
 	@FXML
@@ -298,6 +298,7 @@ public class LoggedInController {
 		setFavourite.setText(bundle.getString("setFavouriteButtontxt"));
 		logOutButton.setText(bundle.getString("LogOutButtontxt"));
 		showFavouriteButton.setText(bundle.getString("ShowFavouriteButtontxt"));
+		amenitiesButton.setText(bundle.getString("ShowAmenitiesButtontxt"));
 
 		arrivalCityComboBox.setPromptText(bundle.getString("ArrivalComboBoxPromt"));
 		departureCityComboBox.setPromptText(bundle.getString("DepartureComboBoxPromt"));
