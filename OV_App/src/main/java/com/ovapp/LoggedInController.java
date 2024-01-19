@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -106,7 +107,8 @@ public class LoggedInController {
 	private Label departureLabel;
 	@FXML
 	private Label favouriteLabel;
-	private boolean isFavouriteVisible = false;
+	private boolean favouriteVisible = true;
+	private boolean amenitiesVisible = false;
 	@FXML
 	private String departureCity;
 	@FXML
@@ -114,13 +116,34 @@ public class LoggedInController {
 	@FXML
 	private LocalDate DepartureDate;
 	private String transport;
+	@FXML
+	private Button amenitiesButton;
+	@FXML
+	private Pane amenities;
+	@FXML
+	private Pane favorites;
+	@FXML
+	private ImageView amenityLiftDeparture;
+	@FXML
+	private ImageView amenityStairMarkingsDeparture;
+	@FXML
+	private ImageView amenityTactilePavementDeparture;
+	@FXML
+	private ImageView amenityLiftArrival;
+	@FXML
+	private ImageView amenityStairMarkingsArrival;
+	@FXML
+	private ImageView amenityTactilePavementArrival;
 	private List<String> favouriteList = new ArrayList<>();
-	private List<String> displayFavouriteList = new ArrayList<>();
+	private List<String> displayFavouriteListNL = new ArrayList<>();
+	private List<String> displayFavouriteListEN = new ArrayList<>();
+	private List<String> displayFavouriteListDE = new ArrayList<>();
 	private Train train = new Train("Trein", Arrays.asList(0, 15, 30, 45, 60));
 	private Bus bus = new Bus("Bus", Arrays.asList(25, 55, 85));
 	private ResourceBundle bundle;
 	private City currentCity;
 	private boolean isLightMode = true;
+	private String currentLanguage = "Nederlands";
 
 	public ArrayList<City> getCities() {
 		ArrayList<City> cities = new ArrayList<>();
@@ -128,10 +151,11 @@ public class LoggedInController {
 		cities.add(new City("Amsterdam", Arrays.asList("liften", "geleidenstroken", "trapmarkeringen")));
 		cities.add(new City("Arnhem", Arrays.asList("geleidenstroken", "trapmarkeringen")));
 		cities.add(new City("Den Bosch", Arrays.asList("liften", "trapmarkeringen")));
-		cities.add(new City("Den Haag", Arrays.asList("geleidenstroken", "het hele station is gelijkvloers")));
-		cities.add(new City("IJsselstein", Arrays.asList("geleidenstroken", "het hele station is gelijkvloers")));
+		cities.add(new City("Den Haag", Arrays.asList("liften", "geleidenstroken")));
+		cities.add(new City("IJsselstein", Arrays.asList("geleidenstroken", "trapmarkeringen")));
 		cities.add(new City("Nieuwegein", Arrays.asList("liften", "geleidenstroken")));
 		cities.add(new City("Utrecht", Arrays.asList("liften", "geleidenstroken", "trapmarkeringen")));
+		cities.add(new City("Rotterdam", Arrays.asList("liften", "trapmarkeringen")));
 		return cities;
 	}
 
@@ -150,9 +174,15 @@ public class LoggedInController {
 			}
 		}, 0, 1000);
 
-		favouriteLabel.setVisible(false);
 		switchLanguage("Nederlands");
 		setLightMode();
+		amenityLiftDeparture.setVisible(false);
+		amenityStairMarkingsDeparture.setVisible(false);
+		amenityTactilePavementDeparture.setVisible(false);
+		amenityLiftArrival.setVisible(false);
+		amenityStairMarkingsArrival.setVisible(false);
+		amenityTactilePavementArrival.setVisible(false);
+		amenities.setVisible(amenitiesVisible);
 	}
 
 	public void onLogOutButtonClick() {
@@ -172,23 +202,6 @@ public class LoggedInController {
 			e.printStackTrace();
 		}
 
-	}
-
-	@FXML
-	protected void onShowFavouriteVisible() {
-		isFavouriteVisible = !isFavouriteVisible;
-		favouriteLabel.setVisible(isFavouriteVisible);
-		favourite0.setVisible(isFavouriteVisible);
-		favourite1.setVisible(isFavouriteVisible);
-		favourite2.setVisible(isFavouriteVisible);
-		favourite3.setVisible(isFavouriteVisible);
-		favourite4.setVisible(isFavouriteVisible);
-
-		if (isFavouriteVisible) {
-			System.out.println("Favorieten zichtbaar");
-		} else {
-			System.out.println("Favorieten verborgen");
-		}
 	}
 
 	@FXML
@@ -214,6 +227,9 @@ public class LoggedInController {
 			List<String> amenities = determineAmenities(cities);
 			departureAmenities = amenities.get(0);
 			arrivalAmenities = amenities.get(1);
+			if (departureAmenities != null && arrivalAmenities != null && transport != null) {
+				setAmenityImages(departureAmenities, arrivalAmenities);
+			}
 		} catch (NullPointerException e) {
 			departureLabel.setText("Selecteer alstublieft een vertrekplaats, aankomstplaats en vervoermiddel.");
 		}
@@ -267,24 +283,15 @@ public class LoggedInController {
 		}
 	}
 
-	private List<String> getLanguages() {
-		return Arrays.asList("Nederlands", "English", "Deutsch");
-	}
-
 	public void switchLanguage(String newLanguage) {
 		Locale locale = new Locale(newLanguage);
+		currentLanguage = newLanguage;
 		bundle = ResourceBundle.getBundle("Messages", locale);
-
-		ArrivalText.setText(bundle.getString("Destinationtxt"));
-		DepartureText.setText(bundle.getString("Departuretxt"));
-		DepartureDateText.setText(bundle.getString("DepartureDatetxt"));
-		DepartureTimeText.setText(bundle.getString("DepartureTimetxt"));
-		MeansOfTransportText.setText(bundle.getString("MeansOfTransporttxt"));
-
 		GOButton.setText(bundle.getString("RouteButtontxt"));
 		setFavourite.setText(bundle.getString("setFavouriteButtontxt"));
 		logOutButton.setText(bundle.getString("LogOutButtontxt"));
 		showFavouriteButton.setText(bundle.getString("ShowFavouriteButtontxt"));
+		amenitiesButton.setText(bundle.getString("ShowAmenitiesButtontxt"));
 
 		arrivalCityComboBox.setPromptText(bundle.getString("ArrivalComboBoxPromt"));
 		departureCityComboBox.setPromptText(bundle.getString("DepartureComboBoxPromt"));
@@ -306,8 +313,52 @@ public class LoggedInController {
 		showTravelHistoryButtonToolTip.setText(bundle.getString("ShowTravelHistoryButtonToolTiptxt"));
 		dateLabelToolTip.setText(bundle.getString("DateLabelToolTiptxt"));
 
-		if (favouriteLabel != null){
+		if (favourite0.getText().equals("Lege favoriet") || favourite0.getText().equals("Empty favourite") ||
+				favourite0.getText().equals("Leeres Lieblingsziel")) {
+			favourite0.setText(bundle.getString("favouritestxt"));
+		}
+		if (favourite1.getText().equals("Lege favoriet") || favourite1.getText().equals("Empty favourite") ||
+				favourite1.getText().equals("Leeres Lieblingsziel")) {
+			favourite1.setText(bundle.getString("favouritestxt"));
+		}
+		if (favourite2.getText().equals("Lege favoriet") || favourite2.getText().equals("Empty favourite") ||
+				favourite2.getText().equals("Leeres Lieblingsziel")) {
+			favourite2.setText(bundle.getString("favouritestxt"));
+		}
+		if (favourite3.getText().equals("Lege favoriet") || favourite3.getText().equals("Empty favourite") ||
+				favourite3.getText().equals("Leeres Lieblingsziel")) {
+			favourite3.setText(bundle.getString("favouritestxt"));
+		}
+		if (favourite4.getText().equals("Lege favoriet") || favourite4.getText().equals("Empty favourite") ||
+				favourite4.getText().equals("Leeres Lieblingsziel")) {
+			favourite4.setText(bundle.getString("favouritestxt"));
+		}
+
+		if (favouriteLabel != null) {
 			favouriteLabel.setText(bundle.getString("FavouriteLabelError"));
+		}
+	}
+
+	//WIP code to change language of favourites
+	public void changeFavouriteLanguage() {
+		if (currentLanguage == "Nederlands") {
+			favourite0.setText(displayFavouriteListNL.get(0));
+			favourite1.setText(displayFavouriteListNL.get(1));
+			favourite2.setText(displayFavouriteListNL.get(2));
+			favourite3.setText(displayFavouriteListNL.get(3));
+			favourite4.setText(displayFavouriteListNL.get(4));
+		} else if (currentLanguage == "English") {
+			favourite0.setText(displayFavouriteListEN.get(0));
+			favourite1.setText(displayFavouriteListEN.get(1));
+			favourite2.setText(displayFavouriteListEN.get(2));
+			favourite3.setText(displayFavouriteListEN.get(3));
+			favourite4.setText(displayFavouriteListEN.get(4));
+		} else if (currentLanguage == "Deutsch") {
+			favourite0.setText(displayFavouriteListDE.get(0));
+			favourite1.setText(displayFavouriteListDE.get(1));
+			favourite2.setText(displayFavouriteListDE.get(2));
+			favourite3.setText(displayFavouriteListDE.get(3));
+			favourite4.setText(displayFavouriteListDE.get(4));
 		}
 	}
 
@@ -358,6 +409,7 @@ public class LoggedInController {
 
 		if (departureCity == null || arrivalCity == null || transport == null) {
 			favouriteLabel.setText(bundle.getString("FavouriteLabelError"));
+			setFavouriteVisible();
 		} else {
 			String addFavourite = String.format("%s,%s,%s,"
 					, departureCity, arrivalCity, transport);
@@ -380,40 +432,56 @@ public class LoggedInController {
 
 			String displayFavourite = String.format("   Van %s naar %s met de %s"
 					, departureString, arrivalString, transportString.toLowerCase());
-			displayFavouriteList.add(displayFavourite);
+			displayFavouriteListNL.add(displayFavourite);
+
+			String displayFavouriteEN = String.format("   From %s to %s with the %s"
+					, departureString, arrivalString, transportString.toLowerCase());
+			displayFavouriteListEN.add(displayFavourite);
+
+			String displayFavouriteDE = String.format("   Von %s nach %s mit der %s"
+					, departureString, arrivalString, transportString.toLowerCase());
+			displayFavouriteListDE.add(displayFavourite);
+
 			{
-				if (displayFavouriteList.size() > 5) {
-					displayFavouriteList.remove(0);
+				if (displayFavouriteListNL.size() > 5) {
+					displayFavouriteListNL.remove(0);
+				}
+				if (displayFavouriteListEN.size() > 5) {
+					displayFavouriteListEN.remove(0);
+				}
+				if (displayFavouriteListDE.size() > 5) {
+					displayFavouriteListDE.remove(0);
 				}
 			}
 		} catch (NullPointerException e) {
 			favouriteLabel.setText(bundle.getString("FavouriteLabelError"));
+			setFavouriteVisible();
 		}
 		showFavourite();
 	}
 
 	private void showFavourite() {
-		for (int i = 0; i < displayFavouriteList.size(); i++) {
+		for (int i = 0; i < displayFavouriteListNL.size(); i++) {
 			switch (i) {
 				case 0 -> {
-					favourite0.setVisible(true);
-					favourite0.setText(displayFavouriteList.get(i));
+					favourite0.setText(displayFavouriteListNL.get(i));
+					setFavouriteVisible();
 				}
 				case 1 -> {
-					favourite1.setVisible(true);
-					favourite1.setText(displayFavouriteList.get(i));
+					favourite1.setText(displayFavouriteListNL.get(i));
+					setFavouriteVisible();
 				}
 				case 2 -> {
-					favourite2.setVisible(true);
-					favourite2.setText(displayFavouriteList.get(i));
+					favourite2.setText(displayFavouriteListNL.get(i));
+					setFavouriteVisible();
 				}
 				case 3 -> {
-					favourite3.setVisible(true);
-					favourite3.setText(displayFavouriteList.get(i));
+					favourite3.setText(displayFavouriteListNL.get(i));
+					setFavouriteVisible();
 				}
 				case 4 -> {
-					favourite4.setVisible(true);
-					favourite4.setText(displayFavouriteList.get(i));
+					favourite4.setText(displayFavouriteListNL.get(i));
+					setFavouriteVisible();
 				}
 			}
 		}
@@ -421,32 +489,57 @@ public class LoggedInController {
 
 	@FXML
 	private void setFavourite0(ActionEvent actionEvent) {
-		favouriteID = 0;
-		useFavourite(actionEvent);
+		if (favourite0.getText().equals("Lege favoriet") || favourite0.getText().equals("Empty favourite") ||
+				favourite0.getText().equals("Leeres Lieblingsziel")) {
+			favouriteLabel.setText(bundle.getString("favouriteEmptyError"));
+		} else {
+			favouriteID = 0;
+			useFavourite(actionEvent);
+		}
 	}
 
 	@FXML
 	private void setFavourite1(ActionEvent actionEvent) {
-		favouriteID = 1;
-		useFavourite(actionEvent);
+		if (favourite1.getText().equals("Lege favoriet") || favourite1.getText().equals("Empty favourite") ||
+				favourite1.getText().equals("Leeres Lieblingsziel")) {
+			favouriteLabel.setText(bundle.getString("favouriteEmptyError"));
+		} else {
+			favouriteID = 1;
+			useFavourite(actionEvent);
+		}
 	}
 
 	@FXML
 	private void setFavourite2(ActionEvent actionEvent) {
-		favouriteID = 2;
-		useFavourite(actionEvent);
+		if (favourite2.getText().equals("Lege favoriet") || favourite2.getText().equals("Empty favourite") ||
+				favourite2.getText().equals("Leeres Lieblingsziel")) {
+			favouriteLabel.setText(bundle.getString("favouriteEmptyError"));
+		} else {
+			favouriteID = 2;
+			useFavourite(actionEvent);
+		}
 	}
 
 	@FXML
 	private void setFavourite3(ActionEvent actionEvent) {
-		favouriteID = 3;
-		useFavourite(actionEvent);
+		if (favourite3.getText().equals("Lege favoriet") || favourite3.getText().equals("Empty favourite") ||
+				favourite3.getText().equals("Leeres Lieblingsziel")) {
+			favouriteLabel.setText(bundle.getString("favouriteEmptyError"));
+		} else {
+			favouriteID = 3;
+			useFavourite(actionEvent);
+		}
 	}
 
 	@FXML
 	private void setFavourite4(ActionEvent actionEvent) {
-		favouriteID = 4;
-		useFavourite(actionEvent);
+		if (favourite4.getText().equals("Lege favoriet") || favourite4.getText().equals("Empty favourite") ||
+				favourite4.getText().equals("Leeres Lieblingsziel")) {
+			favouriteLabel.setText(bundle.getString("favouriteEmptyError"));
+		} else {
+			favouriteID = 4;
+			useFavourite(actionEvent);
+		}
 	}
 
 	@FXML
@@ -534,5 +627,76 @@ public class LoggedInController {
 			}
 		}
 		return formattedAmenities;
+	}
+
+	private void setAmenityImages(String departureAmenities, String arrivalAmenities) {
+		if (departureAmenities.contains("liften")) {
+			amenityLiftDeparture.setVisible(true);
+		} else {
+			amenityLiftDeparture.setVisible(false);
+		}
+		if (departureAmenities.contains("trapmarkeringen")) {
+			amenityStairMarkingsDeparture.setVisible(true);
+		} else {
+			amenityStairMarkingsDeparture.setVisible(false);
+		}
+		if (departureAmenities.contains("geleidenstroken")) {
+			amenityTactilePavementDeparture.setVisible(true);
+		} else {
+			amenityTactilePavementDeparture.setVisible(false);
+		}
+
+		if (arrivalAmenities.contains("liften")) {
+			amenityLiftArrival.setVisible(true);
+		} else {
+			amenityLiftArrival.setVisible(false);
+		}
+		if (arrivalAmenities.contains("trapmarkeringen")) {
+			amenityStairMarkingsArrival.setVisible(true);
+		} else {
+			amenityStairMarkingsArrival.setVisible(false);
+		}
+		if (arrivalAmenities.contains("geleidenstroken")) {
+			amenityTactilePavementArrival.setVisible(true);
+		} else {
+			amenityTactilePavementArrival.setVisible(false);
+		}
+	}
+
+	public void setAmenitiesVisible() {
+		favouriteVisible = (false);
+		amenitiesVisible = (true);
+		amenities.setVisible(amenitiesVisible);
+		favouriteLabel.setVisible(favouriteVisible);
+		favourite0.setVisible(favouriteVisible);
+		favourite1.setVisible(favouriteVisible);
+		favourite2.setVisible(favouriteVisible);
+		favourite3.setVisible(favouriteVisible);
+		favourite4.setVisible(favouriteVisible);
+
+		if (amenitiesVisible) {
+			System.out.println("Voorzieningen zichtbaar");
+		} else {
+			System.out.println("Voorzieningen verborgen");
+		}
+	}
+
+	@FXML
+	protected void setFavouriteVisible() {
+		favouriteVisible = (true);
+		amenitiesVisible = (false);
+		favouriteLabel.setVisible(favouriteVisible);
+		amenities.setVisible(amenitiesVisible);
+		favourite0.setVisible(favouriteVisible);
+		favourite1.setVisible(favouriteVisible);
+		favourite2.setVisible(favouriteVisible);
+		favourite3.setVisible(favouriteVisible);
+		favourite4.setVisible(favouriteVisible);
+
+		if (favouriteVisible) {
+			System.out.println("Favorieten zichtbaar");
+		} else {
+			System.out.println("Favorieten verborgen");
+		}
 	}
 }

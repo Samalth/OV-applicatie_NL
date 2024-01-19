@@ -1,4 +1,5 @@
 package com.ovapp;
+
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -12,143 +13,143 @@ import java.util.*;
 
 abstract class ParentController {
 
-    @FXML
-    private VBox parent;
+	@FXML
+	Button previousButton;
+	@FXML
+	Button logInButton;
+	@FXML
+	Button makeAccountButton;
+	@FXML
+	Label loginMessageLabel;
+	@FXML
+	Label descriptionLabel;
+	@FXML
+	TextField usernameTextField;
+	@FXML
+	PasswordField passwordPasswordField;
+	ResourceBundle bundle;
+	@FXML
+	private VBox parent;
+	@FXML
+	private ImageView imgMode;
+	@FXML
+	private Label dateLabel;
+	@FXML
+	private Label clockLabel;
+	private boolean isLightMode = true;
+	@FXML
+	private Tooltip modeToolTip;
+	@FXML
+	private Tooltip passwordPasswordFieldToolTip;
+	@FXML
+	private Tooltip previousButtonTooltip;
+	@FXML
+	private Tooltip makeAccountButtonToolTip;
+	@FXML
+	private Tooltip logInButtonToolTip;
+	@FXML
+	private Tooltip usernameTextFieldToolTip;
 
-    @FXML
-    private ImageView imgMode;
+	@FXML
+	private Tooltip dateLabelToolTip;
 
-    @FXML
-    private Label dateLabel;
-    @FXML
-    private Label clockLabel;
-    @FXML
-    Button previousButton;
+	public void initialize() {
+		Timer timer = new Timer(true);
+		timer.scheduleAtFixedRate(new TimerTask() {
+			@Override
+			public void run() {
+				updateClock();
+				updateDate();
+			}
+		}, 0, 1000);
 
-    @FXML
-    Button logInButton;
+		switchLanguage("Nederlands");
+		setLightMode();
+		loginMessageLabel.setWrapText(true);
+	}
 
-    @FXML
-    Button makeAccountButton;
+	abstract String getDescriptionLabelText(ResourceBundle bundle);
 
-    @FXML
-    Label loginMessageLabel;
-    @FXML
-    Label descriptionLabel;
-    @FXML
-    TextField usernameTextField;
-    @FXML
-    PasswordField passwordPasswordField;
+	abstract String getPasswordTooltipText(ResourceBundle bundle);
 
-    ResourceBundle bundle;
-    private boolean isLightMode = true;
-    @FXML
-    private Tooltip modeToolTip;
-    @FXML
-    private Tooltip passwordPasswordFieldToolTip;
-    @FXML
-    private Tooltip previousButtonTooltip;
-    @FXML
-    private Tooltip makeAccountButtonToolTip;
-    @FXML
-    private Tooltip logInButtonToolTip;
-    @FXML
-    private Tooltip usernameTextFieldToolTip;
+	abstract String getUsernameTooltipText(ResourceBundle bundle);
 
-    @FXML
-    private Tooltip dateLabelToolTip;
+	private void updateClock() {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("      HH:mm");
+		String formattedTime = dateFormat.format(new Date());
 
-    public void initialize() {
-        Timer timer = new Timer(true);
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                updateClock();
-                updateDate();
-            }
-        }, 0, 1000);
+		Platform.runLater(() -> {
+			clockLabel.setText(formattedTime);
+		});
+	}
 
-        switchLanguage("Nederlands");
-        setLightMode();
-        loginMessageLabel.setWrapText(true);
-    }
+	private void updateDate() {
+		SimpleDateFormat dateFormat = new SimpleDateFormat(" dd-MM-yyyy");
+		String formattedDate = dateFormat.format(new Date());
 
-    abstract String getDescriptionLabelText(ResourceBundle bundle);
-    abstract String getPasswordTooltipText(ResourceBundle bundle);
-    abstract String getUsernameTooltipText(ResourceBundle bundle);
+		Platform.runLater(() -> {
+			dateLabel.setText(formattedDate);
+		});
+	}
 
-    private void updateClock() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("      HH:mm");
-        String formattedTime = dateFormat.format(new Date());
+	public void onDuLanguageButtonClick() {
+		switchLanguage("Deutsch");
+	}
 
-        Platform.runLater(() -> {
-            clockLabel.setText(formattedTime);
-        });
-    }
+	public void onNlLanguageButtonClick() {
+		switchLanguage("Nederlands");
+	}
 
-    private void updateDate() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(" dd-MM-yyyy");
-        String formattedDate = dateFormat.format(new Date());
+	public void onEnLanguageButtonClick() {
+		switchLanguage("English");
+	}
 
-        Platform.runLater(() -> {
-            dateLabel.setText(formattedDate);
-        });
-}
+	public void switchLanguage(String newLanguage) {
+		Locale locale = new Locale(newLanguage);
+		bundle = ResourceBundle.getBundle("Messages", locale);
+		modeToolTip.setText(bundle.getString("ModeToolTiptxt"));
+		logInButton.setText(bundle.getString("logInButton"));
+		makeAccountButton.setText(bundle.getString("makeAccountButton"));
+		usernameTextField.setPromptText(bundle.getString("usernameTextField"));
+		passwordPasswordField.setPromptText(bundle.getString("passwordPasswordField"));
+		previousButton.setText(bundle.getString("previousButton"));
 
-    public void onDuLanguageButtonClick(){
-        switchLanguage("Deutsch");
-    }
-    public void onNlLanguageButtonClick(){
-        switchLanguage("Nederlands");
-    }
-    public void onEnLanguageButtonClick(){
-        switchLanguage("English");
-    }
-
-    public void switchLanguage(String newLanguage) {
-        Locale locale = new Locale(newLanguage);
-        bundle = ResourceBundle.getBundle("Messages", locale);
-        modeToolTip.setText(bundle.getString("ModeToolTiptxt"));
-        logInButton.setText(bundle.getString("logInButton"));
-        makeAccountButton.setText(bundle.getString("makeAccountButton"));
-        usernameTextField.setPromptText(bundle.getString("usernameTextField"));
-        passwordPasswordField.setPromptText(bundle.getString("passwordPasswordField"));
-        previousButton.setText(bundle.getString("previousButton"));
-
-        // Tooltips for new buttons
-        makeAccountButtonToolTip.setText(bundle.getString("makeAccountButtonToolTip"));
-        logInButtonToolTip.setText(bundle.getString("logInButtonToolTip"));
-        passwordPasswordFieldToolTip.setText(getPasswordTooltipText(bundle));
-        usernameTextFieldToolTip.setText(getUsernameTooltipText(bundle));
-        previousButtonTooltip.setText(bundle.getString("previousButtonTooltip"));
-        descriptionLabel.setText(getDescriptionLabelText(bundle));
-        dateLabelToolTip.setText(bundle.getString("DateLabelToolTiptxt"));
+		// Tooltips for new buttons
+		makeAccountButtonToolTip.setText(bundle.getString("makeAccountButtonToolTip"));
+		logInButtonToolTip.setText(bundle.getString("logInButtonToolTip"));
+		passwordPasswordFieldToolTip.setText(getPasswordTooltipText(bundle));
+		usernameTextFieldToolTip.setText(getUsernameTooltipText(bundle));
+		previousButtonTooltip.setText(bundle.getString("previousButtonTooltip"));
+		descriptionLabel.setText(getDescriptionLabelText(bundle));
+		dateLabelToolTip.setText(bundle.getString("DateLabelToolTiptxt"));
 
 
-    }
-    public void onChangeModeClick() {
-        isLightMode = !isLightMode;
+	}
 
-        parent.getStylesheets().remove("darkmode.css");
-        parent.getStylesheets().remove("lightmode.css");
+	public void onChangeModeClick() {
+		isLightMode = !isLightMode;
 
-        if (isLightMode) {
-            setLightMode();
-        } else {
-            setDarkMode();
-        }
-    }
-    private void setLightMode() {
-        parent.getStylesheets().remove("darkmode.css");
-        parent.getStylesheets().add("lightmode.css");
-        Image image = new Image("moon.png");
-        imgMode.setImage(image);
-    }
+		parent.getStylesheets().remove("darkmode.css");
+		parent.getStylesheets().remove("lightmode.css");
 
-    private void setDarkMode() {
-        parent.getStylesheets().remove("lightmode.css");
-        parent.getStylesheets().add("darkmode.css");
-        Image image = new Image("sun.png");
-        imgMode.setImage(image);
-    }
+		if (isLightMode) {
+			setLightMode();
+		} else {
+			setDarkMode();
+		}
+	}
+
+	private void setLightMode() {
+		parent.getStylesheets().remove("darkmode.css");
+		parent.getStylesheets().add("lightmode.css");
+		Image image = new Image("moon.png");
+		imgMode.setImage(image);
+	}
+
+	private void setDarkMode() {
+		parent.getStylesheets().remove("lightmode.css");
+		parent.getStylesheets().add("darkmode.css");
+		Image image = new Image("sun.png");
+		imgMode.setImage(image);
+	}
 }
