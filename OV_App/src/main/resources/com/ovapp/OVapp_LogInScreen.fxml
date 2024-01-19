@@ -79,11 +79,6 @@
                     <Tooltip fx:id="passwordPasswordFieldToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="Vul uw wachtwoord in." />
                 </tooltip>
             </PasswordField>
-            <ImageView fx:id="travelYRouteImg" cache="true" fitHeight="169.0" fitWidth="203.0" layoutX="1063.0" layoutY="21.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
-                <image>
-                    <Image url="@../../TravelYRouteBlanc.png" />
-                </image>
-            </ImageView>
             <Button fx:id="logInButton" layoutX="544.0" layoutY="365.0" mnemonicParsing="false" onAction="#logInButtonOnAction" prefHeight="69.0" prefWidth="245.0" style="-fx-border-color: #0863b5;" text="Inloggen">
                 <font>
                     <Font name="Calibri" size="22.0" />
@@ -101,6 +96,11 @@
                     <Tooltip fx:id="makeAccountButtonToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="3. Klik hier om een nieuw account aan te maken." />
                 </tooltip>
             </Button>
+            <ImageView fx:id="travelYRouteImg" cache="true" fitHeight="166.0" fitWidth="262.0" layoutX="1208.0" layoutY="662.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../../TravelYRouteBlanc.png" />
+                </image>
+            </ImageView>
         </children>
     </Pane>
 </VBox>
