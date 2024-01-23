@@ -94,7 +94,7 @@
                              text="Hier ziet u uw reisinformatie"/>
                 </tooltip>
             <font>
-               <Font size="36.0" />
+               <Font size="22.0" />
             </font>
             </Label>
             <Button fx:id="GOButton" layoutX="232.0" layoutY="664.0" mnemonicParsing="false" onAction="#onGOClick"
