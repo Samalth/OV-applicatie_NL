@@ -123,8 +123,8 @@ public class Controller {
 	private ImageView amenityTactilePavementArrival;
 
 
-	private Train train = new Train("Trein", Arrays.asList(0, 15, 30, 45, 60));
-	private Bus bus = new Bus("Bus", Arrays.asList(25, 55, 85));
+	private final Train train = new Train("Trein", Arrays.asList(0, 15, 30, 45, 60));
+	private final Bus bus = new Bus("Bus", Arrays.asList(25, 55, 85));
 	private ResourceBundle bundle;
 	private City currentCity;
 	private boolean isLightMode = true;
@@ -431,36 +431,12 @@ public class Controller {
 	}
 
 	private void setAmenityImages(String departureAmenities, String arrivalAmenities) {
-		if (departureAmenities.contains("liften")) {
-			amenityLiftDeparture.setVisible(true);
-		} else {
-			amenityLiftDeparture.setVisible(false);
-		}
-		if (departureAmenities.contains("trapmarkeringen")) {
-			amenityStairMarkingsDeparture.setVisible(true);
-		} else {
-			amenityStairMarkingsDeparture.setVisible(false);
-		}
-		if (departureAmenities.contains("geleidenstroken")) {
-			amenityTactilePavementDeparture.setVisible(true);
-		} else {
-			amenityTactilePavementDeparture.setVisible(false);
-		}
+		amenityLiftDeparture.setVisible(departureAmenities.contains("liften"));
+		amenityStairMarkingsDeparture.setVisible(departureAmenities.contains("trapmarkeringen"));
+		amenityTactilePavementDeparture.setVisible(departureAmenities.contains("geleidenstroken"));
 
-		if (arrivalAmenities.contains("liften")) {
-			amenityLiftArrival.setVisible(true);
-		} else {
-			amenityLiftArrival.setVisible(false);
-		}
-		if (arrivalAmenities.contains("trapmarkeringen")) {
-			amenityStairMarkingsArrival.setVisible(true);
-		} else {
-			amenityStairMarkingsArrival.setVisible(false);
-		}
-		if (arrivalAmenities.contains("geleidenstroken")) {
-			amenityTactilePavementArrival.setVisible(true);
-		} else {
-			amenityTactilePavementArrival.setVisible(false);
-		}
+		amenityLiftArrival.setVisible(arrivalAmenities.contains("liften"));
+		amenityStairMarkingsArrival.setVisible(arrivalAmenities.contains("trapmarkeringen"));
+		amenityTactilePavementArrival.setVisible(arrivalAmenities.contains("geleidenstroken"));
 	}
 }
