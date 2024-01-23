@@ -76,6 +76,9 @@
                 <tooltip>
                     <Tooltip fx:id="departureLabelToolTip" style="-fx-text-fill: #FFFFFF; -fx-font-size: 14;" text="Hier ziet u uw reisinformatie" />
                 </tooltip>
+                <font>
+                    <Font size="22.0" />
+                </font>
             </Label>
             <Button fx:id="GOButton" layoutX="232.0" layoutY="664.0" mnemonicParsing="false" onAction="#onGOClick" prefHeight="92.0" prefWidth="230.0" style="-fx-border-color: #ff6600;" text="Plan Route">
                 <font>
