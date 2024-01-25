@@ -134,12 +134,12 @@ public class LoggedInController {
 	private ImageView amenityStairMarkingsArrival;
 	@FXML
 	private ImageView amenityTactilePavementArrival;
-	private List<String> favouriteList = new ArrayList<>();
-	private List<String> displayFavouriteListNL = new ArrayList<>();
-	private List<String> displayFavouriteListEN = new ArrayList<>();
-	private List<String> displayFavouriteListDE = new ArrayList<>();
-	private Train train = new Train("Trein", Arrays.asList(0, 15, 30, 45, 60));
-	private Bus bus = new Bus("Bus", Arrays.asList(25, 55, 85));
+	private final List<String> favouriteList = new ArrayList<>();
+	private final List<String> displayFavouriteListNL = new ArrayList<>();
+	private final List<String> displayFavouriteListEN = new ArrayList<>();
+	private final List<String> displayFavouriteListDE = new ArrayList<>();
+	private final Train train = new Train("Trein", Arrays.asList(0, 15, 30, 45, 60));
+	private final Bus bus = new Bus("Bus", Arrays.asList(25, 55, 85));
 	private ResourceBundle bundle;
 	private City currentCity;
 	private boolean isLightMode = true;
@@ -633,36 +633,12 @@ public class LoggedInController {
 	}
 
 	private void setAmenityImages(String departureAmenities, String arrivalAmenities) {
-		if (departureAmenities.contains("liften")) {
-			amenityLiftDeparture.setVisible(true);
-		} else {
-			amenityLiftDeparture.setVisible(false);
-		}
-		if (departureAmenities.contains("trapmarkeringen")) {
-			amenityStairMarkingsDeparture.setVisible(true);
-		} else {
-			amenityStairMarkingsDeparture.setVisible(false);
-		}
-		if (departureAmenities.contains("geleidenstroken")) {
-			amenityTactilePavementDeparture.setVisible(true);
-		} else {
-			amenityTactilePavementDeparture.setVisible(false);
-		}
-		if (arrivalAmenities.contains("liften")) {
-			amenityLiftArrival.setVisible(true);
-		} else {
-			amenityLiftArrival.setVisible(false);
-		}
-		if (arrivalAmenities.contains("trapmarkeringen")) {
-			amenityStairMarkingsArrival.setVisible(true);
-		} else {
-			amenityStairMarkingsArrival.setVisible(false);
-		}
-		if (arrivalAmenities.contains("geleidenstroken")) {
-			amenityTactilePavementArrival.setVisible(true);
-		} else {
-			amenityTactilePavementArrival.setVisible(false);
-		}
+		amenityLiftDeparture.setVisible(departureAmenities.contains("liften"));
+		amenityStairMarkingsDeparture.setVisible(departureAmenities.contains("trapmarkeringen"));
+		amenityTactilePavementDeparture.setVisible(departureAmenities.contains("geleidenstroken"));
+		amenityLiftArrival.setVisible(arrivalAmenities.contains("liften"));
+		amenityStairMarkingsArrival.setVisible(arrivalAmenities.contains("trapmarkeringen"));
+		amenityTactilePavementArrival.setVisible(arrivalAmenities.contains("geleidenstroken"));
 	}
 
 	public void setAmenitiesVisible() {

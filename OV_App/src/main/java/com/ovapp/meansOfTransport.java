@@ -20,7 +20,7 @@ abstract class meansOfTransport {
 	}
 
 	List<Integer> getTransportSchedule() {
-		return Arrays.asList(0);
+		return List.of(0);
 	}
 
 	ArrayList<String> getDepartureTime(List<Integer> schedule, int departureHours, int departureMinutes) {

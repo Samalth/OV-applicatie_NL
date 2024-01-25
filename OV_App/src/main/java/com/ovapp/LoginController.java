@@ -41,10 +41,7 @@ public class LoginController extends ParentController {
 		super.initialize();
 		//hasmap login info Users
 		loginInfo.put("1", "1");
-		loginInfo.put("aaaa", "aaaa");
-		loginInfo.put("Hellokittyfan", "blahBlah123");
-        loginInfo.put("User", "1234");
-        loginInfo.put(" "," ");
+        loginInfo.put("admin","temp");
     }
 
 	@Override
